@@ -97,21 +97,14 @@ return (
                 }
               >
                 {({ isActive }) => (
-                  <>
-                    <Mark
-                      tone={tone}
-                      collapsed={collapsed}
-                      barWidth={barWidthFor(label)}
-                    >
-                      {label}
-                    </Mark>
-                    {isActive && !collapsed ? (
-                      <span
-                        className="inline-block size-1.5 rounded-full bg-black"
-                        aria-hidden
-                      />
-                    ) : null}
-                  </>
+                  <Mark
+                    tone={tone}
+                    collapsed={collapsed}
+                    barWidth={barWidthFor(label)}
+                    active={isActive}
+                  >
+                    {label}
+                  </Mark>
                 )}
               </NavLink>
             ))}

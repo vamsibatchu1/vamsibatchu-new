@@ -26,13 +26,19 @@ export default function Mark({
   children,
   collapsed = false,
   barWidth,
+  active = false,
 }: {
   tone: MarkTone
   children: ReactNode
   collapsed?: boolean
   /** Rem width used when collapsed (proportional color bar). */
   barWidth?: number
+  /** Underline the first letter when this nav item is active. */
+  active?: boolean
 }) {
+  const label = typeof children === 'string' ? children : null
+  const showFirstUnderline = active && !collapsed && label && label.length > 0
+
   return (
     <span
       className={`inline-flex items-center justify-center overflow-hidden transition-[width,padding,min-height] duration-300 ease-out ${tones[tone]} ${
@@ -51,7 +57,16 @@ export default function Mark({
             : 'max-w-[12rem] opacity-100'
         }`}
       >
-        {children}
+        {showFirstUnderline ? (
+          <>
+            <span className="underline decoration-black decoration-1 underline-offset-[3px]">
+              {label[0]}
+            </span>
+            {label.slice(1)}
+          </>
+        ) : (
+          children
+        )}
       </span>
     </span>
   )

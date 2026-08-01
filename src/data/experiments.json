@@ -1,0 +1,262 @@
+[
+  {
+    "id": "browser-field",
+    "title": "browser field",
+    "description": "Scatter of resizable wireframe windows — drag chrome, pull edges like Figma frames.",
+    "url": null,
+    "image": null,
+    "tags": ["ui", "interaction"],
+    "date": "2026-07-31",
+    "body": "No tutorial this time — just poke around. Drag the chrome to move a frame, pull the edges like a Figma artboard, and let the stack fight for z-index. The lab is mostly untitled windows and half-finished ideas, which is exactly the point."
+  },
+  {
+    "id": "cursor-magnets",
+    "title": "cursor magnets",
+    "description": "Sticky cursor experiments that still pull on the wrong axis.",
+    "url": null,
+    "image": null,
+    "tags": ["interaction", "cursor"],
+    "date": "2026-07-20",
+    "body": "Lab note 01: the cursor magnets still stick on the wrong axis. Hovering near a handle yanks sideways when it should tug vertical, and the snap radius is a little too generous. Keeping the bug for now — it feels more alive than the corrected version."
+  },
+  {
+    "id": "jelly-spring",
+    "title": "jelly spring",
+    "description": "Soft spring with too little damping — ships anyway.",
+    "url": null,
+    "image": null,
+    "tags": ["motion"],
+    "date": "2026-07-18",
+    "body": "Spring too soft, damping at 0.42, and the whole card feels like jelly when it lands. Tuned it three times, then shipped the wobbly one anyway. Sometimes the wrong physics is the personality."
+  },
+  {
+    "id": "mono-justify",
+    "title": "mono justify",
+    "description": "Monospace word-spacing experiments that never quite even out.",
+    "url": null,
+    "image": null,
+    "tags": ["type"],
+    "date": "2026-07-16",
+    "body": "Trying to justify monospace without looking broken. Word spacing measured twice, still uneven at the rag. JetBrains Mono at small sizes fights every rule; the uneven gaps might be the texture we keep."
+  },
+  {
+    "id": "stipple-field",
+    "title": "stipple field",
+    "description": "Noise → dots halftone behind the landing macaw.",
+    "url": "/",
+    "image": null,
+    "tags": ["landing", "texture"],
+    "date": "2026-07-14",
+    "body": "Noise becomes dots, dots become a breathing stipple field behind the macaw. White on black, landing only — a quiet halftone that moves just enough to feel alive without stealing the gif."
+  },
+  {
+    "id": "paper-stack",
+    "title": "paper stack",
+    "description": "Spring-enter API doc card with a slight rotate.",
+    "url": "/",
+    "image": null,
+    "tags": ["landing", "ui"],
+    "date": "2026-07-12",
+    "body": "The API doc card springs in like a sheet from a paper stack, rotated about minus four degrees so it never sits flat. It should feel printed, slightly crooked, and ready to be picked up."
+  },
+  {
+    "id": "nav-collapse",
+    "title": "nav collapse",
+    "description": "Labels collapse into color bars on scroll.",
+    "url": null,
+    "image": null,
+    "tags": ["nav", "interaction"],
+    "date": "2026-07-10",
+    "body": "On scroll, labels collapse into color bars — a delta-driven reduce that keeps the mark and drops the words. Navigation becomes a thin instrument panel instead of a sentence you keep rereading."
+  },
+  {
+    "id": "pretext-drift",
+    "title": "pretext drift",
+    "description": "One text stream across five columns with movable obstacles.",
+    "url": null,
+    "image": null,
+    "tags": ["type", "layout"],
+    "date": "2026-07-08",
+    "body": "One continuous stream drifts across five columns while movable walls reshape the flow. Pretext does the measuring; we just shove obstacles around and watch the paragraphs reflow like water finding new channels."
+  },
+  {
+    "id": "fill-headline",
+    "title": "fill headline",
+    "description": "Barcode-grid headline that stretches with the cursor field.",
+    "url": null,
+    "image": null,
+    "tags": ["type", "interaction"],
+    "date": "2026-07-06",
+    "body": "A barcode-grid headline stretches to fill whatever width the cursor field allows. Letters become bars, bars become type again when you pull back. It is less a title and more a responsive instrument."
+  },
+  {
+    "id": "model-sketch",
+    "title": "model sketch",
+    "description": "Tiny unfinished LLM surface — talk carefully.",
+    "url": null,
+    "image": null,
+    "tags": ["ai", "prototype"],
+    "date": "2026-07-04",
+    "body": "An unfinished LLM sketch on a tiny surface. Talk carefully — the model is half-wired, the prompts are placeholders, and the interesting part is how little UI you need before it starts feeling like a conversation."
+  },
+  {
+    "id": "weekend-toy",
+    "title": "weekend toy",
+    "description": "Soft-body throwaway that kept the interesting bug.",
+    "url": null,
+    "image": null,
+    "tags": ["physics", "weekend"],
+    "date": "2026-07-02",
+    "body": "Weekend soft-body toy, meant to be throwaway. The interesting bug stayed: bodies stretch a frame too late and the delay makes them feel squishy in a way the correct solver never did. Keeping the wrong version."
+  },
+  {
+    "id": "type-lab",
+    "title": "type lab",
+    "description": "Uppercase-only tracking study with hairline rules.",
+    "url": null,
+    "image": null,
+    "tags": ["type"],
+    "date": "2026-06-28",
+    "body": "Uppercase only, tracking at 0.14, hairline rules between rows. The type lab is where spacing gets obsessive and the page starts to look like a specimen sheet instead of a homepage."
+  },
+  {
+    "id": "read-pixels",
+    "title": "read the pixels",
+    "description": "Skip the docs — poke the pixels, then break them.",
+    "url": null,
+    "image": null,
+    "tags": ["process"],
+    "date": "2026-06-26",
+    "body": "No tutorial. Read the pixels, not the docs, then break whatever still looks too polite. Most of the useful experiments start by ignoring the intended use and pushing the surface until it complains."
+  },
+  {
+    "id": "z-index-fight",
+    "title": "z-index fight",
+    "description": "Window stacking wars until you click another frame.",
+    "url": "/experiments",
+    "image": null,
+    "tags": ["ui", "interaction"],
+    "date": "2026-06-24",
+    "body": "Window seventeen thinks it is on top until you click window three. The z-index fight is the whole interaction model: click to raise, drag to rearrange, never quite settle into a tidy desktop."
+  },
+  {
+    "id": "drag-chrome",
+    "title": "drag chrome",
+    "description": "Title-bar move, edge and corner resize — not the text.",
+    "url": "/experiments",
+    "image": null,
+    "tags": ["ui", "interaction"],
+    "date": "2026-06-22",
+    "body": "Drag the chrome, not the text. Edges resize, corners too, same muscle memory as a design tool. The body stays for reading; the frame is the handle."
+  },
+  {
+    "id": "weird-archive",
+    "title": "weird archive",
+    "description": "A room of untitled browsers with zero tabs.",
+    "url": "/experiments",
+    "image": null,
+    "tags": ["archive", "ui"],
+    "date": "2026-06-20",
+    "body": "A weird archive of browsers with zero tabs and almost every window still called untitled. It is less a gallery and more a room you walk into where every surface is a half-open thought."
+  },
+  {
+    "id": "scroll-cube",
+    "title": "scroll cube",
+    "description": "±30° faces folding at midline on the about page.",
+    "url": "/about",
+    "image": null,
+    "tags": ["about", "scroll"],
+    "date": "2026-06-18",
+    "body": "Two faces at plus or minus thirty degrees fold at the midline while an invisible scroll source feeds the loop. The about page becomes a cube you read through, not a column you finish."
+  },
+  {
+    "id": "dot-field",
+    "title": "dot field",
+    "description": "Halftone breath behind the landing gif on a black stage.",
+    "url": "/",
+    "image": null,
+    "tags": ["landing", "texture"],
+    "date": "2026-06-16",
+    "body": "Halftone breath on a black stage, sitting behind the landing gif so the macaw feels printed on living paper. The dots are quiet until you notice them pulsing with the room."
+  },
+  {
+    "id": "tractor-feed",
+    "title": "tractor feed",
+    "description": "Punch-hole profile loader — press enter to load.",
+    "url": null,
+    "image": null,
+    "tags": ["ui", "form"],
+    "date": "2026-06-14",
+    "body": "Tractor-feed margins, punch holes down the side, load profile and press enter. The form pretends to be paper moving through a printer even though nothing is printing except the idea."
+  },
+  {
+    "id": "serif-titles",
+    "title": "serif titles",
+    "description": "Newsreader display with JetBrains mono labels.",
+    "url": null,
+    "image": null,
+    "tags": ["type"],
+    "date": "2026-06-12",
+    "body": "Newsreader for the titles, JetBrains Mono for the labels. Serif for voice, mono for instruments — a pairing that keeps the page from sounding like every other product site."
+  },
+  {
+    "id": "ai-surface",
+    "title": "ai surface",
+    "description": "Hold / steer prototype — trust later.",
+    "url": null,
+    "image": null,
+    "tags": ["ai", "prototype"],
+    "date": "2026-06-10",
+    "body": "Hold and steer first; trust later. The AI surface is a prototype for guiding a model without pretending the answers are finished. Small controls, big uncertainty, and a bias toward keeping the human in the loop."
+  },
+  {
+    "id": "commission",
+    "title": "commission",
+    "description": "Small intent, big curiosity — side quest work.",
+    "url": null,
+    "image": null,
+    "tags": ["process"],
+    "date": "2026-06-08",
+    "body": "Commission work with small intent and big curiosity — side quests that pay for the odd experiments. The brief is tight; the leftover energy goes into the weird archive."
+  },
+  {
+    "id": "frame-001",
+    "title": "frame 001",
+    "description": "Local-only frame — refresh loses the state.",
+    "url": null,
+    "image": null,
+    "tags": ["prototype"],
+    "date": "2026-06-06",
+    "body": "Frame 001, no export, local only. Refresh and the arrangement is gone, which is fine for a lab note. If it mattered enough to keep, it would already have a name and a URL."
+  },
+  {
+    "id": "still-untitled",
+    "title": "still untitled",
+    "description": "Placeholder window that refuses a name.",
+    "url": null,
+    "image": null,
+    "tags": ["archive"],
+    "date": "2026-06-04",
+    "body": "Untitled, untitled, untitled — still untitled. Some windows refuse a name on purpose. Naming too early freezes the experiment into a product before it has earned one."
+  },
+  {
+    "id": "hover-stretch",
+    "title": "hover stretch",
+    "description": "Hover, then stretch — make it tall, make it weird.",
+    "url": null,
+    "image": null,
+    "tags": ["interaction"],
+    "date": "2026-06-02",
+    "body": "Hover me, then stretch. Make it tall, make it weird, let the type reflow until the paragraph looks like a column of code. Resize is the second half of reading in this room."
+  },
+  {
+    "id": "lab-closed",
+    "title": "lab closed",
+    "description": "Lights on, windows open — come in anyway.",
+    "url": "/experiments",
+    "image": null,
+    "tags": ["archive"],
+    "date": "2026-06-01",
+    "body": "Lab closed, lights on, windows open — come in anyway. The sign is a joke; the room is the work. Pull a frame forward and see what is still unfinished on purpose."
+  }
+]
