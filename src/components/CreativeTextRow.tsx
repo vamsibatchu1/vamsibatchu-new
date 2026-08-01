@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
+  type ReactNode,
 } from 'react'
 import {
   LINE_HEIGHT,
@@ -14,6 +15,7 @@ import {
   justifySpacing,
   type FlowImage,
 } from './creativeTextLayout'
+import { markColors, type MarkTone } from './Mark'
 import { buildShapeBands, type ShapeBand } from './svgShapeMask'
 
 export type { FlowImage }
@@ -26,12 +28,20 @@ const GAP = 20
 const THUMB = '#efeeec'
 const SVG_MAX_W = 600
 
+export type TextKeyword = {
+  word: string
+  gloss: string
+  tone: MarkTone
+}
+
 export type CreativeTextFlow = {
   /** One continuous article — Pretext streams this across all columns. */
   text: string
   images: FlowImage[]
   /** Optional SVG/image whose opaque ink becomes wrap obstacles. */
   shapeSrc?: string
+  /** Clickable words that inject a highlighted gloss into the stream. */
+  keywords?: TextKeyword[]
 }
 
 type LayoutSnapshot = {
@@ -52,6 +62,37 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
 }
 
+function normalizeArticle(text: string) {
+  return text.toUpperCase().replace(/\s+/gu, ' ').trim()
+}
+
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/** Inject «gloss» after the first whole-word match of the expanded keyword. */
+function buildStreamText(
+  base: string,
+  expandedWord: string | null,
+  keywords: TextKeyword[],
+) {
+  if (!expandedWord) return base
+  const kw = keywords.find(
+    (k) => k.word.toUpperCase() === expandedWord.toUpperCase(),
+  )
+  if (!kw) return base
+
+  const needle = kw.word.toUpperCase()
+  const gloss = kw.gloss.toUpperCase().replace(/\s+/gu, ' ').trim()
+  const re = new RegExp(`\\b${escapeRegExp(needle)}\\b`)
+  if (!re.test(base)) return base
+  return base.replace(re, `${needle} «${gloss}»`)
+}
+
+function wordKey(token: string) {
+  return token.replace(/[^A-Z0-9]/giu, '').toUpperCase()
+}
+
 type CreativeTextRowProps = {
   flow: CreativeTextFlow
 }
@@ -60,12 +101,15 @@ type CreativeTextRowProps = {
  * One continuous Pretext stream across columns.
  * Rectangular images are draggable obstacles; an optional SVG shape
  * is scanned so text wraps around each glyph silhouette.
+ * Keywords inject a Mark-colored gloss into the stream on click.
  */
 export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
   const stageRef = useRef<HTMLDivElement>(null)
   const preparedRef = useRef<PreparedTextWithSegments | null>(null)
+  const baseTextRef = useRef(normalizeArticle(flow.text))
   const [preparedTick, setPreparedTick] = useState(0)
   const [images, setImages] = useState(flow.images)
+  const [expandedWord, setExpandedWord] = useState<string | null>(null)
   const [shapeBands, setShapeBands] = useState<ShapeBand[] | null>(null)
   const [shapeBox, setShapeBox] = useState<{
     left: number
@@ -82,26 +126,38 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
     originTop: number
   } | null>(null)
 
+  const keywords = flow.keywords ?? []
+  const expandedKw = expandedWord
+    ? keywords.find((k) => k.word.toUpperCase() === expandedWord.toUpperCase())
+    : undefined
+
   useEffect(() => {
     setImages(flow.images)
   }, [flow.images])
 
   useEffect(() => {
+    baseTextRef.current = normalizeArticle(flow.text)
+    setExpandedWord(null)
+  }, [flow.text])
+
+  useEffect(() => {
     let cancelled = false
+    const stream = buildStreamText(
+      baseTextRef.current,
+      expandedWord,
+      flow.keywords ?? [],
+    )
 
     void document.fonts.ready.then(() => {
       if (cancelled) return
-      preparedRef.current = prepareWithSegments(
-        flow.text.toUpperCase().replace(/\s+/gu, ' ').trim(),
-        FONT,
-      )
+      preparedRef.current = prepareWithSegments(stream, FONT)
       setPreparedTick((n) => n + 1)
     })
 
     return () => {
       cancelled = true
     }
-  }, [flow.text])
+  }, [flow.text, flow.keywords, expandedWord])
 
   // Build SVG silhouette mask whenever stage size / shape src changes
   useEffect(() => {
@@ -246,7 +302,14 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
     dragRef.current = null
   }
 
+  const toggleKeyword = (word: string) => {
+    setExpandedWord((cur) =>
+      cur && cur.toUpperCase() === word.toUpperCase() ? null : word,
+    )
+  }
+
   const lastLineIndex = (snapshot?.lines.length ?? 1) - 1
+  const glossColor = expandedKw ? markColors[expandedKw.tone] : undefined
 
   return (
     <div
@@ -258,7 +321,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
         fontSize: FONT_SIZE,
         lineHeight: `${LINE_HEIGHT}px`,
       }}
-      aria-label="Creative text flow — wraps around the SVG silhouette"
+      aria-label="Creative text flow — click highlighted keywords for glosses"
     >
       {snapshot?.shape ? (
         <img
@@ -276,25 +339,37 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
         />
       ) : null}
 
-      {snapshot?.lines.map((line, i) => {
-        const left = line.col * (snapshot.colWidth + GAP) + line.x
-        const wordSpacing = justifySpacing(line, i === lastLineIndex)
-        return (
-          <div
-            key={`line-${i}`}
-            className="absolute whitespace-nowrap uppercase text-black"
-            style={{
-              left,
-              top: line.y,
-              width: line.slotWidth,
-              wordSpacing:
-                wordSpacing > 0 ? `${wordSpacing}px` : undefined,
-            }}
-          >
-            {line.text}
-          </div>
-        )
-      })}
+      {(() => {
+        let inGloss = false
+        return snapshot?.lines.map((line, i) => {
+          const left = line.col * (snapshot.colWidth + GAP) + line.x
+          const wordSpacing = justifySpacing(line, i === lastLineIndex)
+          const parsed = parseLineWithKeywords(
+            line.text,
+            inGloss,
+            keywords,
+            expandedWord,
+            glossColor,
+            toggleKeyword,
+          )
+          inGloss = parsed.inGloss
+          return (
+            <div
+              key={`line-${i}`}
+              className="absolute whitespace-nowrap uppercase text-black"
+              style={{
+                left,
+                top: line.y,
+                width: line.slotWidth,
+                wordSpacing:
+                  wordSpacing > 0 ? `${wordSpacing}px` : undefined,
+              }}
+            >
+              {parsed.nodes}
+            </div>
+          )
+        })
+      })()}
 
       {(snapshot?.images ?? images).map((img) => {
         const colW = snapshot?.colWidth ?? 0
@@ -337,4 +412,103 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
       })}
     </div>
   )
+}
+
+function parseLineWithKeywords(
+  text: string,
+  startInGloss: boolean,
+  keywords: TextKeyword[],
+  expandedWord: string | null,
+  glossColor: string | undefined,
+  onToggle: (word: string) => void,
+): { nodes: ReactNode[]; inGloss: boolean } {
+  const keywordSet = new Map(
+    keywords.map((k) => [k.word.toUpperCase(), k] as const),
+  )
+  const nodes: ReactNode[] = []
+  let inGloss = startInGloss
+  let buf = ''
+  let key = 0
+
+  const flushPlain = (plain: string) => {
+    if (!plain) return
+    if (inGloss) {
+      nodes.push(
+        <span
+          key={`g-${key++}`}
+          className="px-0.5 text-black"
+          style={{ backgroundColor: glossColor ?? markColors.yellow }}
+        >
+          {plain}
+        </span>,
+      )
+      return
+    }
+
+    const tokens = plain.split(/(\s+)/u)
+    tokens.forEach((token) => {
+      if (!token) return
+      if (/^\s+$/u.test(token)) {
+        nodes.push(token)
+        return
+      }
+
+      const wk = wordKey(token)
+      const kw = keywordSet.get(wk)
+      if (!kw) {
+        nodes.push(<span key={`t-${key++}`}>{token}</span>)
+        return
+      }
+
+      const isOpen =
+        !!expandedWord &&
+        expandedWord.toUpperCase() === kw.word.toUpperCase()
+
+      nodes.push(
+        <button
+          key={`k-${key++}`}
+          type="button"
+          aria-expanded={isOpen}
+          aria-label={
+            isOpen
+              ? `collapse gloss for ${kw.word}`
+              : `expand gloss for ${kw.word}`
+          }
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggle(kw.word)
+          }}
+          className="cursor-pointer border-0 bg-transparent p-0 uppercase text-black underline decoration-black/35 underline-offset-2 hover:decoration-black"
+          style={{
+            fontFamily: 'inherit',
+            fontSize: 'inherit',
+            lineHeight: 'inherit',
+            letterSpacing: 'inherit',
+          }}
+        >
+          {token}
+        </button>,
+      )
+    })
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i]
+    if (ch === '«') {
+      flushPlain(buf)
+      buf = ''
+      inGloss = true
+      continue
+    }
+    if (ch === '»') {
+      flushPlain(buf)
+      buf = ''
+      inGloss = false
+      continue
+    }
+    buf += ch
+  }
+  flushPlain(buf)
+
+  return { nodes, inGloss }
 }

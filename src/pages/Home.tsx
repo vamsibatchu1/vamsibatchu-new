@@ -1,14 +1,10 @@
 import CreativeTextRow, {
   type CreativeTextFlow,
 } from '../components/CreativeTextRow'
-import FeatureCardRow, {
-  type FeatureCardData,
-} from '../components/FeatureCardRow'
-import { markColors } from '../components/Mark'
+import { type MarkTone } from '../components/Mark'
 import creativeIntelligence from '../assets/creative-intelligence.svg'
 
 const THUMB_GREY = '#efeeec'
-const { pink, orange, blue, yellow, purple, green } = markColors
 
 type WorkCard = {
   id: string
@@ -17,6 +13,57 @@ type WorkCard = {
   height: number
   arrow: string
 }
+
+const creativeKeywords: CreativeTextFlow['keywords'] = [
+  {
+    word: 'navigation',
+    gloss:
+      'the path a hand takes through an interface — wayfinding made of type, motion, and memory',
+    tone: 'blue' as MarkTone,
+  },
+  {
+    word: 'deepmind',
+    gloss:
+      'where craft meets models — intentional experiences built as a member of technical staff',
+    tone: 'purple' as MarkTone,
+  },
+  {
+    word: 'prototype',
+    gloss:
+      'the smallest honest version of an idea, built to be broken before it is polished',
+    tone: 'orange' as MarkTone,
+  },
+  {
+    word: 'interaction',
+    gloss:
+      'the conversation between person and system — pacing, touch, and recovery as manners',
+    tone: 'pink' as MarkTone,
+  },
+  {
+    word: 'attention',
+    gloss:
+      'the scarce material of product — spent on gaps, headlines, and what the eye meets first',
+    tone: 'yellow' as MarkTone,
+  },
+  {
+    word: 'systems',
+    gloss:
+      'inputs, outputs, feedback — still allowed to surprise once they become legible',
+    tone: 'green' as MarkTone,
+  },
+  {
+    word: 'portfolio',
+    gloss:
+      'an instrument, not a brochure — samples you can play until the composition shifts',
+    tone: 'blue' as MarkTone,
+  },
+  {
+    word: 'rhythm',
+    gloss:
+      'ornament’s quieter sibling — the beat that holds type, motion, and empty space together',
+    tone: 'orange' as MarkTone,
+  },
+]
 
 /**
  * creative-text — one Pretext article streamed across five columns.
@@ -74,9 +121,23 @@ const creativeFlow: CreativeTextFlow = {
     Same library of words, same four pictures — only the path changes.
     That constancy is the feature: content is fixed, composition is live.
     Fill the frame to the last line. Leave no idle column if you can help it.
+    Start again when the column ends: the same voice continues in the next
+    vertical room, wrapping the silhouette without losing the thread. Practice
+    is a loop. Creative technology keeps asking what a product can feel like
+    when type, models, and motion share one page. DeepMind work sits beside
+    studio experiments; both insist on surfaces that stay legible under pressure.
+    Method again: prototype first, polish later, let interaction teach the next
+    cut. Notes accumulate — field scraps on attention, systems, rhythm, and the
+    portfolio as instrument. Navigation is learned by moving through it. Keep
+    the sentences walking. When one column runs out of air, the next one
+    picks up mid-breath. That is how five paths stay one argument: finish the
+    thought downward, then step sideways and continue. Borrow structure freely.
+    Invent the feeling. Leave seams visible. Ship the smallest honest version
+    and let the wrap around the mark remind you that composition is live.
   `,
   images: [],
   shapeSrc: creativeIntelligence,
+  keywords: creativeKeywords,
 }
 
 /** gallery — first thumbnail strip */
@@ -133,46 +194,6 @@ const archiveItems: WorkCard[] = [
     width: 200,
     height: 150,
     arrow: '#c084fc',
-  },
-]
-
-/** projects — feature cards with barcode signatures */
-const projectCards: FeatureCardData[] = [
-  {
-    id: 'anywhere',
-    title: 'anywhere',
-    subtitle: 'member of technical staff at google deepmind',
-    body: 'Building playful, precise digital experiences — systems that feel alive under your fingertips each day. From early sketches to polished interaction, the work stays curious, careful, and a little mischievous. Nothing ships without a reason to move.',
-    barcode: [
-      { color: orange, width: 31 },
-      { color: yellow, width: 9 },
-      { color: blue, width: 22 },
-    ],
-  },
-  {
-    id: 'atelier',
-    title: 'atelier.',
-    subtitle: 'selected studio experiments and commissions.',
-    body: 'Prototypes, interfaces, and side quests where craft meets curiosity on small surfaces with real intent. Studio experiments that test pacing, type, and touch before they grow into trusted products people return to without thinking twice about why.',
-    barcode: [
-      { color: blue, width: 14 },
-      { color: orange, width: 28 },
-      { color: green, width: 8 },
-      { color: yellow, width: 18 },
-    ],
-  },
-  {
-    id: 'notes',
-    title: 'notes...',
-    subtitle: 'writing: interaction, ai, and making things.',
-    body: 'Field notes from building — how layout, motion, and models reshape what a product can feel like to use. Writing that tracks the seams between craft and systems so the next version starts smarter, kinder, and clearer than whatever came before it.',
-    barcode: [
-      { color: purple, width: 10 },
-      { color: orange, width: 24 },
-      { color: yellow, width: 16 },
-      { color: blue, width: 7 },
-      { color: pink, width: 20 },
-    ],
   },
 ]
 
@@ -245,11 +266,6 @@ export default function Home() {
       {/* archive — secondary thumbnail strip */}
       <div id="archive" className={rowClass}>
         <CardRow cards={archiveItems} />
-      </div>
-
-      {/* projects — feature cards */}
-      <div id="projects" className={rowClass}>
-        <FeatureCardRow cards={projectCards} />
       </div>
     </section>
   )

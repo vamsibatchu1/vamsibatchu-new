@@ -77,9 +77,8 @@ function imageBlockedInColumn(
  * Routes around rectangular images and SVG silhouette scanlines
  * so type can slip through gaps between glyph shapes.
  *
- * With a shape mask: fill left→right across columns for each band (row-major)
- * so the rightmost column gets type instead of being starved by tall left gutters.
- * Without a shape: fill each column top→bottom (column-major), classic article flow.
+ * Column-major: fill each column top→bottom, then the next column,
+ * so reading down a column stays a continuous sentence stream.
  */
 export function layoutFlow(
   prepared: PreparedTextWithSegments,
@@ -94,63 +93,48 @@ export function layoutFlow(
   let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 }
   let exhausted = false
 
-  const placeBand = (col: number, y: number) => {
-    if (exhausted) return
-
+  for (let col = 0; col < colCount && !exhausted; col++) {
     const stageLeft = col * (colWidth + gap)
-    const imgBlock = imageBlockedInColumn(
-      colWidth,
-      y,
-      y + LINE_HEIGHT,
-      images,
-      col,
-    )
-    if (imgBlock === 'full') return
 
-    const shapeBlock = shapeBands
-      ? blockedForBand(shapeBands, y)
-          .map((s) => ({
-            left: s.left - stageLeft,
-            right: s.right - stageLeft,
-          }))
-          .filter((s) => s.right > 0 && s.left < colWidth)
-      : []
-
-    const slots = freeSpans(colWidth, [...imgBlock, ...shapeBlock], 22)
-
-    for (const slot of slots) {
-      if (exhausted) break
-      const width = slot.right - slot.left
-      const line = layoutNextLine(prepared, cursor, width)
-      if (line === null) {
-        exhausted = true
-        break
-      }
-
-      lines.push({
-        col,
-        x: slot.left,
-        y,
-        slotWidth: width,
-        text: line.text.replace(/\s+$/u, ''),
-        measuredWidth: line.width,
-      })
-      cursor = line.end
-    }
-  }
-
-  const useRowMajor = Boolean(shapeBands?.length)
-
-  if (useRowMajor) {
     for (let y = 0; y + LINE_HEIGHT <= colHeight && !exhausted; y += LINE_HEIGHT) {
-      for (let col = 0; col < colCount && !exhausted; col++) {
-        placeBand(col, y)
-      }
-    }
-  } else {
-    for (let col = 0; col < colCount && !exhausted; col++) {
-      for (let y = 0; y + LINE_HEIGHT <= colHeight && !exhausted; y += LINE_HEIGHT) {
-        placeBand(col, y)
+      const imgBlock = imageBlockedInColumn(
+        colWidth,
+        y,
+        y + LINE_HEIGHT,
+        images,
+        col,
+      )
+      if (imgBlock === 'full') continue
+
+      const shapeBlock = shapeBands
+        ? blockedForBand(shapeBands, y)
+            .map((s) => ({
+              left: s.left - stageLeft,
+              right: s.right - stageLeft,
+            }))
+            .filter((s) => s.right > 0 && s.left < colWidth)
+        : []
+
+      const slots = freeSpans(colWidth, [...imgBlock, ...shapeBlock], 22)
+
+      for (const slot of slots) {
+        if (exhausted) break
+        const width = slot.right - slot.left
+        const line = layoutNextLine(prepared, cursor, width)
+        if (line === null) {
+          exhausted = true
+          break
+        }
+
+        lines.push({
+          col,
+          x: slot.left,
+          y,
+          slotWidth: width,
+          text: line.text.replace(/\s+$/u, ''),
+          measuredWidth: line.width,
+        })
+        cursor = line.end
       }
     }
   }
