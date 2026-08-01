@@ -4,9 +4,8 @@ import CreativeTextRow, {
 import FeatureCardRow, {
   type FeatureCardData,
 } from '../components/FeatureCardRow'
-import FillHeadline from '../components/FillHeadline'
-import ManifestCard from '../components/ManifestCard'
 import { markColors } from '../components/Mark'
+import creativeIntelligence from '../assets/creative-intelligence.svg'
 
 const THUMB_GREY = '#efeeec'
 const { pink, orange, blue, yellow, purple, green } = markColors
@@ -262,12 +261,13 @@ export default function Home() {
       className="flex flex-col"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
     >
-      {/* hero — headline + manifesto */}
-      <div id="hero" className={rowClass}>
-        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
-          <FillHeadline />
-          <ManifestCard />
-        </div>
+      {/* hero */}
+      <div id="hero" className={`${rowClass} flex justify-center`}>
+        <img
+          src={creativeIntelligence}
+          alt="creative intelligence"
+          className="relative h-auto w-[600px] max-w-full object-contain"
+        />
       </div>
 
       {/* creative-text — Pretext continuous flow + image obstacles */}
