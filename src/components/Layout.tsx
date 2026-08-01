@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import HeatmapOverlay from './HeatmapOverlay'
 import Mark, { type MarkTone } from './Mark'
 
 const links: {
@@ -69,7 +70,10 @@ function useNavCollapsed() {
 
 export default function Layout() {
   const collapsed = useNavCollapsed()
-return (
+  const { pathname } = useLocation()
+  const [heatmapOn, setHeatmapOn] = useState(false)
+
+  return (
     <div
       className="flex min-h-dvh flex-col bg-white text-black"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
@@ -109,6 +113,22 @@ return (
               </NavLink>
             ))}
 
+            <button
+              type="button"
+              aria-pressed={heatmapOn}
+              aria-label="toggle heatmap mode"
+              onClick={() => setHeatmapOn((v) => !v)}
+              className={`inline-flex items-center lowercase transition-all duration-300 hover:opacity-100 ${
+                collapsed
+                  ? 'max-w-0 scale-75 overflow-hidden opacity-0'
+                  : heatmapOn
+                    ? 'max-w-[6rem] opacity-100 line-through decoration-black decoration-1'
+                    : 'max-w-[6rem] opacity-80'
+              }`}
+            >
+              heatmap
+            </button>
+
             <a
               href="https://instagram.com"
               target="_blank"
@@ -142,6 +162,8 @@ return (
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-8 sm:py-12 lg:px-10">
         <Outlet />
       </main>
+
+      {heatmapOn ? <HeatmapOverlay path={pathname} /> : null}
     </div>
   )
 }
