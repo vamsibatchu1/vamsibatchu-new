@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { writingColumns, type WritingEntry } from '../data/writing'
+import writingImage from '../assets/writing.webp'
 
 /**
  * Writing archive — Sulki & Min–style index:
@@ -16,7 +17,7 @@ export default function Writing() {
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
       aria-label="Writing archive"
     >
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(9rem,11.5rem)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(14rem,18rem)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
         <aside className="text-[11px] leading-[1.5] sm:text-xs lg:sticky lg:top-24 lg:self-start">
           <div className="space-y-4 text-black/90">
             <p>
@@ -24,6 +25,11 @@ export default function Writing() {
               notes on interfaces, models, pacing, and the odd experiments
               that do not fit a case study.
             </p>
+            <img
+              src={writingImage}
+              alt=""
+              className="h-auto w-[280px] max-w-full"
+            />
             <p>
               some pieces are essays, some are field notes from the lab,
               some started as talks. nothing here is a finished argument;
