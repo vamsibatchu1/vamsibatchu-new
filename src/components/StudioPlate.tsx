@@ -5,7 +5,7 @@ type StudioPlateProps = {
 
 export default function StudioPlate({ icons = [] }: StudioPlateProps) {
   return (
-    <div className="mb-3 flex w-full items-center justify-between gap-3 border border-black bg-[#f3f1ea] px-2.5 py-2 text-black">
+    <div className="mb-3 flex w-full items-center justify-between gap-3 border border-black bg-white px-2.5 py-2 text-black">
       <div className="min-w-0 flex-1 text-[9px] leading-[1.35] uppercase tracking-[0.04em] sm:text-[10px]">
         <p>vamsi batchu | studio</p>
         <p>product design • build</p>

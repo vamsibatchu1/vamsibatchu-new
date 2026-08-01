@@ -12,7 +12,7 @@ const links: {
   { to: '/work', label: 'work', tone: 'yellow' },
   { to: '/experiments', label: 'experiments', tone: 'purple' },
   { to: '/writing', label: 'writing', tone: 'blue' },
-  { to: '/about', label: 'play', tone: 'green' },
+  { to: '/about', label: 'about', tone: 'green' },
 ]
 
 function barWidthFor(label: string) {
@@ -69,8 +69,7 @@ function useNavCollapsed() {
 
 export default function Layout() {
   const collapsed = useNavCollapsed()
-
-  return (
+return (
     <div
       className="flex min-h-dvh flex-col bg-white text-black"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}

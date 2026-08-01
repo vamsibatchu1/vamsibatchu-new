@@ -58,7 +58,7 @@ function FeatureCard({ card }: { card: FeatureCardData }) {
 
       <p
         className="flex-1 text-justify text-sm leading-[1.15] tracking-tight text-[#6e6e6e] sm:text-base lg:text-lg"
-        style={{ fontFamily: '"Reddit Sans", sans-serif' }}
+        style={{ fontFamily: '"Newsreader", "Times New Roman", serif' }}
       >
         {card.body}
       </p>

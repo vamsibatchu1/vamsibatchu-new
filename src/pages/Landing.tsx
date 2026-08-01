@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import landingGif from '../assets/landing.gif'
 import ApiDoc from '../components/ApiDoc'
+import LandingDotField from '../components/LandingDotField'
 
 export default function Landing() {
   const navigate = useNavigate()
@@ -29,11 +30,13 @@ export default function Landing() {
 
   return (
     <div
-      className={`flex min-h-dvh items-end justify-center overflow-hidden bg-white px-4 pb-10 text-black sm:px-6 sm:pb-14 ${
+      className={`relative flex min-h-dvh items-end justify-center overflow-hidden bg-black px-4 pb-10 text-black sm:px-6 sm:pb-14 ${
         exiting ? 'opacity-0' : 'opacity-100'
       } transition-opacity duration-300`}
     >
-      <div className="flex w-full max-w-6xl flex-col items-center gap-4 lg:flex-row lg:items-end lg:justify-center lg:gap-0">
+      <LandingDotField />
+
+      <div className="relative z-10 flex w-full max-w-6xl flex-col items-center gap-4 lg:flex-row lg:items-end lg:justify-center lg:gap-0">
         <motion.img
           src={landingGif}
           alt="vamsi batchu with a macaw on his shoulder"

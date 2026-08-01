@@ -172,7 +172,7 @@ const projectCards: FeatureCardData[] = [
     id: 'anywhere',
     title: 'anywhere',
     subtitle: 'member of technical staff at google deepmind',
-    body: 'Building playful, precise digital experiences — systems that feel alive under your fingertips each day.',
+    body: 'Building playful, precise digital experiences — systems that feel alive under your fingertips each day. From early sketches to polished interaction, the work stays curious, careful, and a little mischievous. Nothing ships without a reason to move.',
     barcode: [
       { color: orange, width: 31 },
       { color: yellow, width: 9 },
@@ -183,7 +183,7 @@ const projectCards: FeatureCardData[] = [
     id: 'atelier',
     title: 'atelier.',
     subtitle: 'selected studio experiments and commissions.',
-    body: 'Prototypes, interfaces, and side quests where craft meets curiosity on small surfaces with real intent.',
+    body: 'Prototypes, interfaces, and side quests where craft meets curiosity on small surfaces with real intent. Studio experiments that test pacing, type, and touch before they grow into trusted products people return to without thinking twice about why.',
     barcode: [
       { color: blue, width: 14 },
       { color: orange, width: 28 },
@@ -195,7 +195,7 @@ const projectCards: FeatureCardData[] = [
     id: 'notes',
     title: 'notes...',
     subtitle: 'writing: interaction, ai, and making things.',
-    body: 'Field notes from building — how layout, motion, and models reshape what a product can feel like to use.',
+    body: 'Field notes from building — how layout, motion, and models reshape what a product can feel like to use. Writing that tracks the seams between craft and systems so the next version starts smarter, kinder, and clearer than whatever came before it.',
     barcode: [
       { color: purple, width: 10 },
       { color: orange, width: 24 },

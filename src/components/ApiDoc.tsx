@@ -127,7 +127,7 @@ export default function ApiDoc({
         aria-hidden
       />
 
-      <div className="relative flex bg-[#f3f1ea]">
+      <div className="relative flex bg-white">
         <div
           className="relative flex w-6 shrink-0 flex-col items-center justify-between border-r border-dashed border-black/50 py-3 sm:w-7"
           aria-hidden
@@ -135,7 +135,7 @@ export default function ApiDoc({
           {holes.map((i) => (
             <span
               key={i}
-              className="size-1.5 rounded-full border border-black/70 bg-[#f3f1ea] sm:size-2"
+              className="size-1.5 rounded-full border border-black/70 bg-white sm:size-2"
             />
           ))}
         </div>
