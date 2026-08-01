@@ -75,37 +75,8 @@ const creativeFlow: CreativeTextFlow = {
     That constancy is the feature: content is fixed, composition is live.
     Fill the frame to the last line. Leave no idle column if you can help it.
   `,
-  images: [
-    {
-      id: 'img-a',
-      column: 0,
-      top: 220,
-      height: 160,
-      widthRatio: 1,
-    },
-    {
-      id: 'img-b',
-      column: 2,
-      top: 100,
-      height: 150,
-      widthRatio: 1,
-    },
-    {
-      id: 'img-c',
-      column: 3,
-      top: 260,
-      height: 150,
-      widthRatio: 0.62,
-      float: 'right',
-    },
-    {
-      id: 'img-d',
-      column: 4,
-      top: 48,
-      height: 140,
-      widthRatio: 1,
-    },
-  ],
+  images: [],
+  shapeSrc: creativeIntelligence,
 }
 
 /** gallery — first thumbnail strip */
@@ -261,16 +232,7 @@ export default function Home() {
       className="flex flex-col"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
     >
-      {/* hero */}
-      <div id="hero" className={`${rowClass} flex justify-center`}>
-        <img
-          src={creativeIntelligence}
-          alt="creative intelligence"
-          className="relative h-auto w-[600px] max-w-full object-contain"
-        />
-      </div>
-
-      {/* creative-text — Pretext continuous flow + image obstacles */}
+      {/* creative-text — Pretext flow wrapping the SVG silhouette */}
       <div id="creative-text" className={rowClass}>
         <CreativeTextRow flow={creativeFlow} />
       </div>

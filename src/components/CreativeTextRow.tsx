@@ -14,6 +14,7 @@ import {
   justifySpacing,
   type FlowImage,
 } from './creativeTextLayout'
+import { buildShapeBands, type ShapeBand } from './svgShapeMask'
 
 export type { FlowImage }
 
@@ -23,11 +24,14 @@ const COL_COUNT_DESKTOP = 5
 const COL_HEIGHT = 480
 const GAP = 20
 const THUMB = '#efeeec'
+const SVG_MAX_W = 600
 
 export type CreativeTextFlow = {
   /** One continuous article — Pretext streams this across all columns. */
   text: string
   images: FlowImage[]
+  /** Optional SVG/image whose opaque ink becomes wrap obstacles. */
+  shapeSrc?: string
 }
 
 type LayoutSnapshot = {
@@ -35,6 +39,13 @@ type LayoutSnapshot = {
   colCount: number
   lines: ReturnType<typeof layoutFlow>
   images: FlowImage[]
+  shape: {
+    src: string
+    left: number
+    top: number
+    width: number
+    height: number
+  } | null
 }
 
 function clamp(n: number, min: number, max: number) {
@@ -47,13 +58,21 @@ type CreativeTextRowProps = {
 
 /**
  * One continuous Pretext stream across columns.
- * Images are obstacles — drag them and every column reflows.
+ * Rectangular images are draggable obstacles; an optional SVG shape
+ * is scanned so text wraps around each glyph silhouette.
  */
 export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
   const stageRef = useRef<HTMLDivElement>(null)
   const preparedRef = useRef<PreparedTextWithSegments | null>(null)
   const [preparedTick, setPreparedTick] = useState(0)
   const [images, setImages] = useState(flow.images)
+  const [shapeBands, setShapeBands] = useState<ShapeBand[] | null>(null)
+  const [shapeBox, setShapeBox] = useState<{
+    left: number
+    top: number
+    width: number
+    height: number
+  } | null>(null)
   const [snapshot, setSnapshot] = useState<LayoutSnapshot | null>(null)
   const dragRef = useRef<{
     id: string
@@ -84,6 +103,60 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
     }
   }, [flow.text])
 
+  // Build SVG silhouette mask whenever stage size / shape src changes
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage || !flow.shapeSrc) {
+      setShapeBands(null)
+      setShapeBox(null)
+      return
+    }
+
+    let cancelled = false
+
+    const run = async () => {
+      const stageW = stage.clientWidth
+      if (stageW < 2) return
+
+      const drawW = Math.min(SVG_MAX_W, stageW * 0.72, COL_HEIGHT)
+      const drawH = drawW // square artboard
+
+      try {
+        const { bands, offsetX, offsetY } = await buildShapeBands({
+          src: flow.shapeSrc!,
+          stageW,
+          stageH: COL_HEIGHT,
+          drawW,
+          drawH,
+          pad: 4,
+        })
+        if (cancelled) return
+        setShapeBands(bands)
+        setShapeBox({
+          left: offsetX,
+          top: offsetY,
+          width: drawW,
+          height: drawH,
+        })
+      } catch {
+        if (!cancelled) {
+          setShapeBands(null)
+          setShapeBox(null)
+        }
+      }
+    }
+
+    void run()
+    const ro = new ResizeObserver(() => {
+      void run()
+    })
+    ro.observe(stage)
+    return () => {
+      cancelled = true
+      ro.disconnect()
+    }
+  }, [flow.shapeSrc])
+
   useEffect(() => {
     const stage = stageRef.current
     if (!stage || !preparedRef.current) return
@@ -104,11 +177,26 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
         top: clamp(img.top, 0, COL_HEIGHT - img.height),
       }))
 
+      // Wait for shape mask when a shapeSrc is set
+      if (flow.shapeSrc && !shapeBands) return
+
       setSnapshot({
         colWidth,
         colCount,
-        lines: layoutFlow(prepared, colCount, colWidth, COL_HEIGHT, clamped),
+        lines: layoutFlow(
+          prepared,
+          colCount,
+          colWidth,
+          COL_HEIGHT,
+          clamped,
+          GAP,
+          shapeBands ?? undefined,
+        ),
         images: clamped,
+        shape:
+          flow.shapeSrc && shapeBox
+            ? { src: flow.shapeSrc, ...shapeBox }
+            : null,
       })
     }
 
@@ -116,7 +204,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
     const ro = new ResizeObserver(relayout)
     ro.observe(stage)
     return () => ro.disconnect()
-  }, [images, preparedTick])
+  }, [images, preparedTick, shapeBands, shapeBox, flow.shapeSrc])
 
   const onPointerDown = (
     e: ReactPointerEvent<HTMLDivElement>,
@@ -170,8 +258,24 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
         fontSize: FONT_SIZE,
         lineHeight: `${LINE_HEIGHT}px`,
       }}
-      aria-label="Creative text flow — drag images to reflow columns"
+      aria-label="Creative text flow — wraps around the SVG silhouette"
     >
+      {snapshot?.shape ? (
+        <img
+          src={snapshot.shape.src}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute object-contain"
+          style={{
+            left: snapshot.shape.left,
+            top: snapshot.shape.top,
+            width: snapshot.shape.width,
+            height: snapshot.shape.height,
+          }}
+          draggable={false}
+        />
+      ) : null}
+
       {snapshot?.lines.map((line, i) => {
         const left = line.col * (snapshot.colWidth + GAP) + line.x
         const wordSpacing = justifySpacing(line, i === lastLineIndex)

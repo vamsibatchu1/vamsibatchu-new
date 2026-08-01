@@ -3,8 +3,15 @@ import {
   type LayoutCursor,
   type PreparedTextWithSegments,
 } from '@chenglou/pretext'
+import {
+  blockedForBand,
+  freeSpans,
+  LINE_HEIGHT,
+  type BlockedSpan,
+  type ShapeBand,
+} from './svgShapeMask'
 
-export const LINE_HEIGHT = 15
+export { LINE_HEIGHT }
 
 /** Image obstacle inside the shared multi-column flow. */
 export type FlowImage = {
@@ -38,16 +45,15 @@ function overlaps(a0: number, a1: number, b0: number, b1: number) {
   return a0 < b1 && a1 > b0
 }
 
-/** Free interval inside [0, colWidth] after subtracting image obstacles on this band. */
-function freeSlot(
+/** Rectangular image obstacles → blocked spans in column-local coords. */
+function imageBlockedInColumn(
   colWidth: number,
   bandTop: number,
   bandBottom: number,
   images: FlowImage[],
   col: number,
-): { left: number; right: number } | null {
-  let left = 0
-  let right = colWidth
+): BlockedSpan[] | 'full' {
+  const blocked: BlockedSpan[] = []
 
   for (const img of images) {
     if (img.column !== col) continue
@@ -57,37 +63,63 @@ function freeSlot(
     const imgW = colWidth * ratio
     const float = img.float ?? 'left'
 
-    if (ratio >= 0.98) return null
+    if (ratio >= 0.98) return 'full'
 
-    if (float === 'left') left = Math.max(left, imgW + 8)
-    else right = Math.min(right, colWidth - imgW - 8)
+    if (float === 'left') blocked.push({ left: 0, right: imgW + 8 })
+    else blocked.push({ left: colWidth - imgW - 8, right: colWidth })
   }
 
-  if (right - left < 24) return null
-  return { left, right }
+  return blocked
 }
 
-/** Stream one prepared article across columns, routing around image obstacles. */
+/**
+ * Stream one prepared article across columns.
+ * Routes around rectangular images and SVG silhouette scanlines
+ * so type can slip through gaps between glyph shapes.
+ *
+ * With a shape mask: fill left→right across columns for each band (row-major)
+ * so the rightmost column gets type instead of being starved by tall left gutters.
+ * Without a shape: fill each column top→bottom (column-major), classic article flow.
+ */
 export function layoutFlow(
   prepared: PreparedTextWithSegments,
   colCount: number,
   colWidth: number,
   colHeight: number,
   images: FlowImage[],
+  gap = 20,
+  shapeBands?: ShapeBand[],
 ): PlacedLine[] {
   const lines: PlacedLine[] = []
   let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 }
   let exhausted = false
 
-  for (let col = 0; col < colCount && !exhausted; col++) {
-    let y = 0
-    while (y + LINE_HEIGHT <= colHeight) {
-      const slot = freeSlot(colWidth, y, y + LINE_HEIGHT, images, col)
-      if (!slot) {
-        y += LINE_HEIGHT
-        continue
-      }
+  const placeBand = (col: number, y: number) => {
+    if (exhausted) return
 
+    const stageLeft = col * (colWidth + gap)
+    const imgBlock = imageBlockedInColumn(
+      colWidth,
+      y,
+      y + LINE_HEIGHT,
+      images,
+      col,
+    )
+    if (imgBlock === 'full') return
+
+    const shapeBlock = shapeBands
+      ? blockedForBand(shapeBands, y)
+          .map((s) => ({
+            left: s.left - stageLeft,
+            right: s.right - stageLeft,
+          }))
+          .filter((s) => s.right > 0 && s.left < colWidth)
+      : []
+
+    const slots = freeSpans(colWidth, [...imgBlock, ...shapeBlock], 22)
+
+    for (const slot of slots) {
+      if (exhausted) break
       const width = slot.right - slot.left
       const line = layoutNextLine(prepared, cursor, width)
       if (line === null) {
@@ -104,7 +136,22 @@ export function layoutFlow(
         measuredWidth: line.width,
       })
       cursor = line.end
-      y += LINE_HEIGHT
+    }
+  }
+
+  const useRowMajor = Boolean(shapeBands?.length)
+
+  if (useRowMajor) {
+    for (let y = 0; y + LINE_HEIGHT <= colHeight && !exhausted; y += LINE_HEIGHT) {
+      for (let col = 0; col < colCount && !exhausted; col++) {
+        placeBand(col, y)
+      }
+    }
+  } else {
+    for (let col = 0; col < colCount && !exhausted; col++) {
+      for (let y = 0; y + LINE_HEIGHT <= colHeight && !exhausted; y += LINE_HEIGHT) {
+        placeBand(col, y)
+      }
     }
   }
 
