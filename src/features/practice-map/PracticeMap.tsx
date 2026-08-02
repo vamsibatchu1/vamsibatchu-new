@@ -309,12 +309,6 @@ function ConceptNode({
     drag.current = null
   }
 
-  // Drop line to XY plane — survey stake vibe
-  const drop: [number, number, number][] = [
-    [0, 0, 0],
-    [0, -base.y, 0],
-  ]
-
   const showLabel = !teaser || lit
   const handlers = {
     onPointerDown,
@@ -334,13 +328,6 @@ function ConceptNode({
 
   return (
     <group ref={group} position={base.toArray()}>
-      <Line
-        points={drop}
-        color={INK}
-        lineWidth={0.6}
-        transparent
-        opacity={lit ? 0.55 : 0.35}
-      />
       <mesh ref={mesh} {...handlers}>
         <NodeGeometry scale={scale} />
         <meshBasicMaterial color={lit ? INK_HOT : INK} toneMapped={false} />
