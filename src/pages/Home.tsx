@@ -3,6 +3,11 @@ import CreativeTextRow, {
 } from '../components/CreativeTextRow'
 import { type MarkTone } from '../components/Mark'
 import creativeIntelligence from '../assets/creative-intelligence.svg'
+import hero4 from '../assets/home-assets/hero4.jpg'
+import hero5 from '../assets/home-assets/hero5.jpg'
+import hero6 from '../assets/home-assets/hero6.jpg'
+import hero7 from '../assets/home-assets/hero7.jpg'
+import hero8 from '../assets/home-assets/hero8.jpg'
 
 const THUMB_GREY = '#efeeec'
 
@@ -67,7 +72,8 @@ const creativeKeywords: CreativeTextFlow['keywords'] = [
 
 /**
  * creative-text — one Pretext article streamed across five columns.
- * Fixed 480px stage: text + images stay constant; dragging only rearranges flow.
+ * Fixed 480px stage: center SVG silhouette + one poster per column;
+ * dragging images only rearranges the wrap path.
  */
 const creativeFlow: CreativeTextFlow = {
   text: `
@@ -118,24 +124,81 @@ const creativeFlow: CreativeTextFlow = {
     why the corner is rounded that way. Invite critique early, often,
     kindly. Protect deep work blocks like calendar sacred sites. Then
     open the door and let the world rearrange the furniture again.
-    Same library of words, same four pictures — only the path changes.
+    Same library of words, same five pictures — only the path changes.
     That constancy is the feature: content is fixed, composition is live.
     Fill the frame to the last line. Leave no idle column if you can help it.
-    Start again when the column ends: the same voice continues in the next
-    vertical room, wrapping the silhouette without losing the thread. Practice
-    is a loop. Creative technology keeps asking what a product can feel like
-    when type, models, and motion share one page. DeepMind work sits beside
-    studio experiments; both insist on surfaces that stay legible under pressure.
-    Method again: prototype first, polish later, let interaction teach the next
-    cut. Notes accumulate — field scraps on attention, systems, rhythm, and the
-    portfolio as instrument. Navigation is learned by moving through it. Keep
-    the sentences walking. When one column runs out of air, the next one
-    picks up mid-breath. That is how five paths stay one argument: finish the
-    thought downward, then step sideways and continue. Borrow structure freely.
-    Invent the feeling. Leave seams visible. Ship the smallest honest version
-    and let the wrap around the mark remind you that composition is live.
+    Practice is a loop. Creative technology keeps asking what a product
+    can feel like when type, models, and motion share one page. DeepMind
+    work sits beside studio experiments; both insist on surfaces that
+    stay legible under pressure. Method again: prototype first, polish
+    later, let interaction teach the next cut. Notes accumulate — field
+    scraps on attention, systems, rhythm, and the portfolio as instrument.
+    Navigation is learned by moving through it. Keep the sentences walking.
+    When one column runs out of air, the next one picks up mid-breath. That
+    is how five paths stay one argument: finish the thought downward, then
+    step sideways and continue. Borrow structure freely. Invent the feeling.
+    Leave seams visible. Ship the smallest honest version and let the wrap
+    around the mark remind you that composition is live. Start again when
+    the column ends: the same voice continues in the next vertical room,
+    wrapping the silhouette without losing the thread.
   `,
-  images: [],
+  images: [
+    // Col 1 top — Seoul / Paloma Wool
+    {
+      id: 'hero4',
+      column: 0,
+      top: 36,
+      widthRatio: 0.56,
+      float: 'left',
+      aspectRatio: 1080 / 1328,
+      src: hero4,
+      alt: 'Seoul Paloma Wool poster',
+    },
+    // Col 1 bottom — sock scarf instructions
+    {
+      id: 'hero5',
+      column: 0,
+      top: 999,
+      widthRatio: 0.54,
+      float: 'left',
+      aspectRatio: 1500 / 1875,
+      src: hero5,
+      alt: 'Sock scarf instructional poster',
+    },
+    // Col 2 top — Making Books / ISA Gallery
+    {
+      id: 'hero6',
+      column: 1,
+      top: 0,
+      widthRatio: 0.58,
+      float: 'left',
+      aspectRatio: 1080 / 1495,
+      src: hero6,
+      alt: 'ISA Gallery yellow grid poster',
+    },
+    // Col 5 upper — Photo Book Speed Date
+    {
+      id: 'hero8',
+      column: 4,
+      top: 48,
+      widthRatio: 0.56,
+      float: 'right',
+      aspectRatio: 1400 / 1750,
+      src: hero8,
+      alt: 'Photo Book Speed Date poster',
+    },
+    // Col 5 bottom — Kinderoper / T M
+    {
+      id: 'hero7',
+      column: 4,
+      top: 999,
+      widthRatio: 0.52,
+      float: 'right',
+      aspectRatio: 1920 / 2718,
+      src: hero7,
+      alt: 'Kinderoper Theater Magdeburg poster',
+    },
+  ],
   shapeSrc: creativeIntelligence,
   keywords: creativeKeywords,
 }
@@ -255,19 +318,14 @@ export default function Home() {
     >
       {/* intro — Newsreader display lead */}
       <div id="intro" className={rowClass}>
-        <p
-          className="w-[80%] max-w-full text-[40px] leading-[1.05] text-black"
-          style={{ fontFamily: '"Newsreader", "Times New Roman", serif' }}
-        >
+        <p className="w-[80%] max-w-full text-[28px] leading-[1.1] text-black">
           some call me a product designer, some call me a design engineer. I
-          call myself a tinkerer — in this era of AI where roles are emerging
-          and everyone is doing a lot of things, I tend to call myself a
-          builder who just loves building tasteful product experiences with a
+          call myself a tinkerer and someone who is usually doing a lot of things & who just loves building tasteful product experiences with a
           blend of art, design, technology, and code.
         </p>
       </div>
 
-      {/* creative-text — Pretext flow wrapping the SVG silhouette */}
+      {/* creative-text — Pretext flow wrapping center SVG + column posters */}
       <div id="creative-text" className={rowClass}>
         <CreativeTextRow flow={creativeFlow} />
       </div>

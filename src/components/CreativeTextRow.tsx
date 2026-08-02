@@ -13,6 +13,7 @@ import {
   LINE_HEIGHT,
   layoutFlow,
   justifySpacing,
+  resolveFlowImageSize,
   type FlowImage,
 } from './creativeTextLayout'
 import { markColors, type MarkTone } from './Mark'
@@ -25,7 +26,6 @@ const FONT_SIZE = 11
 const COL_COUNT_DESKTOP = 5
 const COL_HEIGHT = 480
 const GAP = 20
-const THUMB = '#efeeec'
 const SVG_MAX_W = 600
 
 export type TextKeyword = {
@@ -227,11 +227,15 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
       const colCount =
         totalW < 640 ? 1 : totalW < 900 ? 2 : COL_COUNT_DESKTOP
       const colWidth = (totalW - GAP * (colCount - 1)) / colCount
-      const clamped = images.map((img) => ({
-        ...img,
-        column: clamp(img.column, 0, colCount - 1),
-        top: clamp(img.top, 0, COL_HEIGHT - img.height),
-      }))
+      const clamped = images.map((img) => {
+        const { height } = resolveFlowImageSize(img, colWidth)
+        return {
+          ...img,
+          column: clamp(img.column, 0, colCount - 1),
+          top: clamp(img.top, 0, Math.max(0, COL_HEIGHT - height)),
+          height,
+        }
+      })
 
       // Wait for shape mask when a shapeSrc is set
       if (flow.shapeSrc && !shapeBands) return
@@ -286,15 +290,15 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
     const colDelta = Math.round(dx / (snap.colWidth + GAP))
 
     setImages((prev) =>
-      prev.map((img) =>
-        img.id !== drag.id
-          ? img
-          : {
-              ...img,
-              column: clamp(drag.originCol + colDelta, 0, snap.colCount - 1),
-              top: clamp(drag.originTop + dy, 0, COL_HEIGHT - img.height),
-            },
-      ),
+      prev.map((img) => {
+        if (img.id !== drag.id) return img
+        const { height } = resolveFlowImageSize(img, snap.colWidth)
+        return {
+          ...img,
+          column: clamp(drag.originCol + colDelta, 0, snap.colCount - 1),
+          top: clamp(drag.originTop + dy, 0, Math.max(0, COL_HEIGHT - height)),
+        }
+      }),
     )
   }
 
@@ -373,8 +377,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
 
       {(snapshot?.images ?? images).map((img) => {
         const colW = snapshot?.colWidth ?? 0
-        const ratio = img.widthRatio ?? 1
-        const w = Math.max(1, colW * ratio)
+        const { width: w, height: h } = resolveFlowImageSize(img, colW)
         const left =
           (snapshot ? img.column * (snapshot.colWidth + GAP) : 0) +
           (img.float === 'right' ? colW - w : 0)
@@ -385,13 +388,12 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
             role="button"
             tabIndex={0}
             aria-label={`Move image ${img.id}`}
-            className="absolute cursor-grab overflow-hidden active:cursor-grabbing"
+            className="absolute cursor-grab active:cursor-grabbing"
             style={{
               left,
               top: img.top,
               width: w,
-              height: img.height,
-              backgroundColor: THUMB,
+              height: h,
               touchAction: 'none',
             }}
             onPointerDown={(e) => onPointerDown(e, img)}
@@ -403,7 +405,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
               <img
                 src={img.src}
                 alt={img.alt ?? ''}
-                className="pointer-events-none size-full object-cover"
+                className="pointer-events-none block size-full object-contain"
                 draggable={false}
               />
             ) : null}

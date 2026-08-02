@@ -20,7 +20,16 @@ export type FlowImage = {
   column: number
   /** Top edge in px within the column stack. */
   top: number
-  height: number
+  /**
+   * Explicit height in px. Ignored when `aspectRatio` is set —
+   * height is then derived from column width × widthRatio.
+   */
+  height?: number
+  /**
+   * Natural width ÷ height. When set, displayed height is
+   * `(colWidth * widthRatio) / aspectRatio` (no cropping).
+   */
+  aspectRatio?: number
   /**
    * Fraction of column width. `1` = full bleed (text only above/below).
    * `< 1` = text can wrap beside on the free side.
@@ -30,6 +39,19 @@ export type FlowImage = {
   float?: 'left' | 'right'
   src?: string
   alt?: string
+}
+
+/** Resolve display width/height for layout + rendering. */
+export function resolveFlowImageSize(
+  img: FlowImage,
+  colWidth: number,
+): { width: number; height: number } {
+  const ratio = img.widthRatio ?? 1
+  const width = Math.max(1, colWidth * ratio)
+  const height = img.aspectRatio
+    ? width / img.aspectRatio
+    : (img.height ?? 120)
+  return { width, height }
 }
 
 export type PlacedLine = {
@@ -57,10 +79,10 @@ function imageBlockedInColumn(
 
   for (const img of images) {
     if (img.column !== col) continue
-    if (!overlaps(bandTop, bandBottom, img.top, img.top + img.height)) continue
+    const { width: imgW, height: imgH } = resolveFlowImageSize(img, colWidth)
+    if (!overlaps(bandTop, bandBottom, img.top, img.top + imgH)) continue
 
     const ratio = img.widthRatio ?? 1
-    const imgW = colWidth * ratio
     const float = img.float ?? 'left'
 
     if (ratio >= 0.98) return 'full'
