@@ -19,7 +19,7 @@ export default function Writing() {
     >
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(14rem,18rem)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
         <aside className="text-[11px] leading-[1.5] sm:text-xs lg:sticky lg:top-24 lg:self-start">
-          <div className="space-y-4 text-black/90">
+          <div className="flex flex-col items-start space-y-4 text-black/90">
             <p>
               writing is where unfinished thoughts get a place to sit —
               notes on interfaces, models, pacing, and the odd experiments
@@ -28,7 +28,7 @@ export default function Writing() {
             <img
               src={writingImage}
               alt=""
-              className="h-auto w-[280px] max-w-full"
+              className="h-auto w-[168px] max-w-full"
             />
             <p>
               some pieces are essays, some are field notes from the lab,

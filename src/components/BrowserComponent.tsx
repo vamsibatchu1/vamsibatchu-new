@@ -1,10 +1,15 @@
 import {
   useEffect,
+  useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from 'react'
+import { motion, usePresence } from 'framer-motion'
+import { EXIT_MS } from './browserExit'
+import { type BrowserHeap } from './browserHeapPhysics'
 
 export type BrowserRect = {
   x: number
@@ -14,46 +19,111 @@ export type BrowserRect = {
   rotate?: number
 }
 
+export type BrowserFocusState = 'idle' | 'focused' | 'shelved'
+
 type Edge = 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw'
 
 type BrowserComponentProps = {
-  /** Paragraph shown in the content area */
+  id: string
+  /** Paragraph shown in the content pane (replaced by video on hover) */
   body: string
   initial: BrowserRect
   /** Title-bar label; falls back to “untitled” */
   title?: string
   /** Optional link opened from the body (new tab for absolute URLs) */
   href?: string | null
+  /** Optional 16:9 thumbnail video revealed on hover over the content */
+  videoUrl?: string | null
+  fieldSize: { w: number; h: number }
+  focusState?: BrowserFocusState
+  /** Active Matter.js heap; shelved cards register into it */
+  heap?: BrowserHeap | null
   zIndex?: number
   onActivate?: () => void
+  onMinimize?: () => void
+  onFocusRequest?: () => void
+  onFocusRelease?: () => void
   className?: string
 }
 
-const MIN_W = 140
-const MIN_H = 110
+const TITLE_H = 32
+const MIN_W = 200
+const MIN_H = 140
 const EDGE = 8
+const FOCUS_MAX_SCALE = 2
+
+type Pose = {
+  x: number
+  y: number
+  scale: number
+  rotate: number
+  opacity: number
+}
+
+function focusPose(field: { w: number; h: number }, home: BrowserRect): Pose {
+  const pad = 28
+  const fit = Math.min(
+    FOCUS_MAX_SCALE,
+    (field.w - pad * 2) / home.w,
+    (field.h - pad * 2) / home.h,
+  )
+  const scale = Math.max(1, fit)
+  return {
+    x: (field.w - home.w) / 2,
+    y: (field.h - home.h) / 2,
+    scale,
+    rotate: 0,
+    opacity: 1,
+  }
+}
 
 /**
  * Wireframe browser window — thin black outline, title-bar chrome,
  * Figma-style edge/corner resize + title-bar drag.
+ * Hover → video preview; click → focus to center; siblings tumble via Matter.js.
  */
 export default function BrowserComponent({
+  id,
   body,
   initial,
   title = 'untitled',
   href = null,
+  videoUrl = null,
+  fieldSize,
+  focusState = 'idle',
+  heap = null,
   zIndex = 1,
   onActivate,
+  onMinimize,
+  onFocusRequest,
+  onFocusRelease,
   className = '',
 }: BrowserComponentProps) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [rect, setRect] = useState<BrowserRect>(initial)
+  const [contentHover, setContentHover] = useState(false)
+  const [isPresent, safeToRemove] = usePresence()
   const drag = useRef<{
     mode: 'move' | Edge
     startX: number
     startY: number
     origin: BrowserRect
   } | null>(null)
+  const suppressClick = useRef(false)
+
+  const showVideo = Boolean(
+    videoUrl && isPresent && (contentHover || focusState === 'focused'),
+  )
+  const exiting = !isPresent
+  const interactive = focusState !== 'shelved' && !exiting
+  const shelved = focusState === 'shelved'
+
+  useEffect(() => {
+    if (isPresent) return
+    const t = window.setTimeout(safeToRemove, EXIT_MS)
+    return () => window.clearTimeout(t)
+  }, [isPresent, safeToRemove])
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -98,12 +168,43 @@ export default function BrowserComponent({
     }
   }, [])
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !videoUrl) return
+    if (showVideo) {
+      void video.play().catch(() => {})
+    } else {
+      video.pause()
+      video.currentTime = 0
+    }
+  }, [showVideo, videoUrl])
+
+  // Register into Matter heap while shelved
+  useLayoutEffect(() => {
+    const el = rootRef.current
+    if (!shelved || !heap || !el) return
+
+    heap.add({
+      id,
+      el,
+      width: rect.w,
+      height: rect.h,
+      angleDeg: rect.rotate ?? 0,
+    })
+
+    return () => {
+      heap.remove(id)
+    }
+  }, [shelved, heap, id, rect.w, rect.h, rect.rotate])
+
   const startDrag = (
     e: ReactPointerEvent,
     mode: 'move' | Edge,
   ) => {
+    if (!interactive || focusState === 'focused') return
     e.preventDefault()
     e.stopPropagation()
+    suppressClick.current = true
     onActivate?.()
     drag.current = {
       mode,
@@ -114,14 +215,40 @@ export default function BrowserComponent({
     ;(e.target as HTMLElement).setPointerCapture?.(e.pointerId)
   }
 
-  const rotate = rect.rotate ?? 0
-  const TITLE_H = 32
-  const BODY_PAD = 16
-  const FONT_SIZE = 11
-  const LINE_HEIGHT = 1.45
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (suppressClick.current) {
+      suppressClick.current = false
+      return
+    }
+    const target = e.target as HTMLElement
+    if (target.closest('button, a')) return
+
+    onActivate?.()
+    if (focusState === 'focused') {
+      onFocusRelease?.()
+      return
+    }
+    if (focusState === 'idle') onFocusRequest?.()
+  }
+
+  const pose = useMemo<Pose>(() => {
+    if (focusState === 'focused') return focusPose(fieldSize, rect)
+    return {
+      x: rect.x,
+      y: rect.y,
+      scale: 1,
+      rotate: rect.rotate ?? 0,
+      opacity: 1,
+    }
+  }, [focusState, fieldSize, rect])
+
+  const BODY_PAD = 10
+  const FONT_SIZE = 10
+  const LINE_HEIGHT = 1.4
+  const contentH = Math.max(36, rect.h - TITLE_H)
   const lineClamp = Math.max(
     1,
-    Math.floor((rect.h - TITLE_H - BODY_PAD * 2) / (FONT_SIZE * LINE_HEIGHT)),
+    Math.floor((contentH - BODY_PAD * 2) / (FONT_SIZE * LINE_HEIGHT)),
   )
   const bodyTextStyle: CSSProperties = {
     display: '-webkit-box',
@@ -130,7 +257,6 @@ export default function BrowserComponent({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     width: '100%',
-    height: '100%',
     margin: 0,
     textAlign: 'left',
     fontSize: FONT_SIZE,
@@ -139,91 +265,157 @@ export default function BrowserComponent({
     color: '#000',
   }
 
+  const textBlock = href ? (
+    <a
+      href={href}
+      className="block no-underline"
+      style={bodyTextStyle}
+      {...(href.startsWith('http')
+        ? { target: '_blank', rel: 'noopener noreferrer' }
+        : {})}
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      {body}
+    </a>
+  ) : (
+    <p style={bodyTextStyle}>{body}</p>
+  )
+
   return (
-    <div
+    <motion.div
       ref={rootRef}
       className={`browser-component absolute touch-none select-none ${className}`}
+      initial={false}
+      animate={
+        shelved
+          ? false
+          : {
+              left: pose.x,
+              top: pose.y,
+              scale: pose.scale,
+              rotate: pose.rotate,
+              opacity: exiting ? 1 : pose.opacity,
+            }
+      }
+      transition={{
+        type: 'spring',
+        stiffness: 320,
+        damping: 28,
+        mass: 0.9,
+      }}
       style={{
-        left: rect.x,
-        top: rect.y,
         width: rect.w,
         height: rect.h,
-        zIndex,
-        transform: rotate ? `rotate(${rotate}deg)` : undefined,
+        ...(shelved
+          ? {
+              left: rect.x,
+              top: rect.y,
+              transform: `rotate(${rect.rotate ?? 0}deg)`,
+            }
+          : {}),
+        zIndex: exiting ? zIndex + 20 : zIndex,
+        transformOrigin: 'center center',
+        pointerEvents: shelved ? 'none' : undefined,
         fontFamily: '"JetBrains Mono", ui-monospace, monospace',
       }}
       onPointerDown={() => onActivate?.()}
+      onPointerEnter={() => onActivate?.()}
+      onClick={handleCardClick}
     >
-      <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-black bg-white">
-        {/* Title bar */}
-        <div
-          className="relative flex h-8 shrink-0 cursor-grab items-center justify-end gap-2.5 border-b border-black px-2.5 active:cursor-grabbing"
-          onPointerDown={(e) => startDrag(e, 'move')}
-        >
-          <span className="pointer-events-none mr-auto truncate pl-1 text-[9px] tracking-[0.04em] text-black/35 lowercase">
-            {title}
-          </span>
-          <ChromeIcons />
-        </div>
+      <div
+        className={`relative h-full w-full overflow-hidden rounded-[10px] border border-black bg-white ${
+          exiting ? 'browser-crt-wipe' : ''
+        }`}
+      >
+        <div className="flex h-full w-full flex-col">
+          <div
+            className="relative flex h-8 shrink-0 cursor-grab items-center gap-2 border-b border-black px-2.5 active:cursor-grabbing"
+            onPointerDown={(e) => startDrag(e, 'move')}
+          >
+            <TrafficLights
+              onMinimize={() => {
+                onActivate?.()
+                onMinimize?.()
+              }}
+            />
+          </div>
 
-        {/* Body — top-left, 16px inset, fills + ellipsis */}
-        <div className="min-h-0 flex-1 overflow-hidden p-4">
-          {href ? (
-            <a
-              href={href}
-              className="block no-underline"
-              style={bodyTextStyle}
-              {...(href.startsWith('http')
-                ? { target: '_blank', rel: 'noopener noreferrer' }
-                : {})}
-              onPointerDown={(e) => e.stopPropagation()}
+          <div
+            className="relative min-h-0 flex-1 overflow-hidden"
+            onPointerEnter={() => setContentHover(true)}
+            onPointerLeave={() => setContentHover(false)}
+          >
+            <div
+              className={`h-full overflow-hidden px-2.5 py-2 transition-opacity duration-150 ${
+                showVideo ? 'pointer-events-none opacity-0' : 'opacity-100'
+              }`}
             >
-              {body}
-            </a>
-          ) : (
-            <p style={bodyTextStyle}>{body}</p>
-          )}
+              {textBlock}
+            </div>
+
+            {videoUrl ? (
+              <div
+                className={`absolute inset-0 bg-black transition-opacity duration-150 ${
+                  showVideo ? 'opacity-100' : 'pointer-events-none opacity-0'
+                }`}
+                aria-hidden={!showVideo}
+              >
+                <video
+                  ref={videoRef}
+                  src={videoUrl}
+                  className="pointer-events-none absolute inset-0 size-full object-cover"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${title} preview`}
+                />
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
 
-      {/* Resize handles */}
-      <Handle edge="n" onPointerDown={(e) => startDrag(e, 'n')} />
-      <Handle edge="s" onPointerDown={(e) => startDrag(e, 's')} />
-      <Handle edge="e" onPointerDown={(e) => startDrag(e, 'e')} />
-      <Handle edge="w" onPointerDown={(e) => startDrag(e, 'w')} />
-      <Handle edge="ne" onPointerDown={(e) => startDrag(e, 'ne')} />
-      <Handle edge="nw" onPointerDown={(e) => startDrag(e, 'nw')} />
-      <Handle edge="se" onPointerDown={(e) => startDrag(e, 'se')} />
-      <Handle edge="sw" onPointerDown={(e) => startDrag(e, 'sw')} />
-    </div>
+      {interactive && focusState === 'idle' ? (
+        <>
+          <Handle edge="n" onPointerDown={(e) => startDrag(e, 'n')} />
+          <Handle edge="s" onPointerDown={(e) => startDrag(e, 's')} />
+          <Handle edge="e" onPointerDown={(e) => startDrag(e, 'e')} />
+          <Handle edge="w" onPointerDown={(e) => startDrag(e, 'w')} />
+          <Handle edge="ne" onPointerDown={(e) => startDrag(e, 'ne')} />
+          <Handle edge="nw" onPointerDown={(e) => startDrag(e, 'nw')} />
+          <Handle edge="se" onPointerDown={(e) => startDrag(e, 'se')} />
+          <Handle edge="sw" onPointerDown={(e) => startDrag(e, 'sw')} />
+        </>
+      ) : null}
+    </motion.div>
   )
 }
 
-function ChromeIcons() {
+function TrafficLights({ onMinimize }: { onMinimize?: () => void }) {
   return (
-    <div className="flex items-center gap-2 text-black" aria-hidden>
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-        <path d="M1.5 5.5h8" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" />
-      </svg>
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-        <rect
-          x="1.4"
-          y="1.4"
-          width="8.2"
-          height="8.2"
-          rx="1.2"
-          stroke="currentColor"
-          strokeWidth="1.15"
-        />
-      </svg>
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-        <path
-          d="M2.2 2.2l6.6 6.6M8.8 2.2L2.2 8.8"
-          stroke="currentColor"
-          strokeWidth="1.15"
-          strokeLinecap="round"
-        />
-      </svg>
+    <div className="flex shrink-0 items-center gap-1.5" aria-hidden={!onMinimize}>
+      <span
+        className="size-2.5 rounded-full border border-black/40 bg-[#ff5f57]"
+        title="close"
+      />
+      <button
+        type="button"
+        aria-label="minimize"
+        className="size-2.5 cursor-pointer rounded-full border border-black/40 bg-[#febc2e] p-0 hover:brightness-95 active:scale-90"
+        onPointerDown={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+        }}
+        onClick={(e) => {
+          e.stopPropagation()
+          onMinimize?.()
+        }}
+      />
+      <span
+        className="size-2.5 rounded-full border border-black/40 bg-[#28c840]"
+        title="zoom"
+      />
     </div>
   )
 }

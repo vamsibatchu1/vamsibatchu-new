@@ -253,6 +253,20 @@ export default function Home() {
       className="flex flex-col"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
     >
+      {/* intro — Newsreader display lead */}
+      <div id="intro" className={rowClass}>
+        <p
+          className="w-[80%] max-w-full text-[40px] leading-[1.05] text-black"
+          style={{ fontFamily: '"Newsreader", "Times New Roman", serif' }}
+        >
+          some call me a product designer, some call me a design engineer. I
+          call myself a tinkerer — in this era of AI where roles are emerging
+          and everyone is doing a lot of things, I tend to call myself a
+          builder who just loves building tasteful product experiences with a
+          blend of art, design, technology, and code.
+        </p>
+      </div>
+
       {/* creative-text — Pretext flow wrapping the SVG silhouette */}
       <div id="creative-text" className={rowClass}>
         <CreativeTextRow flow={creativeFlow} />

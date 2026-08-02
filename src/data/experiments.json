@@ -1,262 +1,342 @@
 [
   {
-    "id": "browser-field",
-    "title": "browser field",
-    "description": "Scatter of resizable wireframe windows — drag chrome, pull edges like Figma frames.",
+    "id": "gridscape",
+    "title": "gridscape",
+    "log": "01/52",
+    "description": "Research and ideation as a spatial map of knowledge nodes and reasoning bridges.",
     "url": null,
     "image": null,
-    "tags": ["ui", "interaction"],
+    "video": "gridscape.mp4",
+    "tags": [
+      "research",
+      "canvas",
+      "ai"
+    ],
     "date": "2026-07-31",
-    "body": "No tutorial this time — just poke around. Drag the chrome to move a frame, pull the edges like a Figma artboard, and let the stack fight for z-index. The lab is mostly untitled windows and half-finished ideas, which is exactly the point."
+    "body": "gridscape turns research and ideation from a conversation into a map. Instead of asking questions and getting answers in a single thread, you draw rectangles on an infinite canvas. Each rectangle becomes a node of synthesized knowledge, and each connection between nodes includes an explicit bridge of reasoning. You end up with a spatial document that shows not just what you've explored but how the ideas relate to each other. The interface uses ASCII schematics to visualize conceptual relationships, giving it a lo-fi, almost archival quality.",
+    "kind": "image"
   },
   {
-    "id": "cursor-magnets",
-    "title": "cursor magnets",
-    "description": "Sticky cursor experiments that still pull on the wrong axis.",
+    "id": "worldwide",
+    "title": "worldwide",
+    "log": "02/52",
+    "description": "Geography as an intelligence mission — cryptic clues, a tactical map, and a proximity meter.",
     "url": null,
     "image": null,
-    "tags": ["interaction", "cursor"],
+    "video": "worldwide.mp4",
+    "tags": [
+      "map",
+      "game",
+      "intel"
+    ],
+    "date": "2026-07-28",
+    "body": "worldwide transforms geography into an intelligence mission. Each round drops you into a global reconnaissance scenario where three cryptic clues point to a hidden country. The clues range from cultural facts and national symbols to environmental distinctions and historical quirks, challenging you to connect seemingly disparate pieces of information to pinpoint the correct territory on an interactive world map. The gameplay balances strategy with intuition. As you hover across countries on the dark, tactical map interface, a proximity meter signals how close you are to the target, shifting from red to green as you approach the answer.",
+    "kind": "image"
+  },
+  {
+    "id": "elemental",
+    "title": "elemental",
+    "log": "03/52",
+    "description": "A periodic table that answers back — reverse-search everyday materials into their elements.",
+    "url": null,
+    "image": null,
+    "video": "elemental.mp4",
+    "tags": [
+      "science",
+      "ai",
+      "physics"
+    ],
+    "date": "2026-07-26",
+    "body": "elemental began as a simple question: what if the periodic table could answer back? Instead of memorizing elements in isolation, I wanted to build something that lets you explore chemistry the way scientists actually think about it. Start with a material you encounter every day, ask what it's made of, and watch the fundamental building blocks reveal themselves. The reverse search flips the traditional approach on its head, turning passive learning into active discovery. The physics simulations emerged from a desire to make abstract concepts feel tangible.",
+    "kind": "image"
+  },
+  {
+    "id": "canopy",
+    "title": "canopy",
+    "log": "04/52",
+    "description": "Procedural cinema tree — collaborations grown from any actor, director, or film.",
+    "url": null,
+    "image": null,
+    "video": "canopy.mp4",
+    "tags": [
+      "film",
+      "graph",
+      "generative"
+    ],
+    "date": "2026-07-24",
+    "body": "Canopy is an interactive visualization that maps the hidden architecture of cinema. Enter any actor, director, composer, or film title and watch as a procedural tree grows from your query, its branches tracing the web of collaborations and creative connections that define the industry. Each node represents a person or a film, and clicking any node reveals its metadata while letting you re-root the entire tree from that new perspective. The visual language borrows from data art and generative design. A left panel exposes the underlying parameters that control how the tree grows: branch angles, length variance, scale reduction, node sizing.",
+    "kind": "video"
+  },
+  {
+    "id": "wanderword",
+    "title": "wanderword",
+    "log": "05/52",
+    "description": "Etymology as migration — words traced across continents on an interactive map.",
+    "url": null,
+    "image": null,
+    "video": "wanderword.mp4",
+    "tags": [
+      "language",
+      "map",
+      "ai"
+    ],
+    "date": "2026-07-22",
+    "body": "every word you speak is a traveler. wanderword visualizes the hidden migrations of language, tracing how words journeyed across continents through trade routes, conquests, and cultural exchange. Type any word and watch its path unfold on an interactive world map. The tea in your cup tells two stories: one that traveled by Dutch ships from Fujian province, becoming \"tea\" across maritime Europe, and another that moved overland through the Silk Road, transforming into \"chai\" across Persia and India. Powered by Gemini, the app reconstructs the linguistic archaeology of everyday words.",
+    "kind": "image"
+  },
+  {
+    "id": "kickoff-26",
+    "title": "kickoff'26",
+    "log": "06/52",
+    "description": "World Cup archive as vintage cartography — nearly a century of tournament records.",
+    "url": null,
+    "image": null,
+    "video": "kickoff-26.mp4",
+    "tags": [
+      "sports",
+      "archive",
+      "map"
+    ],
     "date": "2026-07-20",
-    "body": "Lab note 01: the cursor magnets still stick on the wrong axis. Hovering near a handle yanks sideways when it should tug vertical, and the snap radius is a little too generous. Keeping the bug for now — it feels more alive than the corrected version."
+    "body": "kickoff’26 acts as a comprehensive digital repository for World Cup history. It uses a visual language of vintage cartography to present global football statistics through an interactive map interface. By marrying classic archival aesthetics with modern data processing, the platform offers a unique way to traverse nearly a century of tournament records from 1930 to the present day. The interface provides specialized viewing modes to explore distinct aspects of the sport, including championship distributions and squad demographics.",
+    "kind": "image"
   },
   {
-    "id": "jelly-spring",
-    "title": "jelly spring",
-    "description": "Soft spring with too little damping — ships anyway.",
+    "id": "brewprint",
+    "title": "brewprint",
+    "log": "07/52",
+    "description": "Generative drink labels — scrapbook landing, brutalist chrome, Gemini-built beverage identity.",
     "url": null,
     "image": null,
-    "tags": ["motion"],
+    "video": "brewprint.mp4",
+    "tags": [
+      "generative",
+      "ai",
+      "print"
+    ],
     "date": "2026-07-18",
-    "body": "Spring too soft, damping at 0.42, and the whole card feels like jelly when it lands. Tuned it three times, then shipped the wobbly one anyway. Sometimes the wrong physics is the personality."
+    "body": "brewprint is an interactive design application that reimagines beverage exploration by blending a raw, industrial aesthetic with advanced generative AI. It transforms simple drink queries into beautifully detailed, \"artisanal\" product labels that look like vintage specification sheets. The interface opens with a unique \"scrapbook\" style landing page, featuring a masonry grid of curated drink inspirations and category filters, all set against a backdrop of clean typography, high-contrast design elements, and a stark, brutalist visual language. Beyond standard recipes, Brewprint generates a comprehensive \"identity\" for every drink using Google's Gemini models.",
+    "kind": "image"
   },
   {
-    "id": "mono-justify",
-    "title": "mono justify",
-    "description": "Monospace word-spacing experiments that never quite even out.",
+    "id": "goodflix",
+    "title": "goodflix",
+    "log": "08/52",
+    "description": "3D cylindrical movie carousel with vibe search powered by Gemini and TMDB.",
     "url": null,
     "image": null,
-    "tags": ["type"],
+    "video": "goodflix.mp4",
+    "tags": [
+      "film",
+      "3d",
+      "ai"
+    ],
     "date": "2026-07-16",
-    "body": "Trying to justify monospace without looking broken. Word spacing measured twice, still uneven at the rag. JetBrains Mono at small sizes fights every rule; the uneven gaps might be the texture we keep."
+    "body": "Goodflix is an immersive movie discovery platform designed to combat decision fatigue through a visually stunning 3D interface. Instead of the traditional 2D grid found on most streaming services, the application presents movie posters on an interactive, infinite cylindrical carousel rendered with Three.js and custom WebGL shaders. This tactile browsing experience allows users to effortlessly spin through popular, top-rated, and upcoming titles sourced from The Movie Database (TMDB), all wrapped in a sleek, dark-mode aesthetic with high-contrast, editorial-style typography. At the heart of the application is a powerful \"vibe-based\" search engine driven by the Google Gemini API.",
+    "kind": "video"
   },
   {
-    "id": "stipple-field",
-    "title": "stipple field",
-    "description": "Noise → dots halftone behind the landing macaw.",
-    "url": "/",
+    "id": "dinodraft",
+    "title": "dinodraft",
+    "log": "09/52",
+    "description": "Paleontological field survey UI — blueprint dossiers and a D3 fossil map.",
+    "url": null,
     "image": null,
-    "tags": ["landing", "texture"],
+    "video": "dinodraft.mp4",
+    "tags": [
+      "science",
+      "map",
+      "archive"
+    ],
     "date": "2026-07-14",
-    "body": "Noise becomes dots, dots become a breathing stipple field behind the macaw. White on black, landing only — a quiet halftone that moves just enough to feel alive without stealing the gif."
+    "body": "dino draft is an immersive, technical visualization tool designed to simulate a high-tech paleontological field survey. It aggregates global fossil data into a stylized \"blueprint\" interface, allowing users to explore the prehistoric world through the lens of a researcher. The application transforms raw data into a cohesive dossier, presenting detailed records of dinosaur species—ranging from the Tyrannosaurus Rex to the Microraptor—in a distinctively tactical, manila-folder aesthetic. At the heart of the experience is an interactive, D3-powered global map that acts as a central command hub. Users navigate through geological formations—from the Hell Creek Formation to the Gobi Desert—using a responsive coordinate system.",
+    "kind": "image"
   },
   {
-    "id": "paper-stack",
-    "title": "paper stack",
-    "description": "Spring-enter API doc card with a slight rotate.",
-    "url": "/",
+    "id": "warpfield",
+    "title": "warpfield",
+    "log": "10/52",
+    "description": "Audio-reactive particle field — dots, ASCII, or binary under a distortion lens.",
+    "url": null,
     "image": null,
-    "tags": ["landing", "ui"],
+    "video": "warpfield.mp4",
+    "tags": [
+      "particles",
+      "audio",
+      "p5"
+    ],
     "date": "2026-07-12",
-    "body": "The API doc card springs in like a sheet from a paper stack, rotated about minus four degrees so it never sits flat. It should feel printed, slightly crooked, and ready to be picked up."
+    "body": "Warp Field is an interactive particle simulation that transforms static grids into fluid, reactive geometry. Built with React and p5.js, the application renders a field of thousands of individual points—customizable as simple dots, ASCII characters, or binary code—that respond dynamically to cursor movement. Users can manipulate a distortion lens that ripples through the grid, creating organic, topographic patterns that mimic physical displacement forces in real-time. The experience is elevated through a sophisticated audio-reactive engine powered by the Web Audio API.",
+    "kind": "music"
   },
   {
-    "id": "nav-collapse",
-    "title": "nav collapse",
-    "description": "Labels collapse into color bars on scroll.",
+    "id": "shape-of-you",
+    "title": "shape of you",
+    "log": "11/52",
+    "description": "Valentine typographic mirror — your silhouette rebuilt as a living letter.",
     "url": null,
     "image": null,
-    "tags": ["nav", "interaction"],
+    "video": null,
+    "tags": [
+      "vision",
+      "type",
+      "webcam"
+    ],
     "date": "2026-07-10",
-    "body": "On scroll, labels collapse into color bars — a delta-driven reduce that keeps the mark and drops the words. Navigation becomes a thin instrument panel instead of a sentence you keep rereading."
+    "body": "The Shape of You is a typographic video mirror that transforms your silhouette into digital art for Valentine's Day. Using real-time webcam processing, it reconstructs your image with dynamic text to create a \"living letter\" effect. The minimalist, high-contrast aesthetic—driven by elegant typography—allows users to see themselves rendered through the very words they wish to convey.",
+    "kind": "video"
   },
   {
-    "id": "pretext-drift",
-    "title": "pretext drift",
-    "description": "One text stream across five columns with movable obstacles.",
+    "id": "lens-watch",
+    "title": "lens watch",
+    "log": "12/52",
+    "description": "Street View geo-guessing with Assassin’s Creed aesthetics and five chances to pin the map.",
     "url": null,
     "image": null,
-    "tags": ["type", "layout"],
+    "video": "lens-watch.mp4",
+    "tags": [
+      "map",
+      "game",
+      "streetview"
+    ],
     "date": "2026-07-08",
-    "body": "One continuous stream drifts across five columns while movable walls reshape the flow. Pretext does the measuring; we just shove obstacles around and watch the paragraphs reflow like water finding new channels."
+    "body": "lens watch is a geo-guessing game where you hunt for locations using Google Street View Image hints. As a player of the game, you will have to solve the location based on the image within a set time by selecting an area of the map and guessing that it is the right location. You will have 5 chances to discover the right location using the images provided. Built with maps API & gave it Assassin’s Creed aesthetics using a JSON.",
+    "kind": "video"
   },
   {
-    "id": "fill-headline",
-    "title": "fill headline",
-    "description": "Barcode-grid headline that stretches with the cursor field.",
+    "id": "type-effects",
+    "title": "type_effects",
+    "log": "13/52",
+    "description": "Computer-vision text layouts — pinch and drag the workspace with your hands.",
     "url": null,
     "image": null,
-    "tags": ["type", "interaction"],
+    "video": "type-effects.mp4",
+    "tags": [
+      "type",
+      "vision",
+      "interaction"
+    ],
     "date": "2026-07-06",
-    "body": "A barcode-grid headline stretches to fill whatever width the cursor field allows. Letters become bars, bars become type again when you pull back. It is less a title and more a responsive instrument."
+    "body": "for my next experiment in the text effects series, went all in with computer vision based interactions with dynamic text layouts & hand tracking. you can use pinch/drag gestures to manipulate the workspace directly using your hands that makes the interface feel like a physical object.",
+    "kind": "image"
   },
   {
-    "id": "model-sketch",
-    "title": "model sketch",
-    "description": "Tiny unfinished LLM surface — talk carefully.",
+    "id": "push-flow",
+    "title": "push flow",
+    "log": "14/52",
+    "description": "Click highlighted words to slide the body and reveal inline imagery on yellow.",
     "url": null,
     "image": null,
-    "tags": ["ai", "prototype"],
+    "video": "push-flow.mp4",
+    "tags": [
+      "type",
+      "editorial",
+      "interaction"
+    ],
     "date": "2026-07-04",
-    "body": "An unfinished LLM sketch on a tiny surface. Talk carefully — the model is half-wired, the prompts are placeholders, and the interesting part is how little UI you need before it starts feeling like a conversation."
+    "body": "push flow introduces a tactile, editorial interaction where clicking highlighted words slides the text body to reveal inline imagery. Set against a vibrant yellow background, the layout maintains a classic document structure while integrating modern, responsive animations. This interaction style allows users to explore supplemental content, such as Tolkien-inspired maps and photos, without losing their place in the narrative. The \"push\" mechanic ensures that every transition feels smooth and physically grounded within the digital space.",
+    "kind": "image"
   },
   {
-    "id": "weekend-toy",
-    "title": "weekend toy",
-    "description": "Soft-body throwaway that kept the interesting bug.",
+    "id": "tree-pop",
+    "title": "tree pop",
+    "log": "15/52",
+    "description": "Procedural hand-drawn forest — plant trees, wind sway, birds, and wobbly skylines.",
     "url": null,
     "image": null,
-    "tags": ["physics", "weekend"],
+    "video": "tree-pop.mp4",
+    "tags": [
+      "generative",
+      "nature",
+      "play"
+    ],
     "date": "2026-07-02",
-    "body": "Weekend soft-body toy, meant to be throwaway. The interesting bug stayed: bodies stretch a frame too late and the delay makes them feel squishy in a way the correct solver never did. Keeping the wrong version."
+    "body": "Tree pop allows users to create and customize a procedural forest with hand-drawn aesthetic elements. Users can plant unique trees by dragging rectangles on the canvas, choosing from various leaf colors and adjusting structural parameters like branch length and height. The environment features a dynamic wind simulation that causes the trees to sway realistically, accompanied by birds that occasionally fly across the dark green landscape. A specialized building mode enables the placement of wobbly, jittered structures with randomized windows to create a unique urban skyline behind the foliage.",
+    "kind": "image"
   },
   {
-    "id": "type-lab",
-    "title": "type lab",
-    "description": "Uppercase-only tracking study with hairline rules.",
+    "id": "text-hover",
+    "title": "text hover",
+    "log": "16/52",
+    "description": "Hover manifesto — paired statement pills around stacked type.",
     "url": null,
     "image": null,
-    "tags": ["type"],
+    "video": "text-hover.mp4",
+    "tags": [
+      "type",
+      "interaction",
+      "motion"
+    ],
+    "date": "2026-06-30",
+    "body": "text hover is a typographic manifesto built around one verb. A stacked column of italic “hover” sits on black while paired statement pills orbit it — movement is / by design, words allow / to explore, typography is / to express, interfaces are / to interact. As you move the cursor, rows brighten and dim; phrases migrate between a quiet list and colored capsules, so the layout itself performs the idea. It is less a page than a hover state made visible: design rules that light up only when you linger.",
+    "kind": "image"
+  },
+  {
+    "id": "newyorkover",
+    "title": "newyorkover",
+    "log": "17/52",
+    "description": "A century of New Yorker covers in interactive 3D perspectives.",
+    "url": null,
+    "image": null,
+    "video": "newyorkover.mp4",
+    "tags": [
+      "archive",
+      "3d",
+      "editorial"
+    ],
     "date": "2026-06-28",
-    "body": "Uppercase only, tracking at 0.14, hairline rules between rows. The type lab is where spacing gets obsessive and the page starts to look like a specimen sheet instead of a homepage."
+    "body": "newyorkover is a 3D archive of a century of New Yorker cover art, spanning 1925 to 2026. A sidebar lets you switch perspectives — globe, stacked, or traditional — while the covers themselves become the navigation. In stacked view, issues recede in a dense diagonal tunnel; hover one and it snaps into full color with artist and date notes while the rest fall back to ghosted greys. It turns a magazine archive into something you walk through rather than scroll.",
+    "kind": "image"
   },
   {
-    "id": "read-pixels",
-    "title": "read the pixels",
-    "description": "Skip the docs — poke the pixels, then break them.",
+    "id": "dinodex",
+    "title": "dinodex",
+    "log": "18/52",
+    "description": "Pokémon-style dinosaur trading cards — 100+ species with map findspots.",
     "url": null,
     "image": null,
-    "tags": ["process"],
+    "video": "dinodex.mp4",
+    "tags": [
+      "play",
+      "science",
+      "cards"
+    ],
     "date": "2026-06-26",
-    "body": "No tutorial. Read the pixels, not the docs, then break whatever still looks too polite. Most of the useful experiments start by ignoring the intended use and pushing the surface until it complains."
+    "body": "dinodex is a nano-app that lets you turn your favorite dinosaurs into '90s Pokémon-style trading cards. There are over 100 dinosaurs to collect through the platform. You can search for any species to view its trading card, which features a consistent Pokémon-inspired theme. Each card provides detailed information about the dinosaur's type, powers, and traits, as well as its discovery location. The app also maps every species on a world map based on where the dinosaur was originally located.",
+    "kind": "image"
   },
   {
-    "id": "z-index-fight",
-    "title": "z-index fight",
-    "description": "Window stacking wars until you click another frame.",
-    "url": "/experiments",
+    "id": "summit-scout",
+    "title": "summit scout",
+    "log": "19/52",
+    "description": "All 63 U.S. national parks scored for remoteness, scenery, and more.",
+    "url": null,
     "image": null,
-    "tags": ["ui", "interaction"],
+    "video": "summit-scout.mp4",
+    "tags": [
+      "travel",
+      "map",
+      "data"
+    ],
     "date": "2026-06-24",
-    "body": "Window seventeen thinks it is on top until you click window three. The z-index fight is the whole interaction model: click to raise, drag to rearrange, never quite settle into a tidy desktop."
+    "body": "Summit Scout is an app built for national park adventures. While many of us love our national parks, there isn't a single app that visualizes all 63 U.S. national parks in a truly enjoyable way. This app allows you to explore every park by gathering comprehensive data and scoring them on factors like remoteness and scenery.",
+    "kind": "image"
   },
   {
-    "id": "drag-chrome",
-    "title": "drag chrome",
-    "description": "Title-bar move, edge and corner resize — not the text.",
-    "url": "/experiments",
+    "id": "net-runner",
+    "title": "net runner",
+    "log": "20/52",
+    "description": "CV soccer analytics — track players and ball, then click-to-stat with Gemini.",
+    "url": null,
     "image": null,
-    "tags": ["ui", "interaction"],
+    "video": "net-runner.mp4",
+    "tags": [
+      "sports",
+      "vision",
+      "ai"
+    ],
     "date": "2026-06-22",
-    "body": "Drag the chrome, not the text. Edges resize, corners too, same muscle memory as a design tool. The body stays for reading; the frame is the handle."
-  },
-  {
-    "id": "weird-archive",
-    "title": "weird archive",
-    "description": "A room of untitled browsers with zero tabs.",
-    "url": "/experiments",
-    "image": null,
-    "tags": ["archive", "ui"],
-    "date": "2026-06-20",
-    "body": "A weird archive of browsers with zero tabs and almost every window still called untitled. It is less a gallery and more a room you walk into where every surface is a half-open thought."
-  },
-  {
-    "id": "scroll-cube",
-    "title": "scroll cube",
-    "description": "±30° faces folding at midline on the about page.",
-    "url": "/about",
-    "image": null,
-    "tags": ["about", "scroll"],
-    "date": "2026-06-18",
-    "body": "Two faces at plus or minus thirty degrees fold at the midline while an invisible scroll source feeds the loop. The about page becomes a cube you read through, not a column you finish."
-  },
-  {
-    "id": "dot-field",
-    "title": "dot field",
-    "description": "Halftone breath behind the landing gif on a black stage.",
-    "url": "/",
-    "image": null,
-    "tags": ["landing", "texture"],
-    "date": "2026-06-16",
-    "body": "Halftone breath on a black stage, sitting behind the landing gif so the macaw feels printed on living paper. The dots are quiet until you notice them pulsing with the room."
-  },
-  {
-    "id": "tractor-feed",
-    "title": "tractor feed",
-    "description": "Punch-hole profile loader — press enter to load.",
-    "url": null,
-    "image": null,
-    "tags": ["ui", "form"],
-    "date": "2026-06-14",
-    "body": "Tractor-feed margins, punch holes down the side, load profile and press enter. The form pretends to be paper moving through a printer even though nothing is printing except the idea."
-  },
-  {
-    "id": "serif-titles",
-    "title": "serif titles",
-    "description": "Newsreader display with JetBrains mono labels.",
-    "url": null,
-    "image": null,
-    "tags": ["type"],
-    "date": "2026-06-12",
-    "body": "Newsreader for the titles, JetBrains Mono for the labels. Serif for voice, mono for instruments — a pairing that keeps the page from sounding like every other product site."
-  },
-  {
-    "id": "ai-surface",
-    "title": "ai surface",
-    "description": "Hold / steer prototype — trust later.",
-    "url": null,
-    "image": null,
-    "tags": ["ai", "prototype"],
-    "date": "2026-06-10",
-    "body": "Hold and steer first; trust later. The AI surface is a prototype for guiding a model without pretending the answers are finished. Small controls, big uncertainty, and a bias toward keeping the human in the loop."
-  },
-  {
-    "id": "commission",
-    "title": "commission",
-    "description": "Small intent, big curiosity — side quest work.",
-    "url": null,
-    "image": null,
-    "tags": ["process"],
-    "date": "2026-06-08",
-    "body": "Commission work with small intent and big curiosity — side quests that pay for the odd experiments. The brief is tight; the leftover energy goes into the weird archive."
-  },
-  {
-    "id": "frame-001",
-    "title": "frame 001",
-    "description": "Local-only frame — refresh loses the state.",
-    "url": null,
-    "image": null,
-    "tags": ["prototype"],
-    "date": "2026-06-06",
-    "body": "Frame 001, no export, local only. Refresh and the arrangement is gone, which is fine for a lab note. If it mattered enough to keep, it would already have a name and a URL."
-  },
-  {
-    "id": "still-untitled",
-    "title": "still untitled",
-    "description": "Placeholder window that refuses a name.",
-    "url": null,
-    "image": null,
-    "tags": ["archive"],
-    "date": "2026-06-04",
-    "body": "Untitled, untitled, untitled — still untitled. Some windows refuse a name on purpose. Naming too early freezes the experiment into a product before it has earned one."
-  },
-  {
-    "id": "hover-stretch",
-    "title": "hover stretch",
-    "description": "Hover, then stretch — make it tall, make it weird.",
-    "url": null,
-    "image": null,
-    "tags": ["interaction"],
-    "date": "2026-06-02",
-    "body": "Hover me, then stretch. Make it tall, make it weird, let the type reflow until the paragraph looks like a column of code. Resize is the second half of reading in this room."
-  },
-  {
-    "id": "lab-closed",
-    "title": "lab closed",
-    "description": "Lights on, windows open — come in anyway.",
-    "url": "/experiments",
-    "image": null,
-    "tags": ["archive"],
-    "date": "2026-06-01",
-    "body": "Lab closed, lights on, windows open — come in anyway. The sign is a joke; the room is the work. Pull a frame forward and see what is still unfinished on purpose."
+    "body": "a computer-vision based soccer analytics idea where you can select a soccer highlight video, and the app automatically detects home vs. away players, tracks the ball, and visualizes the match flow instantly. it took a couple of iterations but so far really good. and coming next is integrating gemini to recognize players by their jersey numbers effectively giving you a \"click-to-stat\" experience. Click any node, and pull up the player's live stats and bio.",
+    "kind": "video"
   }
 ]

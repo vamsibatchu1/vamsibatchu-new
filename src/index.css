@@ -58,3 +58,101 @@ a {
     opacity: 0;
   }
 }
+
+/* CRT turn-off: collapse to a bright scanline, then pinch out */
+@keyframes browser-crt-wipe {
+  0% {
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(1) contrast(1);
+    opacity: 1;
+  }
+  12% {
+    filter: brightness(1.35) contrast(1.25);
+  }
+  48% {
+    transform: scaleY(0.018) scaleX(1);
+    filter: brightness(2.6) contrast(1.5);
+    opacity: 1;
+  }
+  72% {
+    transform: scaleY(0.018) scaleX(1);
+    filter: brightness(3.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.018) scaleX(0);
+    filter: brightness(4);
+    opacity: 0;
+  }
+}
+
+@keyframes browser-crt-scanlines {
+  0% {
+    opacity: 0;
+    background-position: 0 0;
+  }
+  18% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+    background-position: 0 12px;
+  }
+}
+
+@keyframes browser-crt-beam {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0.2);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+}
+
+.browser-crt-wipe {
+  transform-origin: center center;
+  animation: browser-crt-wipe 480ms cubic-bezier(0.55, 0.05, 0.95, 0.4) forwards;
+}
+
+.browser-crt-wipe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.22) 0,
+    rgb(0 0 0 / 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+  animation: browser-crt-scanlines 480ms linear forwards;
+}
+
+.browser-crt-wipe::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 6;
+  height: 2px;
+  pointer-events: none;
+  background: #fff;
+  box-shadow:
+    0 0 6px #fff,
+    0 0 14px rgb(255 255 255 / 0.85);
+  animation: browser-crt-beam 480ms ease-in forwards;
+}
