@@ -75,10 +75,8 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
                 ? { duration: 0 }
                 : { type: 'spring', stiffness: 380, damping: 32 }
             }
-            className="fixed right-4 z-[80] flex w-[min(600px,calc(100vw-2rem))] flex-col overflow-hidden rounded-[10px] border border-black/15 bg-white shadow-[0_18px_50px_rgb(0_0_0/0.12)]"
+            className="fixed inset-x-0 bottom-0 z-[80] flex h-[min(78dvh,calc(100dvh-env(safe-area-inset-bottom,0px)-1rem))] w-full flex-col overflow-hidden rounded-t-[10px] border border-black/15 bg-white shadow-[0_18px_50px_rgb(0_0_0/0.12)] lg:inset-x-auto lg:right-4 lg:bottom-[-16px] lg:h-[min(480px,calc(100dvh-5rem))] lg:w-[min(600px,calc(100vw-2rem))] lg:rounded-[10px]"
             style={{
-              bottom: -16,
-              height: 'min(480px, calc(100dvh - 5rem))',
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
             }}
           >
@@ -90,13 +88,13 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
             <EditorRuler />
             <div
               data-editor-body
-              className="min-h-0 flex-1 overflow-y-auto px-5 py-4 text-[12px] leading-[1.55] text-black"
+              className="min-h-0 flex-1 overflow-y-auto px-4 py-4 text-[14px] leading-[1.6] text-black lg:px-5 lg:text-[12px] lg:leading-[1.55]"
             >
               <header className="mb-4 border-b border-black/10 pb-3">
-                <p className="text-[9px] tracking-[0.08em] text-black/40 lowercase">
+                <p className="text-[10px] tracking-[0.08em] text-black/40 lowercase lg:text-[9px]">
                   {article.kind} · {article.year} · {article.id}.json
                 </p>
-                <h2 className="mt-1 text-[15px] font-medium lowercase tracking-tight">
+                <h2 className="mt-1 text-[17px] font-medium lowercase tracking-tight lg:text-[15px]">
                   {article.title}
                 </h2>
               </header>
@@ -147,7 +145,7 @@ function EditorToolbar({
   onToggleDim: () => void
 }) {
   return (
-    <div className="flex h-auto shrink-0 items-center gap-1.5 border-b border-black/10 bg-white px-2.5 py-2.5 text-[9px] text-black/55">
+    <div className="flex h-auto shrink-0 items-center gap-1.5 overflow-x-auto border-b border-black/10 bg-white px-2.5 py-2.5 text-[9px] text-black/55">
       <ToolGroup>
         <ToolBtn label="font">jetbrains mono</ToolBtn>
         <ToolBtn label="weight">regular</ToolBtn>

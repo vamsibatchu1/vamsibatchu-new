@@ -30,7 +30,7 @@ export default function Landing() {
 
   return (
     <div
-      className={`relative flex min-h-dvh items-end justify-center overflow-hidden bg-black px-4 pb-10 text-black sm:px-6 sm:pb-14 ${
+      className={`relative flex min-h-dvh items-end justify-center overflow-hidden bg-black px-4 pb-10 text-black lg:px-10 lg:pb-14 ${
         exiting ? 'opacity-0' : 'opacity-100'
       } transition-opacity duration-300`}
     >

@@ -227,15 +227,19 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
       const colCount =
         totalW < 640 ? 1 : totalW < 900 ? 2 : COL_COUNT_DESKTOP
       const colWidth = (totalW - GAP * (colCount - 1)) / colCount
-      const clamped = images.map((img) => {
-        const { height } = resolveFlowImageSize(img, colWidth)
-        return {
-          ...img,
-          column: clamp(img.column, 0, colCount - 1),
-          top: clamp(img.top, 0, Math.max(0, COL_HEIGHT - height)),
-          height,
-        }
-      })
+      // Desktop-only posters — drop wrap images on mobile / tablet
+      const showPosters = totalW >= 1024
+      const clamped = showPosters
+        ? images.map((img) => {
+            const { height } = resolveFlowImageSize(img, colWidth)
+            return {
+              ...img,
+              column: clamp(img.column, 0, colCount - 1),
+              top: clamp(img.top, 0, Math.max(0, COL_HEIGHT - height)),
+              height,
+            }
+          })
+        : []
 
       // Wait for shape mask when a shapeSrc is set
       if (flow.shapeSrc && !shapeBands) return
@@ -375,7 +379,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
         })
       })()}
 
-      {(snapshot?.images ?? images).map((img) => {
+      {(snapshot?.images ?? []).map((img) => {
         const colW = snapshot?.colWidth ?? 0
         const { width: w, height: h } = resolveFlowImageSize(img, colW)
         const left =

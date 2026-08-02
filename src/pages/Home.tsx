@@ -1,5 +1,6 @@
 import CreativeTextRow from '../features/home/CreativeTextRow'
 import { creativeFlow } from '../features/home/creativeFlow'
+import { shellSectionY } from '../components/shellLayout'
 
 const THUMB_GREY = '#efeeec'
 
@@ -71,7 +72,7 @@ const archiveItems: WorkCard[] = [
 function Arrow({ color }: { color: string }) {
   return (
     <span
-      className="mb-2 block size-0 border-y-[5px] border-y-transparent border-l-[8px]"
+      className="mb-1.5 block size-0 border-y-[4px] border-y-transparent border-l-[7px] lg:mb-2 lg:border-y-[5px] lg:border-l-[8px]"
       style={{ borderLeftColor: color }}
       aria-hidden
     />
@@ -80,12 +81,12 @@ function Arrow({ color }: { color: string }) {
 
 function Card({ card }: { card: WorkCard }) {
   return (
-    <article className="flex shrink-0 items-end gap-2.5">
+    <article className="flex max-w-full shrink-0 items-end gap-2 lg:gap-2.5">
       <div
-        className="shrink-0"
+        className="max-w-[11rem] shrink-0 lg:max-w-none"
         style={{
           width: card.width,
-          height: card.height,
+          aspectRatio: `${card.width} / ${card.height}`,
           backgroundColor: THUMB_GREY,
         }}
         aria-hidden
@@ -93,7 +94,7 @@ function Card({ card }: { card: WorkCard }) {
       <div className="flex flex-col items-center pt-1">
         <Arrow color={card.arrow} />
         <span
-          className="text-[10px] font-medium uppercase tracking-[0.14em] text-black"
+          className="text-[9px] font-medium uppercase tracking-[0.14em] text-black lg:text-[10px]"
           style={{
             writingMode: 'vertical-rl',
             transform: 'rotate(180deg)',
@@ -108,7 +109,7 @@ function Card({ card }: { card: WorkCard }) {
 
 function CardRow({ cards }: { cards: WorkCard[] }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-10">
+    <div className="flex flex-wrap items-end gap-x-6 gap-y-8 lg:justify-between lg:gap-x-8 lg:gap-y-10">
       {cards.map((card) => (
         <Card key={card.id} card={card} />
       ))}
@@ -116,7 +117,7 @@ function CardRow({ cards }: { cards: WorkCard[] }) {
   )
 }
 
-const rowClass = 'py-10 sm:py-12'
+const rowClass = shellSectionY
 
 export default function Home() {
   return (
@@ -125,7 +126,7 @@ export default function Home() {
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
     >
       <div id="intro" className={rowClass}>
-        <p className="w-[80%] max-w-full text-[28px] leading-[1.1] text-black">
+        <p className="w-full max-w-full text-[22px] leading-[1.2] text-black lg:w-[80%] lg:text-[28px] lg:leading-[1.1]">
           some call me a product designer, some call me a design engineer. I
           call myself a tinkerer and someone who is usually doing a lot of things & who just loves building tasteful product experiences with a
           blend of art, design, technology, and code.

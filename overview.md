@@ -66,6 +66,12 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## Change log
 
+### 2026-08-02 — Mobile shell + type
+
+- Mobile: bottom tab bar (shared `navLinks`); desktop keeps top nav
+- Writing editor full-bleed sheet on mobile; hides bottom nav while open
+- Mobile type/spacing pass on Home, Writing, Work; Experiments stage shorter on small screens
+
 ### 2026-08-02 — Repo organization
 
 - Writing: one JSON file per article + `columns.json`; list metadata derived from articles (no duplicate `writing.ts` entries)

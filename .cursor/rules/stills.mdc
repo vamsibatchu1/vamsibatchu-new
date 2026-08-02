@@ -22,6 +22,8 @@ Images are draggable wrap obstacles; dragging rearranges wrap path only.
 
 Same `stills/` folder. In article JSON use filename-only `"src"`. Resolved by `writingArticles.ts` glob — no Home import required.
 
+Home creative-text posters are **desktop-only** (`CreativeTextRow` hides wrap images below 1024px). Still add them in `creativeFlow.ts` for desktop.
+
 ## Do / don't
 
 - ✅ Home posters need explicit import in `creativeFlow.ts`

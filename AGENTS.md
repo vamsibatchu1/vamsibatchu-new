@@ -40,6 +40,7 @@ src/
     home/                 CreativeTextRow + creativeFlow
   lab/                    unused prototypes (not routed)
   data/
+    nav.ts                shared primary nav links (top + bottom)
     writing.ts            re-exports archive list helpers
     writingArticles.ts    loads writing-articles/*.json
     writing-articles/     one JSON per post + columns.json

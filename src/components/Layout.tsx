@@ -1,20 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { navLinks } from '../data/nav'
 import HeatmapOverlay from './HeatmapOverlay'
-import Mark, { type MarkTone } from './Mark'
-
-const links: {
-  to: string
-  label: string
-  end?: boolean
-  tone: MarkTone
-}[] = [
-  { to: '/home', label: 'home', end: true, tone: 'orange' },
-  { to: '/work', label: 'work', tone: 'yellow' },
-  { to: '/experiments', label: 'experiments', tone: 'purple' },
-  { to: '/writing', label: 'writing', tone: 'blue' },
-  { to: '/about', label: 'about', tone: 'green' },
-]
+import Mark from './Mark'
+import { shellMax, shellMainPad, shellPadX } from './shellLayout'
+import { ShellUiProvider, useShellUi } from './ShellUiContext'
 
 function barWidthFor(label: string) {
   return Math.max(0.85, label.length * 0.22)
@@ -68,102 +58,168 @@ function useNavCollapsed() {
   return collapsed
 }
 
-export default function Layout() {
+function DesktopTopNav({
+  collapsed,
+  heatmapOn,
+  onToggleHeatmap,
+}: {
+  collapsed: boolean
+  heatmapOn: boolean
+  onToggleHeatmap: () => void
+}) {
+  return (
+    <header className="sticky top-0 z-50 hidden bg-white lowercase lg:block">
+      <div
+        className={`${shellMax} flex items-center justify-end gap-4 py-5 lg:py-6 ${shellPadX}`}
+      >
+        <nav
+          className={`flex flex-wrap items-center justify-end transition-[gap] duration-300 ease-out ${
+            collapsed ? 'gap-x-0.5 gap-y-1' : 'gap-x-3 gap-y-2 sm:gap-x-4'
+          } text-sm sm:text-base`}
+          aria-label="Primary"
+        >
+          {navLinks.map(({ to, label, end, tone }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              aria-label={label}
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1.5 transition-opacity hover:opacity-100 ${
+                  isActive ? 'opacity-100' : 'opacity-80'
+                }`
+              }
+            >
+              {({ isActive }) => (
+                <Mark
+                  tone={tone}
+                  collapsed={collapsed}
+                  barWidth={barWidthFor(label)}
+                  active={isActive}
+                >
+                  {label}
+                </Mark>
+              )}
+            </NavLink>
+          ))}
+
+          <button
+            type="button"
+            aria-pressed={heatmapOn}
+            aria-label="toggle heatmap mode"
+            onClick={onToggleHeatmap}
+            className={`inline-flex items-center lowercase transition-all duration-300 hover:opacity-100 ${
+              collapsed
+                ? 'max-w-0 scale-75 overflow-hidden opacity-0'
+                : heatmapOn
+                  ? 'max-w-[6rem] opacity-100 line-through decoration-black decoration-1'
+                  : 'max-w-[6rem] opacity-80'
+            }`}
+          >
+            heatmap
+          </button>
+
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="instagram"
+            className={`inline-flex transition-all duration-300 hover:opacity-100 ${
+              collapsed
+                ? 'max-w-0 scale-75 overflow-hidden opacity-0'
+                : 'max-w-[2rem] opacity-80'
+            }`}
+          >
+            <InstagramIcon />
+          </a>
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="x"
+            className={`inline-flex transition-all duration-300 hover:opacity-100 ${
+              collapsed
+                ? 'max-w-0 scale-75 overflow-hidden opacity-0'
+                : 'max-w-[2rem] opacity-80'
+            }`}
+          >
+            <XIcon />
+          </a>
+        </nav>
+      </div>
+    </header>
+  )
+}
+
+function MobileBottomNav({ hidden }: { hidden: boolean }) {
+  return (
+    <nav
+      aria-label="Primary"
+      aria-hidden={hidden}
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white lowercase transition-transform duration-300 ease-out lg:hidden ${
+        hidden ? 'pointer-events-none translate-y-full' : 'translate-y-0'
+      }`}
+      style={{
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
+    >
+      <div className={`${shellMax} grid grid-cols-5`}>
+        {navLinks.map(({ to, label, shortLabel, end, tone }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            aria-label={label}
+            className={({ isActive }) =>
+              `flex min-h-14 flex-col items-center justify-center gap-1 px-0.5 py-2 text-[10px] leading-none tracking-[0.02em] transition-opacity ${
+                isActive ? 'opacity-100' : 'opacity-70'
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <Mark tone={tone} active={isActive}>
+                {shortLabel ?? label}
+              </Mark>
+            )}
+          </NavLink>
+        ))}
+      </div>
+    </nav>
+  )
+}
+
+function LayoutShell() {
   const collapsed = useNavCollapsed()
   const { pathname } = useLocation()
   const [heatmapOn, setHeatmapOn] = useState(false)
+  const { overlayOpen } = useShellUi()
 
   return (
     <div
       className="flex min-h-dvh flex-col bg-white text-black"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
     >
-      <header className="sticky top-0 z-50 bg-white lowercase">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-end gap-4 px-4 py-5 sm:px-8 sm:py-6 lg:px-10">
-          <nav
-            className={`flex flex-wrap items-center justify-end transition-[gap] duration-300 ease-out ${
-              collapsed
-                ? 'gap-x-0.5 gap-y-1'
-                : 'gap-x-3 gap-y-2 sm:gap-x-4'
-            } text-sm sm:text-base`}
-            aria-label="Primary"
-          >
-            {links.map(({ to, label, end, tone }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                aria-label={label}
-                className={({ isActive }) =>
-                  `inline-flex items-center gap-1.5 transition-opacity hover:opacity-100 ${
-                    isActive ? 'opacity-100' : 'opacity-80'
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <Mark
-                    tone={tone}
-                    collapsed={collapsed}
-                    barWidth={barWidthFor(label)}
-                    active={isActive}
-                  >
-                    {label}
-                  </Mark>
-                )}
-              </NavLink>
-            ))}
+      <DesktopTopNav
+        collapsed={collapsed}
+        heatmapOn={heatmapOn}
+        onToggleHeatmap={() => setHeatmapOn((v) => !v)}
+      />
 
-            <button
-              type="button"
-              aria-pressed={heatmapOn}
-              aria-label="toggle heatmap mode"
-              onClick={() => setHeatmapOn((v) => !v)}
-              className={`inline-flex items-center lowercase transition-all duration-300 hover:opacity-100 ${
-                collapsed
-                  ? 'max-w-0 scale-75 overflow-hidden opacity-0'
-                  : heatmapOn
-                    ? 'max-w-[6rem] opacity-100 line-through decoration-black decoration-1'
-                    : 'max-w-[6rem] opacity-80'
-              }`}
-            >
-              heatmap
-            </button>
-
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="instagram"
-              className={`inline-flex transition-all duration-300 hover:opacity-100 ${
-                collapsed
-                  ? 'max-w-0 scale-75 overflow-hidden opacity-0'
-                  : 'max-w-[2rem] opacity-80'
-              }`}
-            >
-              <InstagramIcon />
-            </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="x"
-              className={`inline-flex transition-all duration-300 hover:opacity-100 ${
-                collapsed
-                  ? 'max-w-0 scale-75 overflow-hidden opacity-0'
-                  : 'max-w-[2rem] opacity-80'
-              }`}
-            >
-              <XIcon />
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-8 sm:py-12 lg:px-10">
+      <main className={`${shellMax} flex-1 ${shellMainPad}`}>
         <Outlet />
       </main>
 
+      <MobileBottomNav hidden={overlayOpen} />
+
       {heatmapOn ? <HeatmapOverlay path={pathname} /> : null}
     </div>
+  )
+}
+
+export default function Layout() {
+  return (
+    <ShellUiProvider>
+      <LayoutShell />
+    </ShellUiProvider>
   )
 }

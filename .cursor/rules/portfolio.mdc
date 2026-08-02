@@ -41,6 +41,8 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 
 - JetBrains Mono; lowercase UI labels; white shell; pastel `Mark` accents
 - Prefer existing patterns; avoid generic AI looks (purple gradients, cream+serif, dense broadsheet)
+- **Viewport chrome**: desktop (`lg+`) sticky top nav; mobile bottom tab bar (`src/data/nav.ts`). Same routes/content — do not duplicate pages. Hide mobile bar when shell overlay is open (writing editor).
+- **Shell gutters**: use `src/components/shellLayout.ts` (`shellPadX` = `px-4 lg:px-10`, `max-w-6xl`). Don’t invent per-page mobile padding; full-bleed via `shellBleedX` only.
 
 ## Content extension points
 

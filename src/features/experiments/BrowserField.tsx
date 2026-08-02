@@ -139,8 +139,7 @@ export default function BrowserField({
   return (
     <div
       ref={shellRef}
-      className={`relative isolate overflow-hidden bg-white ${className}`}
-      style={{ height: 'min(72vh, 720px)', minHeight: 480 }}
+      className={`relative isolate h-[min(58dvh,720px)] min-h-[320px] overflow-hidden bg-white lg:h-[min(72vh,720px)] lg:min-h-[480px] ${className}`}
       aria-label="Floating browser experiments"
       onPointerLeave={clearFocus}
     >
