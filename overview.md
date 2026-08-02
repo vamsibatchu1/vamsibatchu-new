@@ -66,6 +66,15 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## Change log
 
+### 2026-08-02 — Practice map on Home intro
+
+- Moved fidgetable blueprint `PracticeMap` into Home `#intro` as a second column (Work restored to stub)
+
+### 2026-08-02 — Practice map sandbox on Work
+
+- Added fidgetable 3D `PracticeMap` (`src/features/practice-map/`) with concept data in `practiceMap.ts`
+- Initially mounted on `/work` as a temporary home
+
 ### 2026-08-02 — Mobile shell + type
 
 - Mobile: bottom tab bar (shared `navLinks`); desktop keeps top nav

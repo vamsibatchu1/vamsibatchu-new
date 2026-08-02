@@ -70,6 +70,36 @@ function escapeRegExp(s: string) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
+/** Collapse nbsp / punctuation for phrase comparison. */
+function phraseKey(s: string) {
+  return s
+    .replace(/\u00A0/gu, ' ')
+    .replace(/[^A-Z0-9 ]+/giu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim()
+    .toUpperCase()
+}
+
+/**
+ * Glue the first occurrence of each multi-word keyword with nbsp so Pretext
+ * will not break the phrase across lines (underline stays clickable).
+ */
+function protectKeywordPhrases(text: string, keywords: TextKeyword[]) {
+  let out = text
+  const sorted = [...keywords].sort(
+    (a, b) =>
+      b.word.trim().split(/\s+/u).length - a.word.trim().split(/\s+/u).length,
+  )
+  for (const kw of sorted) {
+    const parts = kw.word.trim().split(/\s+/u)
+    if (parts.length < 2) continue
+    const needle = kw.word.toUpperCase().trim().replace(/\s+/gu, ' ')
+    const re = new RegExp(`\\b${escapeRegExp(needle)}\\b`)
+    out = out.replace(re, (m) => m.replace(/ /gu, '\u00A0'))
+  }
+  return out
+}
+
 /** Inject «gloss» after the first whole-word match of the expanded keyword. */
 function buildStreamText(
   base: string,
@@ -82,15 +112,12 @@ function buildStreamText(
   )
   if (!kw) return base
 
-  const needle = kw.word.toUpperCase()
+  const needle = kw.word.toUpperCase().trim().replace(/\s+/gu, '[\\s\\u00A0]+')
   const gloss = kw.gloss.toUpperCase().replace(/\s+/gu, ' ').trim()
-  const re = new RegExp(`\\b${escapeRegExp(needle)}\\b`)
+  const re = new RegExp(`\\b${needle}\\b`)
   if (!re.test(base)) return base
-  return base.replace(re, `${needle} «${gloss}»`)
-}
-
-function wordKey(token: string) {
-  return token.replace(/[^A-Z0-9]/giu, '').toUpperCase()
+  const display = kw.word.toUpperCase().trim().replace(/\s+/gu, '\u00A0')
+  return base.replace(re, `${display} «${gloss}»`)
 }
 
 type CreativeTextRowProps = {
@@ -136,9 +163,12 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
   }, [flow.images])
 
   useEffect(() => {
-    baseTextRef.current = normalizeArticle(flow.text)
+    baseTextRef.current = protectKeywordPhrases(
+      normalizeArticle(flow.text),
+      flow.keywords ?? [],
+    )
     setExpandedWord(null)
-  }, [flow.text])
+  }, [flow.text, flow.keywords])
 
   useEffect(() => {
     let cancelled = false
@@ -349,6 +379,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
 
       {(() => {
         let inGloss = false
+        const claimedKeywords = new Set<string>()
         return snapshot?.lines.map((line, i) => {
           const left = line.col * (snapshot.colWidth + GAP) + line.x
           const wordSpacing = justifySpacing(line, i === lastLineIndex)
@@ -359,6 +390,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
             expandedWord,
             glossColor,
             toggleKeyword,
+            claimedKeywords,
           )
           inGloss = parsed.inGloss
           return (
@@ -427,14 +459,54 @@ function parseLineWithKeywords(
   expandedWord: string | null,
   glossColor: string | undefined,
   onToggle: (word: string) => void,
+  /** Keywords already underlined earlier in the stream — skip repeats. */
+  claimedKeywords: Set<string>,
 ): { nodes: ReactNode[]; inGloss: boolean } {
-  const keywordSet = new Map(
-    keywords.map((k) => [k.word.toUpperCase(), k] as const),
+  // Longest phrases first so glued nbsp phrases match before short words.
+  const sortedKeywords = [...keywords].sort(
+    (a, b) => phraseKey(b.word).length - phraseKey(a.word).length,
   )
+  const byPhrase = new Map(
+    sortedKeywords.map((k) => [phraseKey(k.word), k] as const),
+  )
+
   const nodes: ReactNode[] = []
   let inGloss = startInGloss
   let buf = ''
   let key = 0
+
+  const pushKeywordButton = (label: string, kw: TextKeyword) => {
+    const claim = phraseKey(kw.word)
+    claimedKeywords.add(claim)
+    const isOpen =
+      !!expandedWord && phraseKey(expandedWord) === phraseKey(kw.word)
+
+    nodes.push(
+      <button
+        key={`k-${key++}`}
+        type="button"
+        aria-expanded={isOpen}
+        aria-label={
+          isOpen
+            ? `collapse gloss for ${kw.word}`
+            : `expand gloss for ${kw.word}`
+        }
+        onClick={(e) => {
+          e.stopPropagation()
+          onToggle(kw.word)
+        }}
+        className="cursor-pointer border-0 bg-transparent p-0 uppercase text-black underline decoration-black/35 underline-offset-2 hover:decoration-black"
+        style={{
+          fontFamily: 'inherit',
+          fontSize: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
+        }}
+      >
+        {label}
+      </button>,
+    )
+  }
 
   const flushPlain = (plain: string) => {
     if (!plain) return
@@ -451,51 +523,24 @@ function parseLineWithKeywords(
       return
     }
 
-    const tokens = plain.split(/(\s+)/u)
-    tokens.forEach((token) => {
-      if (!token) return
-      if (/^\s+$/u.test(token)) {
+    // Split on regular spaces only — nbsp keeps multi-word keywords intact.
+    const tokens = plain.split(/([ \t]+)/u)
+    for (const token of tokens) {
+      if (!token) continue
+      if (/^[ \t]+$/u.test(token)) {
         nodes.push(token)
-        return
+        continue
       }
 
-      const wk = wordKey(token)
-      const kw = keywordSet.get(wk)
-      if (!kw) {
+      const pk = phraseKey(token)
+      const kw = byPhrase.get(pk)
+      if (!kw || claimedKeywords.has(pk)) {
         nodes.push(<span key={`t-${key++}`}>{token}</span>)
-        return
+        continue
       }
 
-      const isOpen =
-        !!expandedWord &&
-        expandedWord.toUpperCase() === kw.word.toUpperCase()
-
-      nodes.push(
-        <button
-          key={`k-${key++}`}
-          type="button"
-          aria-expanded={isOpen}
-          aria-label={
-            isOpen
-              ? `collapse gloss for ${kw.word}`
-              : `expand gloss for ${kw.word}`
-          }
-          onClick={(e) => {
-            e.stopPropagation()
-            onToggle(kw.word)
-          }}
-          className="cursor-pointer border-0 bg-transparent p-0 uppercase text-black underline decoration-black/35 underline-offset-2 hover:decoration-black"
-          style={{
-            fontFamily: 'inherit',
-            fontSize: 'inherit',
-            lineHeight: 'inherit',
-            letterSpacing: 'inherit',
-          }}
-        >
-          {token}
-        </button>,
-      )
-    })
+      pushKeywordButton(token, kw)
+    }
   }
 
   for (let i = 0; i < text.length; i++) {

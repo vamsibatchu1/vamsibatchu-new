@@ -1,6 +1,13 @@
 import type { ReactNode } from 'react'
 
-export type MarkTone = 'pink' | 'orange' | 'blue' | 'yellow' | 'purple' | 'green'
+export type MarkTone =
+  | 'pink'
+  | 'orange'
+  | 'blue'
+  | 'yellow'
+  | 'purple'
+  | 'green'
+  | 'black'
 
 /** Hex values for nav marks — reuse for barcodes and accents. */
 export const markColors: Record<MarkTone, string> = {
@@ -10,6 +17,7 @@ export const markColors: Record<MarkTone, string> = {
   yellow: '#ffe566',
   purple: '#d9c2ff',
   green: '#b8f0c0',
+  black: '#000000',
 }
 
 const tones: Record<MarkTone, string> = {
@@ -19,6 +27,7 @@ const tones: Record<MarkTone, string> = {
   yellow: 'bg-[#ffe566]',
   purple: 'bg-[#d9c2ff]',
   green: 'bg-[#b8f0c0]',
+  black: 'bg-black text-white',
 }
 
 export default function Mark({

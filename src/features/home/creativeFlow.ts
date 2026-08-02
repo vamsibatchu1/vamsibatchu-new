@@ -9,52 +9,88 @@ import { type CreativeTextFlow } from './CreativeTextRow'
 
 const creativeKeywords: CreativeTextFlow['keywords'] = [
   {
-    word: 'navigation',
+    word: 'emerging media',
     gloss:
-      'the path a hand takes through an interface — wayfinding made of type, motion, and memory',
+      'New forms of expression that appear when technology changes what can be seen, heard, generated, or interacted with. The medium may be unfamiliar, but the goal remains human connection.',
     tone: 'blue' as MarkTone,
   },
   {
-    word: 'deepmind',
+    word: 'observe carefully',
     gloss:
-      'where craft meets models — intentional experiences built as a member of technical staff',
+      'Paying attention before attempting to make. Watching how people behave, how objects communicate, and how small details change the feeling of an experience.',
     tone: 'purple' as MarkTone,
   },
   {
-    word: 'prototype',
+    word: 'every experience becomes material',
     gloss:
-      'the smallest honest version of an idea, built to be broken before it is polished',
+      'What we watch, read, hear, notice, and remember quietly enters the work. Creation is often the recombination of things we have cared enough to notice.',
     tone: 'orange' as MarkTone,
   },
   {
-    word: 'interaction',
+    word: 'empty page',
     gloss:
-      'the conversation between person and system — pacing, touch, and recovery as manners',
+      'A useful fiction. No page is truly empty. We arrive with memories, references, habits, questions, and fragments gathered over time.',
     tone: 'pink' as MarkTone,
   },
   {
-    word: 'attention',
+    word: 'ideas often arrive as fragments',
     gloss:
-      'the scarce material of product — spent on gaps, headlines, and what the eye meets first',
+      'Most ideas do not begin as complete concepts. They appear as images, phrases, gestures, references, or small tensions that only reveal their relationship through making.',
     tone: 'yellow' as MarkTone,
   },
   {
-    word: 'systems',
+    word: 'taste',
     gloss:
-      'inputs, outputs, feedback — still allowed to surprise once they become legible',
+      'The ability to recognize what deserves attention. Taste helps us choose between possibilities, identify what feels alive, and remove what weakens the idea.',
     tone: 'green' as MarkTone,
   },
   {
-    word: 'portfolio',
+    word: 'final five percent',
     gloss:
-      'an instrument, not a brochure — samples you can play until the composition shifts',
+      'The part of the process where small choices create a disproportionate difference. Timing, spacing, language, motion, sound, and restraint turn something functional into something felt.',
     tone: 'blue' as MarkTone,
   },
   {
-    word: 'rhythm',
+    word: 'a pause creates room',
     gloss:
-      'ornament’s quieter sibling — the beat that holds type, motion, and empty space together',
+      'Silence and delay are active materials. A pause can create anticipation, focus attention, or give someone time to form their own interpretation.',
+    tone: 'purple' as MarkTone,
+  },
+  {
+    word: 'framing the problem',
+    gloss:
+      'Deciding which question is actually worth answering. The quality of the outcome is often determined before anything is generated, designed, or built.',
     tone: 'orange' as MarkTone,
+  },
+  {
+    word: 'point of view',
+    gloss:
+      'A recognizable way of seeing and choosing. Point of view gives separate decisions a shared logic and prevents the work from becoming a collection of fashionable effects.',
+    tone: 'pink' as MarkTone,
+  },
+  {
+    word: 'play',
+    gloss:
+      'Exploration without the immediate pressure of usefulness. Play creates room for accidents, strange combinations, and discoveries that structured processes often miss.',
+    tone: 'yellow' as MarkTone,
+  },
+  {
+    word: 'knowing when it should remain quiet',
+    gloss:
+      'Resisting the urge to make every surface intelligent, animated, conversational, or expressive. Sometimes the best design decision is to let the experience recede.',
+    tone: 'green' as MarkTone,
+  },
+  {
+    word: 'protect the character',
+    gloss:
+      'Preserving the qualities that make an idea distinct as it moves through tools, iterations, and systems. Refinement should clarify identity, not sand it away.',
+    tone: 'blue' as MarkTone,
+  },
+  {
+    word: 'human decisions',
+    gloss:
+      'The judgments, edits, references, refusals, and small acts of care that give generated material direction and make the finished work feel authored.',
+    tone: 'purple' as MarkTone,
   },
 ]
 
@@ -64,70 +100,47 @@ const creativeKeywords: CreativeTextFlow['keywords'] = [
  */
 export const creativeFlow: CreativeTextFlow = {
   text: `
-    Practice. Creative technology at the edge of product and play —
-    interfaces that feel hand-tuned, systems that still surprise when
-    you lean on them. DeepMind. Member of technical staff building
-    intentional experiences where motion, models, and craft share the
-    same room. Method. Prototype first, polish later; every surface
-    earns its place and every interaction gets a reason to exist.
-    Studio. Side quests and commissions: experiments where layout,
-    type, and interaction get to misbehave a little before they grow
-    up into product. Notes. Field notes on AI, interaction, and making
-    things — how tools reshape what a product can feel like in a hand,
-    on a screen, in a room full of other people thinking out loud.
-    Anywhere the brief is fuzzy, start with a small surface and a loud
-    question. Atelier work prefers constraints that sing: narrow widths,
-    short deadlines, strange materials. Writing is another prototype —
-    sentences as components, paragraphs as layouts, arguments as
-    navigation. Keep moving the pictures. Let the text find a new path.
-    Columns are rooms; images are furniture. Shift a block and the
-    sentences walk around it without changing what they say. That is
-    the joke and the craft: one continuous voice, five vertical paths,
-    obstacles that teach the type to bend. Measure twice, place once,
-    then drag again because reflow is the point. Rhythm over ornament.
-    Precision over spectacle. Playfulness with a straight face. Build
-    tools people can feel. Leave seams visible enough to invite a hand.
-    When the grid gets too polite, introduce a picture mid-column and
-    watch the language negotiate. Soft hyphens of intent. Hard breaks
-    of taste. Between them: work that holds up in daylight and still
-    looks alive at night. Portfolio as instrument, not brochure. Each
-    project a sample, each sample a question answered with motion,
-    structure, and a little bit of nerve. Read across, not down only.
-    The ending is wherever the last column runs out of air — until you
-    move an image and the ending moves with it, same words, new shape.
-    Attention is the scarce material. Spend it on pacing, on the quiet
-    gap after a headline, on the way a thumbnail pulls the eye before
-    the caption lands. Systems thinking without the jargon: inputs,
-    outputs, feedback, and the human in the loop who still wants joy.
-    A button is a promise. A scroll is a conversation. A model is a
-    collaborator with opinions you have to edit. Design for recovery
-    when things fail gracefully. Design for delight when they do not
-    fail at all. Ship the smallest honest version, then iterate in
-    public if you can. Collect references the way chefs collect knives —
-    sharp, few, used constantly. Ignore trends that flatten your voice.
-    Borrow structure freely; invent the feeling. Color as punctuation.
-    Type as architecture. Motion as manners. Accessibility as baseline,
-    not a patch. Document the weird decisions so future-you remembers
-    why the corner is rounded that way. Invite critique early, often,
-    kindly. Protect deep work blocks like calendar sacred sites. Then
-    open the door and let the world rearrange the furniture again.
-    Same library of words, same five pictures — only the path changes.
-    That constancy is the feature: content is fixed, composition is live.
-    Fill the frame to the last line. Leave no idle column if you can help it.
-    Practice is a loop. Creative technology keeps asking what a product
-    can feel like when type, models, and motion share one page. DeepMind
-    work sits beside studio experiments; both insist on surfaces that
-    stay legible under pressure. Method again: prototype first, polish
-    later, let interaction teach the next cut. Notes accumulate — field
-    scraps on attention, systems, rhythm, and the portfolio as instrument.
-    Navigation is learned by moving through it. Keep the sentences walking.
-    When one column runs out of air, the next one picks up mid-breath. That
-    is how five paths stay one argument: finish the thought downward, then
-    step sideways and continue. Borrow structure freely. Invent the feeling.
-    Leave seams visible. Ship the smallest honest version and let the wrap
-    around the mark remind you that composition is live. Start again when
-    the column ends: the same voice continues in the next vertical room,
-    wrapping the silhouette without losing the thread.
+    I work between product design, code, and emerging media. The material
+    changes: interfaces, language, images, motion, sound, and models. But the
+    practice remains the same: observe carefully, make something, test it, and
+    refine it until the idea becomes clear. Every experience becomes material.
+    A photograph, a scene from a film, an unusual piece of typography, a
+    conversation, or a tool that behaves unexpectedly. Creation rarely begins
+    with an empty page. It begins with everything we have paid attention to.
+    Ideas often arrive as fragments rather than complete answers. The work is
+    learning how to notice the connection between them, preserve what is
+    surprising, and give the fragments enough structure to become something
+    others can enter. Models can produce endless possibilities, but taste helps
+    us decide which ones have meaning. It is the ability to recognize what
+    feels alive, what feels derivative, what should be refined, and what should
+    be removed entirely. Craft is not disappearing; it is changing shape. It
+    lives in the prompt, the prototype, the transition, the pacing, the system,
+    the edit, and the final five percent that turns an output into an
+    experience. The quality of a piece is often found in the relationships
+    between its parts: how language meets motion, how an image changes the
+    meaning of a sentence, or how a pause creates room for curiosity. Working
+    with AI is not simply asking a machine to make something. It is framing the
+    problem, setting constraints, choosing references, combining tools,
+    evaluating results, and taking responsibility for what reaches the world. A
+    model can offer material, but it cannot replace a point of view. The work of
+    the creative is to shape possibility into something intentional, coherent,
+    and specific. Not every experiment needs to become a product. Some exist to
+    test an interaction, stretch a medium, or reveal a question worth pursuing.
+    Play is not separate from serious work; it is how new forms are discovered.
+    New capabilities invite us to add more: more motion, more content, more
+    generation, more intelligence. But not every surface needs to speak,
+    predict, animate, or create. Sometimes the most thoughtful use of
+    technology is knowing when it should remain quiet. I do not believe
+    authorship requires making every pixel by hand. It requires having a point
+    of view and caring enough to shape every part into a coherent whole. The
+    tools will keep changing. The models will become faster, larger, and more
+    capable. What remains valuable is our ability to direct them with
+    curiosity, judgment, care, and taste. Making with these systems also
+    requires attention to what gets lost along the way. Speed can flatten
+    nuance, and abundance can make every choice feel interchangeable. The
+    creative task is to protect the character of an idea, keep its edges
+    intact, and make sure the final experience still carries a trace of the
+    human decisions that shaped it.
   `,
   images: [
     {

@@ -106,7 +106,7 @@ export default function ApiDoc({
 
   return (
     <motion.article
-      className="api-doc relative flex w-full flex-col overflow-hidden text-[10px] leading-relaxed text-black sm:text-[11px]"
+      className="api-doc relative flex w-full flex-col overflow-hidden bg-[#f3eee0] text-[10px] leading-relaxed text-black sm:text-[11px]"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
       aria-label="API documentation card"
       initial={reduceMotion ? false : { y: '60vh', opacity: 0 }}
@@ -127,7 +127,7 @@ export default function ApiDoc({
         aria-hidden
       />
 
-      <div className="relative flex bg-white">
+      <div className="relative flex bg-[#f3eee0]">
         <div
           className="relative flex w-6 shrink-0 flex-col items-center justify-between border-r border-dashed border-black/50 py-3 sm:w-7"
           aria-hidden
@@ -135,7 +135,7 @@ export default function ApiDoc({
           {holes.map((i) => (
             <span
               key={i}
-              className="size-1.5 rounded-full border border-black/70 bg-white sm:size-2"
+              className="size-1.5 rounded-full border border-black/70 bg-[#f3eee0] sm:size-2"
             />
           ))}
         </div>
@@ -180,10 +180,10 @@ export default function ApiDoc({
                 <span className="self-start">DATA</span>
                 <pre className="overflow-x-auto whitespace-pre leading-relaxed">
                   {`{
-  "id": "vb_creative_technologist",
-  "role": "mts",
-  "org": "google deepmind",
-  "modes": ["design", "build", "play"]
+  "id": "vb_tinkerer",
+  "practice": ["design", "build", "play"],
+  "materials": ["models", "code", "image", "sound", "motion"],
+  "status": "making"
 }`}
                 </pre>
               </div>
@@ -193,17 +193,13 @@ export default function ApiDoc({
 
             <div className="space-y-2 normal-case leading-[1.65]">
               <p>
-                Product designer and design builder working across{' '}
-                <Mark tone="pink">AI</Mark>, <Mark tone="blue">interaction</Mark>
-                , and <Mark tone="purple">experimental interfaces</Mark>. Practice
-                sits between <Mark tone="yellow">craft</Mark> and{' '}
-                <Mark tone="orange">systems</Mark>.
+                I design and build product experiences with{' '}
+                <Mark tone="black">AI</Mark>,{' '}
+                <Mark tone="black">interaction</Mark>, and emerging forms of
+                media. My practice moves between craft and systems, prototypes
+                and polished products, utility and play.
               </p>
-              <p>
-                From <Mark tone="green">prototypes</Mark> to polished product
-                experiences — through-line is{' '}
-                <Mark tone="pink">curiosity</Mark>.
-              </p>
+              <p>The tools keep changing. Curiosity is the through-line.</p>
             </div>
           </div>
 

@@ -38,9 +38,11 @@ src/
     experiments/          BrowserField fleet + physics
     writing/              WritingEditor
     home/                 CreativeTextRow + creativeFlow
+    practice-map/         3D practice.map (sandbox on Work)
   lab/                    unused prototypes (not routed)
   data/
     nav.ts                shared primary nav links (top + bottom)
+    practiceMap.ts        practice map concepts + axes
     writing.ts            re-exports archive list helpers
     writingArticles.ts    loads writing-articles/*.json
     writing-articles/     one JSON per post + columns.json
