@@ -8,11 +8,25 @@ import {
   practiceConcepts,
   type PracticeConcept,
 } from '../../data/practiceMap'
+import { markColors } from '../../components/Mark'
 
-/** Ink / CAD map palette (white field, black wireframe). */
+/** Blueprint / CAD map palette (white field, black wireframe). */
 const INK = '#0a0a0a'
-const INK_HOT = '#000000'
 const PAPER = '#ffffff'
+
+/** Highlight cycle — same swatches as nav / Mark. */
+const ACCENTS = [
+  markColors.orange,
+  markColors.yellow,
+  markColors.purple,
+  markColors.blue,
+  markColors.green,
+] as const
+
+function accentForConcept(id: string) {
+  const i = practiceConcepts.findIndex((c) => c.id === id)
+  return ACCENTS[((i >= 0 ? i : 0) % ACCENTS.length)]!
+}
 
 const AXIS = 1.35
 const GRID = 8 // divisions per half-axis → dense blueprint cells
@@ -220,6 +234,7 @@ function ConceptNode({
   concept,
   selected,
   spotlight,
+  accent,
   onSelect,
   scale,
   teaser,
@@ -228,6 +243,7 @@ function ConceptNode({
   selected: boolean
   /** Auto-cycled focus in teaser mode — only this label is shown. */
   spotlight: boolean
+  accent: string
   onSelect: (id: string) => void
   scale: number
   teaser: boolean
@@ -330,27 +346,35 @@ function ConceptNode({
     <group ref={group} position={base.toArray()}>
       <mesh ref={mesh} {...handlers}>
         <NodeGeometry scale={scale} />
-        <meshBasicMaterial color={lit ? INK_HOT : INK} toneMapped={false} />
+        <meshBasicMaterial
+          color={lit ? accent : INK}
+          toneMapped={false}
+        />
       </mesh>
       {showLabel ? (
-        <Html position={[0.05, 0.035, 0]} zIndexRange={[10, 0]}>
-          <button
-            type="button"
-            onPointerDown={(ev) => ev.stopPropagation()}
-            onPointerEnter={() => setHovered(true)}
-            onPointerLeave={() => setHovered(false)}
-            onClick={(ev) => {
-              ev.stopPropagation()
-              onSelect(concept.id)
-            }}
-            className={`blueprint-term max-w-[9rem] cursor-pointer select-none whitespace-nowrap text-left text-[9px] lowercase leading-tight tracking-[0.02em] lg:text-[10px] ${
-              selected ? 'is-active' : ''
-            } ${spotlight && !selected ? 'is-spotlight' : ''} ${
-              hovered && teaser ? 'is-hot' : ''
-            }`}
-          >
-            {concept.label}
-          </button>
+        <Html position={[0, -0.04, 0]} zIndexRange={[10, 0]}>
+          <div style={{ marginTop: 8 }}>
+            <button
+              type="button"
+              onPointerDown={(ev) => ev.stopPropagation()}
+              onPointerEnter={() => setHovered(true)}
+              onPointerLeave={() => setHovered(false)}
+              onClick={(ev) => {
+                ev.stopPropagation()
+                onSelect(concept.id)
+              }}
+              className={`blueprint-term max-w-[7.5rem] cursor-pointer select-none text-left text-[9px] lowercase leading-tight tracking-[0.02em] line-clamp-2 lg:text-[10px] ${
+                lit ? 'is-lit' : ''
+              }`}
+              style={
+                lit
+                  ? { backgroundColor: accent, color: INK }
+                  : undefined
+              }
+            >
+              {concept.label}
+            </button>
+          </div>
         </Html>
       ) : null}
     </group>
@@ -405,7 +429,8 @@ function MapScene({
             key={c.id}
             concept={c}
             selected={selectedId === c.id}
-            spotlight={teaser && focusId === c.id}
+            spotlight={Boolean(teaser && focusId === c.id)}
+            accent={accentForConcept(c.id)}
             onSelect={(id) => {
               idle.current = false
               onSelect(id)
@@ -518,12 +543,8 @@ export default function PracticeMap({
           opacity: 1;
         }
         .blueprint-term:hover,
-        .blueprint-term.is-active,
-        .blueprint-term.is-hot,
-        .blueprint-term.is-spotlight {
+        .blueprint-term.is-lit {
           opacity: 1;
-          color: ${PAPER};
-          background: ${INK};
           text-decoration: none;
           padding: 1px 4px 2px;
         }
