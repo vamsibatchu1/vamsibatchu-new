@@ -1,0 +1,30 @@
+---
+description: How to add experiments, videos, and BrowserField behavior
+globs: src/data/experiments.json,src/data/experiments.ts,src/pages/Experiments.tsx,src/components/Browser*.tsx,src/components/browser*.ts,src/assets/experiment-thumbnails-video/**
+alwaysApply: false
+---
+
+# Experiments content
+
+Full checklist: `src/data/EXPERIMENTS.md`.
+
+## Pipeline
+
+1. Drop `*.mp4` in `src/assets/experiment-thumbnails-video/` (filename = what JSON references).
+2. Append an object in `src/data/experiments.json`.
+3. `experiments.ts` sets `videoUrl` via glob — never hand-edit `videoUrl` in JSON.
+
+## Required JSON fields
+
+`id`, `title`, `log` (e.g. `"19/52"`), `description`, `url`, `image`, `video`, `kind` (`image` | `music` | `video`), `tags[]`, `date` (`YYYY-MM-DD`), `body`.
+
+- `video`: filename only, or `null`
+- `url` / `image`: usually `null` unless linking out / static thumb
+
+## UI behavior (don't break casually)
+
+- Page: `Experiments` → `BrowserField` / `BrowserComponent`
+- Hover: muted looping video; click: focus / Matter.js heap for others
+- Exit: CRT wipe (`browser-crt-wipe` in CSS)
+
+Prefer editing JSON + assets over rewriting physics/chrome unless asked.

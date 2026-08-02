@@ -1,0 +1,24 @@
+---
+description: Keep Cursor rules and runbooks in sync when content workflows change
+alwaysApply: true
+---
+
+# Docs maintenance
+
+When a change alters **how** content is added (new data file/schema field, asset folder, loader, or editor/content UX agents must know), update **in the same session**:
+
+1. Matching `.cursor/rules/*.mdc`
+2. Matching runbook (`src/data/writing-articles/README.md`, `src/data/EXPERIMENTS.md`, `src/assets/home-assets/README.md`)
+3. `AGENTS.md` only if the task index/links change
+4. `overview.md` changelog for product-visible changes
+
+## Do not update rules for
+
+- Routine new posts / experiments / images that already follow the runbook
+- Pure styling or refactors that leave the add checklist the same
+
+## Pipeline files (docs likely needed)
+
+- `src/data/writingArticles.ts`, `src/data/experiments.ts`
+- New folders under `src/data/` or `src/assets/` used as content sources
+- Structural changes to `writing-articles/` or experiment video conventions

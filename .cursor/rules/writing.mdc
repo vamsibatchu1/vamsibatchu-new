@@ -1,0 +1,32 @@
+---
+description: How to add or edit Writing archive posts and the article editor
+globs: src/data/writing.ts,src/data/writingArticles.ts,src/data/writing-articles/**,src/pages/Writing.tsx,src/components/WritingEditor.tsx
+alwaysApply: false
+---
+
+# Writing content
+
+Full checklist: `src/data/writing-articles/README.md`.
+
+## Pipeline
+
+1. **Index row** — `src/data/writing.ts` (`writingColumns`). Stable kebab-case `id`, year, title, kind, excerpt.
+2. **Article body** — `src/data/writing-articles/index.json` keyed by the **same** `id`.
+3. **Images** — put files in `src/assets/home-assets/`; in JSON use `"src": "filename.jpg"` only. `writingArticles.ts` resolves URLs via `import.meta.glob` — never hand-edit `url`.
+4. UI — click row opens `WritingEditor` (`articleId`); no expand. Dim-page toggle is toolbar brightness.
+
+## Blocks schema
+
+```json
+{ "type": "p", "text": "..." }
+{ "type": "image", "src": "hero4.jpg", "alt": "...", "caption": "optional" }
+```
+
+Article object: `id`, `title`, `kind`, `year`, `excerpt`, `blocks[]`. Keep list excerpt and JSON excerpt in sync when both exist.
+
+## Do / don't
+
+- ✅ Same `id` in `writing.ts` and `index.json`
+- ✅ Filename-only image `src` under `home-assets`
+- ❌ Don't invent a CMS or edit resolved `url` fields
+- ❌ Don't put full article copy only in `writing.ts` — bodies belong in JSON

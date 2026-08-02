@@ -2,6 +2,20 @@
 
 Living document for vision, site logic, and change log. Update this whenever we ship a meaningful change.
 
+## Documentation map
+
+| Doc | Role |
+| --- | --- |
+| [`AGENTS.md`](./AGENTS.md) | Start here — task index for humans & Cursor |
+| [`.cursor/rules/`](./.cursor/rules/) | Auto-applied agent rules (stack, writing, experiments, assets, docs maintenance) |
+| [`.cursor/hooks.json`](./.cursor/hooks.json) | Stop hook nudges if pipeline code changes without docs |
+| [`src/data/writing-articles/README.md`](./src/data/writing-articles/README.md) | Add / edit a blog |
+| [`src/data/EXPERIMENTS.md`](./src/data/EXPERIMENTS.md) | Add / edit an experiment |
+| [`src/assets/home-assets/README.md`](./src/assets/home-assets/README.md) | Add Home / Writing images |
+| This file | Vision, how the site should feel, changelog |
+
+Operational “how do I add X?” belongs in the runbooks/rules. Keep this file for product direction and history.
+
 ## Who this is for
 
 **Vamsi Batchu** — Creative technologist / product designer / design builder at **Google DeepMind**. The portfolio should feel fun, interactive, and uniquely yours — not a generic case-study grid.
@@ -51,6 +65,12 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 - `src/assets/landing.gif` — portrait GIF used on the landing gate
 
 ## Change log
+
+### 2026-08-02 — Agent / content docs
+
+- Added `AGENTS.md`, `.cursor/rules/` (portfolio, writing, experiments, home-assets, docs-maintenance), and colocated runbooks for writing / experiments / home-assets
+- Added `.cursor/hooks.json` + `docs-remind.sh` stop hook (nudges once if pipeline loaders change without docs)
+- Content workflows documented so future sessions can add posts and media without chat history
 
 ### 2026-07-27 — Scroll-collapse nav
 

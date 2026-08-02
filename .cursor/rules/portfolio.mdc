@@ -1,0 +1,47 @@
+---
+description: Core portfolio conventions — stack, design, where content lives
+alwaysApply: true
+---
+
+# Portfolio (always)
+
+Personal site for Vamsi Batchu. Prefer craft + interaction over generic case-study chrome.
+
+## Stack
+
+React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Some Three.js / Matter.js for experiments.
+
+## Routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Landing gate (outside shell) |
+| `/home` | Home |
+| `/work` | Work |
+| `/experiments` | Experiments (BrowserField) |
+| `/writing` | Writing archive + editor |
+| `/about` | About |
+
+Pages under shell: `src/pages/*` via `Layout`. Routes: `src/App.tsx`.
+
+## Design defaults
+
+- Site chrome / body: **JetBrains Mono**, lowercase UI labels
+- White shell; pastel `Mark` accents in nav
+- Prefer existing patterns over new design systems
+- Avoid generic AI looks (purple gradients, cream+serif+terracotta, dense broadsheet)
+
+## Content lives in data + assets
+
+Do **not** hardcode new blogs/experiments into JSX. Extend:
+
+- Writing list → `src/data/writing.ts`
+- Writing bodies → `src/data/writing-articles/index.json`
+- Experiments → `src/data/experiments.json` + video files
+- Home posters → `src/assets/home-assets/` + `Home.tsx` imports
+
+See `AGENTS.md` and colocated READMEs for add checklists. Vision/changelog: `overview.md`.
+
+## When shipping a content workflow change
+
+Update the matching rule/runbook in the same PR/session so day-30 agents stay accurate.

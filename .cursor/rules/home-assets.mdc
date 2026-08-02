@@ -1,0 +1,26 @@
+---
+description: Home creative text posters and shared image assets
+globs: src/pages/Home.tsx,src/components/CreativeTextRow.tsx,src/components/creativeTextLayout.ts,src/assets/home-assets/**
+alwaysApply: false
+---
+
+# Home / image assets
+
+## Home posters (`CreativeTextRow`)
+
+1. Add image under `src/assets/home-assets/` (jpg/png/webp).
+2. **Import** it in `src/pages/Home.tsx` (static import, not only JSON).
+3. Add a flow image entry (id, column, placement, `src`, sizing). Layout helpers: `creativeTextLayout.ts`.
+4. Center SVG silhouette: `src/assets/creative-intelligence.svg` — keep unless redesigning the stage.
+
+Images are wrap obstacles for flowing text; prefer `object-contain`, no crop. Dragging rearranges wrap path only.
+
+## Shared with Writing
+
+`writingArticles.ts` also globs `src/assets/home-assets/*`. A new file there is available to article image blocks **by filename** without a Home.tsx import — but Home posters always need the explicit import + flow entry.
+
+## Other assets
+
+- Landing: check `src/pages/Landing.tsx` + assets it imports
+- Writing aside: `src/assets/writing.webp`
+- Experiment videos: separate folder — see experiments rule
