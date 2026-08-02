@@ -1,5 +1,5 @@
 ---
-description: Core portfolio conventions — stack, design, where content lives
+description: Core portfolio conventions — stack, layout, content locations
 alwaysApply: true
 ---
 
@@ -9,39 +9,43 @@ Personal site for Vamsi Batchu. Prefer craft + interaction over generic case-stu
 
 ## Stack
 
-React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Some Three.js / Matter.js for experiments.
+React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js (experiments), Three.js (some lab/about pieces).
 
 ## Routes
 
 | Path | Page |
 | --- | --- |
-| `/` | Landing gate (outside shell) |
+| `/` | Landing (outside shell) |
 | `/home` | Home |
-| `/work` | Work |
-| `/experiments` | Experiments (BrowserField) |
+| `/work` | Work (stub) |
+| `/experiments` | Experiments |
 | `/writing` | Writing archive + editor |
 | `/about` | About |
 
-Pages under shell: `src/pages/*` via `Layout`. Routes: `src/App.tsx`.
+`src/App.tsx` + `src/pages/*` inside `Layout` (except Landing).
+
+## Source layout
+
+| Path | Role |
+| --- | --- |
+| `src/components/` | Shared chrome (`Layout`, `Mark`, `ApiDoc`, …) |
+| `src/features/experiments/` | BrowserField fleet + physics |
+| `src/features/writing/` | `WritingEditor` |
+| `src/features/home/` | `CreativeTextRow`, `creativeFlow.ts`, layout helpers |
+| `src/lab/` | Unused prototypes — **not routed**; don’t treat as production |
+| `src/data/` | Content JSON + loaders |
+| `src/assets/stills/` | Shared stills (Home + Writing figures) |
+| `src/assets/experiments/videos/` | Experiment preview mp4s |
 
 ## Design defaults
 
-- Site chrome / body: **JetBrains Mono**, lowercase UI labels
-- White shell; pastel `Mark` accents in nav
-- Prefer existing patterns over new design systems
-- Avoid generic AI looks (purple gradients, cream+serif+terracotta, dense broadsheet)
+- JetBrains Mono; lowercase UI labels; white shell; pastel `Mark` accents
+- Prefer existing patterns; avoid generic AI looks (purple gradients, cream+serif, dense broadsheet)
 
-## Content lives in data + assets
+## Content extension points
 
-Do **not** hardcode new blogs/experiments into JSX. Extend:
+- **Writing** → `src/data/writing-articles/<id>.json` + `columns.json` (see writing rule)
+- **Experiments** → `src/data/experiments.json` + videos folder
+- **Home posters** → `stills/` + `src/features/home/creativeFlow.ts`
 
-- Writing list → `src/data/writing.ts`
-- Writing bodies → `src/data/writing-articles/index.json`
-- Experiments → `src/data/experiments.json` + video files
-- Home posters → `src/assets/home-assets/` + `Home.tsx` imports
-
-See `AGENTS.md` and colocated READMEs for add checklists. Vision/changelog: `overview.md`.
-
-## When shipping a content workflow change
-
-Update the matching rule/runbook in the same PR/session so day-30 agents stay accurate.
+Do **not** hardcode new posts/experiments into page JSX. Start: `AGENTS.md`. Vision/changelog: `overview.md`.

@@ -7,11 +7,11 @@ Living document for vision, site logic, and change log. Update this whenever we 
 | Doc | Role |
 | --- | --- |
 | [`AGENTS.md`](./AGENTS.md) | Start here — task index for humans & Cursor |
-| [`.cursor/rules/`](./.cursor/rules/) | Auto-applied agent rules (stack, writing, experiments, assets, docs maintenance) |
+| [`.cursor/rules/`](./.cursor/rules/) | Auto-applied agent rules (portfolio, writing, experiments, stills, lab, docs maintenance) |
 | [`.cursor/hooks.json`](./.cursor/hooks.json) | Stop hook nudges if pipeline code changes without docs |
 | [`src/data/writing-articles/README.md`](./src/data/writing-articles/README.md) | Add / edit a blog |
 | [`src/data/EXPERIMENTS.md`](./src/data/EXPERIMENTS.md) | Add / edit an experiment |
-| [`src/assets/home-assets/README.md`](./src/assets/home-assets/README.md) | Add Home / Writing images |
+| [`src/assets/stills/README.md`](./src/assets/stills/README.md) | Add Home / Writing images |
 | This file | Vision, how the site should feel, changelog |
 
 Operational “how do I add X?” belongs in the runbooks/rules. Keep this file for product direction and history.
@@ -66,9 +66,17 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## Change log
 
+### 2026-08-02 — Repo organization
+
+- Writing: one JSON file per article + `columns.json`; list metadata derived from articles (no duplicate `writing.ts` entries)
+- Features: `src/features/{experiments,writing,home}`; unused prototypes → `src/lab/`
+- Assets: `src/assets/stills/`, `src/assets/experiments/videos/`; Home flow data → `creativeFlow.ts`
+- Removed unused `writing.png` (kept `writing.webp`)
+- Cursor rules refreshed: `stills.mdc` (replaces home-assets), plus `lab.mdc`; docs-maintenance paths fixed
+
 ### 2026-08-02 — Agent / content docs
 
-- Added `AGENTS.md`, `.cursor/rules/` (portfolio, writing, experiments, home-assets, docs-maintenance), and colocated runbooks for writing / experiments / home-assets
+- Added `AGENTS.md`, `.cursor/rules/` (portfolio, writing, experiments, stills/lab, docs-maintenance), and colocated runbooks for writing / experiments / stills
 - Added `.cursor/hooks.json` + `docs-remind.sh` stop hook (nudges once if pipeline loaders change without docs)
 - Content workflows documented so future sessions can add posts and media without chat history
 

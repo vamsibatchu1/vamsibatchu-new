@@ -1,0 +1,31 @@
+{
+  "id": "nav-labels-collapsing-to-bars",
+  "title": "nav labels collapsing to bars",
+  "kind": "field note",
+  "year": 2024,
+  "excerpt": "on scroll, labels reduce to color bars. navigation as a thin instrument panel instead of a sentence you keep rereading.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "on scroll, labels reduce to color bars. navigation as a thin instrument panel instead of a sentence you keep rereading."
+    },
+    {
+      "type": "p",
+      "text": "this piece starts from a small observation and widens only when the frame still holds. nav labels collapsing to bars is less a finished argument than a working note: what changes if we treat the interface as a place to practice judgment, not just to display outputs."
+    },
+    {
+      "type": "image",
+      "src": "hero5.jpg",
+      "alt": "nav labels collapsing to bars figure",
+      "caption": "fig. 22 — nav labels collapsing to bars"
+    },
+    {
+      "type": "p",
+      "text": "the method is deliberate. read the constraint first — time, width, material — then let the form follow. when the draft runs ahead of the hand, pull it back. when the hand freezes, let the draft move a few steps and see what becomes legible."
+    },
+    {
+      "type": "p",
+      "text": "if there is an image nearby, treat it as furniture in the argument: something you walk around, not a caption you ignore. the point is not polish; it is a surface honest enough that someone else can hold it."
+    }
+  ]
+}

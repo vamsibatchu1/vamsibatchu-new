@@ -1,0 +1,245 @@
+{
+  "id": "from-personal-computing-to-personal",
+  "title": "From personal computing to personal software",
+  "kind": "essay",
+  "year": 2025,
+  "excerpt": "When everyone becomes a creator",
+  "blocks": [
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-01.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "So, I always had this entire folder in my Apple Notes labeled \"App Ideas\" that I have been collecting for years. If you're reading this, I bet you have something similar – a collection of digital sticky notes or half-written drafts filled with software ideas you've always wanted to build. The meal planning app idea conversation that you have started with your buddy, that would work exactly how you need it to but got abandoned . The habit tracker that matches your unique workflow. The family organizer that would make your parents' lives easier. Well, these aren't just random thoughts; they're solutions to specific problems that existing software doesn't quite solve."
+    },
+    {
+      "type": "p",
+      "text": "This reminds me of another moment in technology history. In 1975, when Bill Gates and Paul Allen saw the Altair 8800 on the cover of Popular Electronics, they envisioned something radical: personal computing. Their dream of \"a computer on every desk and in every home\" seemed absurd when computers were still confined to corporate offices and university labs. But they understood something fundamental: when you democratize powerful tools, you unleash human creativity."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading Frames & Function! Subscribe for free to receive new posts and support my work."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-02.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "Today, we're at a similar inflection point. For years, our ideas remained trapped in those notes, building them seemed impossible without a technical co-founder or months of learning to code. But over the past few months, something remarkable has happened. Let me share my experience."
+    },
+    {
+      "type": "p",
+      "text": "You know that feeling – it's Friday night, you're finally ready to watch something, and then the endless dance begins. Scrolling through Netflix. Checking Rotten Tomatoes. Texting friends for recommendations. Twenty minutes pass, and you're still debating what to watch. I had this idea for an app called as Good Flicks (good reads but for netflix, hence the name) – a personal movie companion – sitting in my head for months. Despite my computer science background, building it seemed daunting. An iOS app with authentication, databases, and recommendation engines would have taken months to develop."
+    },
+    {
+      "type": "p",
+      "text": "Yet, during the past six weeks, with the explosion of AI-powered development tools, I've brought Good Flicks to life. Even with zero Swift experience, spending just an hour or two here and there, I've built a fully functional MVP."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-03.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "Tools like Cursor, Lovable, v0 by Vercel, and Replit Agents transformed what would have been months of work into days. These aren't just coding assistants – they're creative partners that understand both your intent and technical requirements."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-04.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "I'm not alone in this transformation. Designers and product people in my network, who had never written a line of code before 2024, are suddenly bringing their ideas to life. A friend created an app to track her plant watering schedule, complete with humidity monitoring. Another built a custom workout tracker that perfectly matches his unusual circuit training routine. A colleague of mine at work is building an app for whiskey enthusiasts. These aren't demos – they're real tools solving real problems."
+    },
+    {
+      "type": "p",
+      "text": "This shift is changing not just how we build software, but why we build it. The question is no longer \"Who else would use this?\" but simply \"Does this solve my problem?\" When the cost of creation drops from thousands of dollars to a few API calls, when development time shrinks from months to days, building for an audience of one suddenly makes perfect sense. We're creating what I call the \"personal software economy\" – where the minimum viable customer base is you."
+    },
+    {
+      "type": "p",
+      "text": "Just as the PC revolution gave everyone access to computing power, this revolution is giving everyone the ability to create software. But there's a crucial difference: while personal computers ran standardized software, this revolution enables truly personal software – tools that perfectly match our individual needs and workflows.\n\nWe're moving from an era where software was something we used to one where software is something we shape.This renaissance is enabling what I call \"just-in-time apps\" – tools built for specific moments, needs, or contexts. Need a specialized visualization for a presentation? Build it. Want a unique way to track your garden's growth? Create it. Have a workflow that no existing tool supports? Design it yourself."
+    },
+    {
+      "type": "p",
+      "text": "The personal software renaissance: A community in action"
+    },
+    {
+      "type": "p",
+      "text": "To truly understand the scope of this revolution, we need to look beyond individual stories to the incredible diversity of solutions being created. Every week, designers and creators are sharing their personal software projects on Twitter, each solving a unique problem in a distinctive way. Let's explore some of these remarkable creations that showcase the breadth and impact of this movement."
+    },
+    {
+      "type": "p",
+      "text": "1. Solving personal frustrations"
+    },
+    {
+      "type": "p",
+      "text": "📹 Take Meng To’s Dreamcut AI – a fully functional AI powered video editing and screen recording app. After struggling with traditional video editing and screen recorders, he built a video editor from scratch using Claude AI, which took < 3 months and over 50,000 lines of code, bypassing the design phase to focus on coding. What makes this app remarkable isn't just its functionality, but how it demonstrates how individuals are tackling their daily challenges with creative solutions."
+    },
+    {
+      "type": "p",
+      "text": "2. Creative expression through tools"
+    },
+    {
+      "type": "p",
+      "text": "📀 Consider Ryo Lu’s personal operating system – a fully functional operating system called ryOS that is filled with text edit with AI transcription, ability to talk to his chat bot, to-do lists, wallpapers, control panels, drag and drops, soundbars, video player, with actual capabilities to browse web, play minesweeper, draw with mac paint. He has taken the creative expression to the next level by building in public."
+    },
+    {
+      "type": "p",
+      "text": "💪 A workout and yoga app by Lenard Floren - While there are tons of workout apps out there, Lenard leaned into making an app playful and fun with cool interactions & animations which are part of any great experience."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-05.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "3. Tools that transform workflows"
+    },
+    {
+      "type": "p",
+      "text": "📖 Perplexity notebook by Floguo who built a concept under 8 hrs called as perplexity notebook by leveraging v0, nextjs & cursor. Her idea was around providing a seamless, personalized learning experience for students that enable students to interact with their syllabus content through notes, slides, and study tools. The concept is also aimed at delivering multimodal support (text, visual, interactive) for diverse learning styles."
+    },
+    {
+      "type": "p",
+      "text": "Similarly 🏫 Kyo school app by Aether - A 20 yr old design engineer built a planner and organizer designed to streamline student life. The app provides the student with abilities to create personalized planners, manage timetables & their tasks, and track assignments, grades."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-06.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "4.Experimental interfaces"
+    },
+    {
+      "type": "p",
+      "text": "🎥 Perplexitube - A youtube video researcher and summarizing mobile app by Riley Brown that uses Deepseek and Gemini to find the videos on youtube and summarizes the transcripts from multiple videos. These projects push the boundaries of conventional apps."
+    },
+    {
+      "type": "p",
+      "text": "5. Learning through building"
+    },
+    {
+      "type": "p",
+      "text": "🍷 Remi - A wine recommendation app by Renee Zhang. She has no prior coding experience and built this in 2 weeks with the help of cursor and claude."
+    },
+    {
+      "type": "p",
+      "text": "She says “I designed to solve my own problem – what wine should I order? Remi is a wine assistant that helps you find your palate, be prepared for any occasion, and never feel clueless staring at a wine menu again.”"
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-07.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "🖼️ Rexan Wong, a 17 y/o high schooler from Hong Kong built this simple photo slideshow app in 1 hour he didn't write any code. He delegated the job to Claude, Cursor and Remotion."
+    },
+    {
+      "type": "p",
+      "text": "What ties these examples together isn't just that they're personally crafted solutions – it's how they demonstrate the shift from passive software consumption to active creation. Each creator took something that wasn't quite right in their digital world and reshaped it to match their vision. It’s so fun to see these in action !!!"
+    },
+    {
+      "type": "p",
+      "text": "A few design perspectives to think about"
+    },
+    {
+      "type": "p",
+      "text": "📐 The designer's role in the personal software revolution: When I first started designing products, every decision came with a weight: \"Will this work for thousands of users? Will this scale?\" These questions, while valid for commercial products, created an invisible cage around creativity. We became experts at designing for everyone, which often meant designing for no one in particular."
+    },
+    {
+      "type": "p",
+      "text": "The AI tools revolution is fundamentally changing our relationship with the design process itself. As designers, we're discovering a new kind of freedom – one where we can focus on solving problems elegantly rather than worrying about universal appeal. This transformation is particularly powerful because it connects directly to how these new tools work: they understand design intent, allowing us to experiment with interaction patterns and user experiences that would be too risky for mass-market products."
+    },
+    {
+      "type": "p",
+      "text": "🪴 The evolution of design practice: The shift from designing for millions to designing for specific needs is transforming how we approach our craft. Traditional design processes emphasized extensive user research, personas, and validation cycles. While these remain valuable for commercial products, personal software introduces a different design paradigm – one where intimate knowledge of the problem space leads to more nuanced, innovative solutions."
+    },
+    {
+      "type": "p",
+      "text": "Consider how this changes our approach to interaction design. Without the pressure to follow established patterns, designers are creating novel ways to visualize data, navigate content, and structure information. A designer with ADHD built a task management system that visualizes time in an entirely new way, challenging conventional productivity app patterns. These experiments aren't just personal indulgences – they're expanding our collective understanding of what's possible in interface design."
+    },
+    {
+      "type": "p",
+      "text": "🔥 The return of creative expression: Remember when software had personality? When using someone's app felt like being invited into their digital home? Somewhere along the way, in our pursuit of consistency and universal usability, we lost some of that charm. Design systems and platform guidelines, while valuable, began to feel like creative constraints rather than foundations."
+    },
+    {
+      "type": "p",
+      "text": "The personal software revolution is bringing that personality back, but in a more meaningful way. We're not just customizing interfaces; we're crafting entire experiences that reflect distinct creative visions. A designer built a journaling app that visualizes entries as constellations in a night sky, with important memories appearing as brighter stars. Another created a habit-tracking app inspired by pixel art games, where completing tasks builds out a procedurally generated landscape. These aren't just functional tools – they're expressions of how their creators see the world."
+    },
+    {
+      "type": "p",
+      "text": "Most importantly, this return to expressive design is making software feel more human again. In a world of increasing AI and automation, the ability to create tools that carry the unmistakable mark of their creator feels particularly significant. As we move into exploring broader implications for the industry and culture, these personal expressions of creativity are showing us what's possible when we remove the constraints of mass-market appeal."
+    },
+    {
+      "type": "p",
+      "text": "These shifts in design practice and creative expression are just the beginning. As personal software creation becomes more widespread, its impact extends far beyond individual designers and their craft. Let's explore how this revolution is transforming not just design, but our entire relationship with software creation."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading Frames & Function! Subscribe for free to receive new posts and support my work."
+    },
+    {
+      "type": "p",
+      "text": "The broader implications of personal software era"
+    },
+    {
+      "type": "p",
+      "text": "The evolution of tools (Immediate impact): The pace of evolution in AI-powered development tools is breathtaking. What wasn't possible three weeks ago is suddenly achievable today. One week you're using basic code assistance, the next you're architecting complex features with AI guidance.\n\nThis constant flux requires a new mindset – it's not about mastering specific tools but staying adaptable and embracing continuous learning. The challenge lies in distinguishing meaningful advances from temporary hype, and developing frameworks to evaluate and integrate new capabilities effectively."
+    },
+    {
+      "type": "p",
+      "text": "🙋🏻‍♀️ Learning & growth (Personal impact): Building personal software is transforming how designers evolve in their craft. It's not about learning to code – it's about developing a holistic understanding of product creation.\n\nWhen you build for yourself, every decision becomes a learning opportunity. Without the pressure of commercial validation, designers can explore unconventional patterns and approaches, making personal projects valuable laboratories for innovation."
+    },
+    {
+      "type": "p",
+      "text": "🤝 The community aspect (Professional impact): A new kind of design community is emerging, blending Dribbble's show-and-tell culture with the build-in-public ethos of indie makers. Designers aren't just sharing mockups; they're sharing functional experiments and the stories behind them. Imagine a space between GitHub and Dribbble – where creators share their entire process, fostering collaboration and accelerating collective learning."
+    },
+    {
+      "type": "p",
+      "text": "🏢 Business implications (Market impact): Products are emerging from deeply personal solutions that organically find their audience. This creates different business dynamics – ones where products can grow sustainably while maintaining their unique character. The transition from personal tool to product happens gradually, driven by genuine user interest rather than market pressure. The challenge lies in preserving authenticity while finding sustainable business models."
+    },
+    {
+      "type": "p",
+      "text": "🌎 Cultural impact (Societal impact): Perhaps most profoundly, personal software is changing our relationship with technology. Instead of adapting to standardized software, we're creating \"human-scale\" tools that reflect diverse ways of living and working. This represents a move away from Silicon Valley-centric views towards a more globally diverse and culturally representative technology landscape.\n\nThere are lots of amazing folks writing about the implications s latest post When everyone can build anything."
+    },
+    {
+      "type": "p",
+      "text": "The future we're building"
+    },
+    {
+      "type": "p",
+      "text": "Just as the PC revolution transformed computing from a specialized tool into a personal necessity, we're witnessing another watershed moment. When Gates and Allen envisioned \"a computer on every desk,\" they saw technology's power to enable individual creativity. Today, as AI democratizes software creation, we're entering an era where everyone can be both designer and builder."
+    },
+    {
+      "type": "p",
+      "text": "I'm reminded of why I fell in love with design – the ability to create experiences that make life better, more enjoyable, more human"
+    },
+    {
+      "type": "p",
+      "text": "The question is no longer \"Is there an app for that?\" but \"What will you build?\" So, I'm curious – what's sitting in your notes folder? What personal problem are you itching to solve? The tools are here, the barriers are falling, and your unique perspective might just create something the world needs."
+    },
+    {
+      "type": "image",
+      "src": "from-personal-computing-to-personal-08.png",
+      "alt": "From personal computing to personal software"
+    },
+    {
+      "type": "p",
+      "text": "If you found this insightful, share it with your friends who have been talking about building their own apps"
+    },
+    {
+      "type": "p",
+      "text": "Share your ideas in the comments, and let's build this future together. Hope this inspires you to build that app idea sitting in your drafts. Until next time!"
+    }
+  ]
+}

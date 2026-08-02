@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { writingColumns, type WritingEntry } from '../data/writing'
-import WritingEditor from '../components/WritingEditor'
+import WritingEditor from '../features/writing/WritingEditor'
 import writingImage from '../assets/writing.webp'
 
 /**

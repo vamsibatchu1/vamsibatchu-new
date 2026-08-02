@@ -10,7 +10,7 @@ export type Experiment = {
   description: string
   url: string | null
   image: string | null
-  /** Filename inside `src/assets/experiment-thumbnails-video/` */
+  /** Filename inside `src/assets/experiments/videos/` */
   video: string | null
   /** Coarse media kind used by the Experiments filter strip */
   kind: ExperimentKind
@@ -26,13 +26,13 @@ export const EXPERIMENT_FILTERS = ['all', 'image', 'music', 'video'] as const
 export type ExperimentFilter = (typeof EXPERIMENT_FILTERS)[number]
 
 const videoModules = import.meta.glob<string>(
-  '../assets/experiment-thumbnails-video/*.mp4',
+  '../assets/experiments/videos/*.mp4',
   { eager: true, query: '?url', import: 'default' },
 )
 
 function resolveVideoUrl(filename: string | null): string | null {
   if (!filename) return null
-  const key = `../assets/experiment-thumbnails-video/${filename}`
+  const key = `../assets/experiments/videos/${filename}`
   return videoModules[key] ?? null
 }
 

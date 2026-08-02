@@ -1,4 +1,4 @@
-import BrowserField from '../components/BrowserField'
+import BrowserField from '../features/experiments/BrowserField'
 
 export default function Experiments() {
   return (

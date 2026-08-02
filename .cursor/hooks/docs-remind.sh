@@ -35,7 +35,7 @@ DOC_PREFIXES = (
     "overview.md",
     "src/data/EXPERIMENTS.md",
     "src/data/writing-articles/README.md",
-    "src/assets/home-assets/README.md",
+    "src/assets/stills/README.md",
 )
 
 def git_names(*args):

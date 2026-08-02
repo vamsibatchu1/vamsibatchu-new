@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { experiments } from '../data/experiments'
+import { experiments } from '../../data/experiments'
 import BrowserComponent, { type BrowserRect } from './BrowserComponent'
 import { BrowserHeap } from './browserHeapPhysics'
 

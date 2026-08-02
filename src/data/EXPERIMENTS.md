@@ -9,42 +9,17 @@ Experiments are JSON records + optional preview videos. The page renders a field
 | Records | `src/data/experiments.json` |
 | Loader + `videoUrl` | `src/data/experiments.ts` |
 | Page | `src/pages/Experiments.tsx` |
-| UI / physics | `src/components/BrowserField.tsx`, `BrowserComponent.tsx`, `browserHeapPhysics.ts`, … |
-| Videos | `src/assets/experiment-thumbnails-video/*.mp4` |
+| UI / physics | `src/features/experiments/` |
+| Videos | `src/assets/experiments/videos/*.mp4` |
 
 ## Checklist — new experiment
 
-1. Export / place an `mp4` in `src/assets/experiment-thumbnails-video/` (e.g. `my-piece.mp4`).
-2. Append to `experiments.json`:
+1. Place an `mp4` in `src/assets/experiments/videos/` (e.g. `my-piece.mp4`).
+2. Append to `experiments.json` (`video` = filename only, or `null`).
+3. `kind` must be `image` | `music` | `video`.
+4. Leave `videoUrl` out of JSON — the loader resolves it.
 
-```json
-{
-  "id": "my-piece",
-  "title": "my piece",
-  "log": "20/52",
-  "description": "One-line card description.",
-  "url": null,
-  "image": null,
-  "video": "my-piece.mp4",
-  "kind": "image",
-  "tags": ["tag-a", "tag-b"],
-  "date": "2026-08-02",
-  "body": "Longer copy shown inside the browser chrome body."
-}
-```
+## Interaction notes
 
-3. `kind` must be `image` | `music` | `video` (filter vocabulary in `experiments.ts`).
-4. Leave `videoUrl` out of JSON — the loader resolves it from `video`.
-5. If there is no video yet, set `"video": null` (window still shows text; hover video swap needs a file).
-
-## Edit / remove
-
-- Copy, tags, log index → edit the JSON object.
-- Swap video → replace the mp4 (same filename) or change `video` to the new filename.
-- Remove → delete the JSON object; delete unused mp4 if nothing else references it.
-
-## Interaction notes (preserve unless redesigning)
-
-- Default: text in a 16:9 pane; **hover** → muted looping video.
-- **Click** → focus that window; others tumble via Matter.js heap.
-- Exit / dismiss → CRT scanline wipe (`browser-crt-wipe`).
+- Hover → muted looping video; click → focus / Matter heap for others.
+- Exit → CRT wipe (`browser-crt-wipe`).

@@ -16,8 +16,8 @@ import {
   resolveFlowImageSize,
   type FlowImage,
 } from './creativeTextLayout'
-import { markColors, type MarkTone } from './Mark'
-import { buildShapeBands, type ShapeBand } from './svgShapeMask'
+import { markColors, type MarkTone } from '../../components/Mark'
+import { buildShapeBands, type ShapeBand } from '../../components/svgShapeMask'
 
 export type { FlowImage }
 

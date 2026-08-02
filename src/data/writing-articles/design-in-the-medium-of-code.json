@@ -1,0 +1,208 @@
+{
+  "id": "design-in-the-medium-of-code",
+  "title": "Design in the medium of code",
+  "kind": "essay",
+  "year": 2025,
+  "excerpt": "Why technical literacy goes a long way for designers in this new era of building products",
+  "blocks": [
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-01.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "If you’re a designer, you’ve probably encountered the debate at least once. Whether in an article, a video, or at a recent meeting: should designers code? That question is quickly becoming outdated. In the past year, AI has blurred the boundaries between product managers, designers, and engineers into a new archetype: the product builder."
+    },
+    {
+      "type": "p",
+      "text": "Tools like Vercel’s v0, Figma Make, and coding copilots like Claude Code and Cursor now let designers generate functional prototypes directly in code. What used to take weeks of handoffs can now be built in days or even hours. In this workflow, code becomes the single source of truth, and the closer designers work in that medium, the greater our impact."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-02.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "As one design leader put it, “Code-first design, where designers build functional prototypes using AI, is becoming the new default.” Designers don’t need to become engineers, but basic code literacy and an understanding of technical frameworks are quickly becoming essential. The good news: this shift builds on what we already do best. Systems thinking, product sense, and user-centeredness translate naturally into this new environment. With even a little coding knowledge, designers can command tools like v0, Figma Make, or Cursor to build prototypes that feel closer to production. In short: a designer who codes a little, plus AI that codes a lot, is a potent combination."
+    },
+    {
+      "type": "p",
+      "text": "This shift is already transforming how leading design teams operate. At Intercom, VPs of Design , and their team have pioneered a three-point framework for AI (see below) that exemplifies this evolution: designers now ship code directly to production, use “vibe coding” to influence the product roadmap with interactive prototypes, and are increasingly owning the entire frontend. As they put it, ‘AI need not encroach on the role of designers. Quite the opposite: it can expand the frontiers of what we can do.’ Their designers moved from filing bug tickets to simply fixing issues themselves which is a massive shift in self-determination that’s raised product quality while freeing engineers to focus on complex problems."
+    },
+    {
+      "type": "p",
+      "text": "Fin IdeasIntercom's 3-point framework for AI-driven designWe all know that AI is changing how design gets done. At Intercom we led the charge earlier this year by having all of our designers ship code changes to production; in a short few months we’ve seen many other design teams follow suit, and it’s fast becoming standard practice…Read more10 months ago · 52 likes · 2 comments · Thom Rimmer and Emmet Connolly"
+    },
+    {
+      "type": "p",
+      "text": "For me, this shift has felt like coming full circle. My background in computer science gave me enough literacy to return to code confidently. Tweaking classes, fixing layouts, and refining prototypes when AI falls short. It’s a reminder that even light technical skills make us far more effective in this landscape. And while some predict we’ll one day reach a point where natural language replaces code entirely, today and likely for years to come. Understanding what’s under the hood gives designers a huge advantage. It helps us guide AI tools, collaborate with engineers, and move faster with fewer surprises."
+    },
+    {
+      "type": "p",
+      "text": "So, what do we actually need to know to thrive in this environment . Not as engineers, but as creators working closer to the medium of code itself?"
+    },
+    {
+      "type": "p",
+      "text": "1. The basics"
+    },
+    {
+      "type": "p",
+      "text": "Every craft starts with fundamentals, and code-first design is no different. Think of these skills as the “grammar” of building: once you know them, you can speak the language of code well enough to guide AI, collaborate with engineers, and create prototypes that feel far more real."
+    },
+    {
+      "type": "p",
+      "text": "HTML/CSS fundamentals became my safety net. That card in Figma might look simple, but in code it's usually a <div> wrapped around a title, metadata, and a button. Knowing how to use Flexbox or Grid to stack and space these pieces helps you design layouts that won't collapse when text runs long. More importantly, it gives you intuition for what's easy to build versus what requires complex workarounds."
+    },
+    {
+      "type": "p",
+      "text": "Responsive design basics saved me countless embarrassing moments. I once designed a three-column grid of product cards that looked perfect on desktop but became an unreadable mess on mobile. Understanding breakpoints means your designs adapt instead of breaking, and it helps you think inclusively about the many ways people experience products."
+    },
+    {
+      "type": "p",
+      "text": "File structure literacy eliminates the confusion. The first time I opened a React project, I was overwhelmed by folders and files with cryptic extensions. But recognizing that a Button.tsx component lives in /components, its styles in globals.css, and its icon in /public means you know exactly where to edit without breaking other parts of the project."
+    },
+    {
+      "type": "p",
+      "text": "Component thinking transforms how you approach design problems. Instead of designing rigid screens, you start thinking in reusable pieces. A UserCard component might take name, avatarUrl, and role as props, while showing a skeleton state if isLoading is true. This modular mindset makes your designs more flexible and helps you communicate with both AI and engineers in a shared language."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-03.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "Quick fixes in CSS keep your momentum going. If a button looks slightly off-center, you don't need to start over. Changing items-center to items-start in a Tailwind class or adding gap-3 can fix it in seconds. These micro-edits prevent those frustrating moments where a small visual issue derails your entire flow."
+    },
+    {
+      "type": "p",
+      "text": "Browser DevTools (Inspect Element, Console, Network tab) became my secret weapon for understanding what’s actually happening in a prototype. When a button doesn’t look right, I open Inspect Element to see the exact CSS classes applied and toggle them in real-time, while the Console shows me error messages that explain why something broke."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-04.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "Mastering these basics won’t turn you into an engineer, but it will change how you approach building. Instead of treating AI-generated code as a black box, you’ll start treating it as clay you can shape. You’ll see why something looks broken, fix it yourself, and anticipate issues before they happen. Most importantly, these fundamentals prepare you for the next step: moving beyond isolated fixes into systems thinking."
+    },
+    {
+      "type": "p",
+      "text": "2. Working with the frameworks"
+    },
+    {
+      "type": "p",
+      "text": "Once you’re comfortable with the basics, the next step is learning to work inside the systems real-world apps rely on. At this level, you move from making tweaks to thinking about scalability, collaboration, and reusability. These skills help prototypes behave like products. Handling data, managing states, and fitting into workflows where multiple people (or even AI tools) contribute to the same codebase."
+    },
+    {
+      "type": "p",
+      "text": "Working with libraries changed my prototyping game. Instead of reinventing the wheel, I learned to pull in resources like Lucide for icons, shadcn/ui for components, or Framer Motion for animations. The first time I imported a pre-built chart component, customized its styling, and had a working visualization in minutes, I felt like I'd unlocked a superpower."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-05.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "Handling assets properly keeps prototypes fast and crisp. I used to throw random images into my designs without thinking about file sizes or formats. Learning to use SVGs for icons and optimized images for photos dramatically improved how my prototypes felt. Nobody wants to interact with a sluggish demo."
+    },
+    {
+      "type": "p",
+      "text": "Connecting to APIs brings designs to life in ways static mockups never can. Using fetch() or a Next.js endpoint to pull in real or mocked data makes stakeholders' eyes light up. They can see how the interface handles real content, messy product names, missing images, long descriptions. Once you've seen how real data behaves, you start designing with resilience in mind."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-06.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "Designing interaction states separates polished products from fragile demos. Real interfaces are more than hover effects. They handle spinners, disabled buttons, error validation, and optimistic updates. I've learned that these micro-states often define the quality of the experience more than any visual flourish."
+    },
+    {
+      "type": "p",
+      "text": "Version control literacy became essential when I started work with multiple files and iterations. You don't need to be a Git expert, but understanding commits, branches, and pull requests helps your contributions fit smoothly into team workflows. It also gives you confidence to experiment, knowing you can always roll back changes."
+    },
+    {
+      "type": "image",
+      "src": "design-in-the-medium-of-code-07.png",
+      "alt": "Design in the medium of code"
+    },
+    {
+      "type": "p",
+      "text": "Structured prompting makes AI a true partner rather than a random output generator. Instead of \"make me a dashboard,\" I learned to say: \"Scaffold a Next.js app with a sidebar navigation, top bar with user menu, and a 12-column grid for the main content area.\" The clearer your mental model of structure, the more predictable and useful the AI's output becomes."
+    },
+    {
+      "type": "p",
+      "text": "Build & Deployment Fundamentals - Understanding what happens when you “build” a project demystified the handoff process for me. A build compiles your code, optimizes assets, and creates production-ready files. Knowing this helps you anticipate what will change between your local prototype and the live version."
+    },
+    {
+      "type": "p",
+      "text": "This is where prototypes start to feel alive. By pulling in libraries, handling assets correctly, and wiring up APIs, you’re building things that act more like products than demos. Designing for interaction states makes your work more resilient, while version control helps you collaborate. And with structured prompting, AI becomes a true partner rather than a guesser. This is the shift from tweaking code to building systems."
+    },
+    {
+      "type": "p",
+      "text": "3. Thinking like an architect"
+    },
+    {
+      "type": "p",
+      "text": "By the time you’ve mastered the basics and frameworks, the next leap is a shift in mindset. Instead of focusing on single components or fixes, you start asking bigger questions: How should the system be structured? How do the pieces connect? Where do flows break down? At this point, designers begin thinking like architects; able to see both the blueprint and the finished house."
+    },
+    {
+      "type": "p",
+      "text": "Breaking problems into pieces makes AI far more effective. Large prototypes can't be generated in one go & prompts run out of tokens and code gets messy. I learned to think modularly: design the navigation first, then the content areas, then the individual components. It's like teaching AI to think with a design system, building up complexity gradually."
+    },
+    {
+      "type": "p",
+      "text": "Understanding data flow helps you anticipate where experiences might break down. In Next.js, that might mean knowing when to use server versus client components, or mocking an API that returns realistic JSON responses. You're not becoming a backend engineer, but you're developing intuition for how information moves through a system."
+    },
+    {
+      "type": "p",
+      "text": "Performance thinking ensures your beautiful designs don't feel sluggish. Using optimized images, lazy-loading heavy content, or replacing an autoplay video with a lightweight poster image are small technical decisions that dramatically affect usability. I've learned that great design can fail if it's slow."
+    },
+    {
+      "type": "p",
+      "text": "Borrowing from developer tools has become one of my favorite techniques. Many modern consumer UIs borrow patterns from development environments: activity logs, version history, system status indicators. Adding an \"Activity\" panel with user actions and timestamps isn't just a dev affordance. It builds user trust by making the system feel transparent and reliable."
+    },
+    {
+      "type": "p",
+      "text": "Library fluency frees you to focus on higher-order problems. Instead of coding your own modal or chart from scratch, you can lean on proven components from shadcn/ui, Radix, or Recharts. Knowing what's available makes you faster and lets you focus on flow, hierarchy, and clarity rather than reinventing basic interactions."
+    },
+    {
+      "type": "p",
+      "text": "This isn’t about writing more code. It’s about thinking structurally. When you can break a problem into reusable parts, understand how data flows, and design for performance, you’ve stepped into the product builder mindset. This is where the lines between design and engineering blur most. And while plain-English prompts may one day build everything for us, right now it’s this blend human design sense plus architectural thinking that makes the difference."
+    },
+    {
+      "type": "p",
+      "text": "What I've learned along the way"
+    },
+    {
+      "type": "p",
+      "text": "We may one day live in a world where coding looks like plain English, where you describe what you want, and the system builds it instantly. But until that day comes, even light technical fluency gives designers a huge edge. The basics help us fix problems when AI goes off track, frameworks help us collaborate and scale, and architectural thinking helps us shape products that are resilient, transparent, and fast."
+    },
+    {
+      "type": "p",
+      "text": "My friend , who leads design systems at Rocket and the author of After Hours Substack, frames this journey perfectly:"
+    },
+    {
+      "type": "p",
+      "text": "I think it is really all about being curious - it may seem daunting to move from being design-focused to learning and leveraging the basics of code, but the goal can be to simply start playing. Ask questions, try detailed prompting, and think in bite sized pieces. Even when tools are hooked into design system repositories, it isn’t perfect or getting everything right. How can you zoom in and fix mistakes instead of starting over? How can you be a stronger collaborator and design partner?"
+    },
+    {
+      "type": "p",
+      "text": "For me, this journey has been about rediscovering an old muscle. I’ve gone from nudging pixels in Figma to nudging classes in Tailwind, from sketching boxes to thinking in components and flows. And it’s reminded me that our role as designers isn’t shrinking in the AI era. It’s expanding and we’re not just visual storytellers anymore; we’re product builders who can move ideas closer to reality faster than ever."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading Frames & Function! Subscribe for free to receive new posts and support my work."
+    },
+    {
+      "type": "p",
+      "text": "So I'll leave you with a question: as you experiment with AI-driven prototyping, what has surprised you most about working closer to code? And when AI-generated layouts break (which they inevitably do) do you find yourself wanting to understand why, or do you just start over?\n\nThank you for reading as always -v"
+    }
+  ]
+}

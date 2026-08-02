@@ -1,0 +1,31 @@
+{
+  "id": "holding-the-model",
+  "title": "holding the model",
+  "kind": "essay",
+  "year": 2026,
+  "excerpt": "on keeping a hand on the wheel while the model drafts ahead — when to trust the suggestion, when to cut it, and how the interface should make that choice feel light instead of anxious.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "on keeping a hand on the wheel while the model drafts ahead — when to trust the suggestion, when to cut it, and how the interface should make that choice feel light instead of anxious."
+    },
+    {
+      "type": "p",
+      "text": "this piece starts from a small observation and widens only when the frame still holds. holding the model is less a finished argument than a working note: what changes if we treat the interface as a place to practice judgment, not just to display outputs."
+    },
+    {
+      "type": "image",
+      "src": "hero4.jpg",
+      "alt": "holding the model figure",
+      "caption": "fig. 01 — holding the model"
+    },
+    {
+      "type": "p",
+      "text": "the method is deliberate. read the constraint first — time, width, material — then let the form follow. when the draft runs ahead of the hand, pull it back. when the hand freezes, let the draft move a few steps and see what becomes legible."
+    },
+    {
+      "type": "p",
+      "text": "if there is an image nearby, treat it as furniture in the argument: something you walk around, not a caption you ignore. the point is not polish; it is a surface honest enough that someone else can hold it."
+    }
+  ]
+}

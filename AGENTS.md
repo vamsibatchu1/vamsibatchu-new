@@ -24,8 +24,8 @@ Also: `.cursor/rules/experiments.mdc`
 
 ### Add a Home poster image
 
-→ [`src/assets/home-assets/README.md`](./src/assets/home-assets/README.md)  
-Also: `.cursor/rules/home-assets.mdc`
+→ [`src/assets/stills/README.md`](./src/assets/stills/README.md)  
+Also: `.cursor/rules/stills.mdc`
 
 ## Repo map (short)
 
@@ -33,16 +33,21 @@ Also: `.cursor/rules/home-assets.mdc`
 src/
   App.tsx                 routes
   pages/                  Landing, Home, Work, Experiments, Writing, About
-  components/             UI + experiments chrome (BrowserField, WritingEditor, …)
+  components/             shared chrome (Layout, Mark, ApiDoc, …)
+  features/
+    experiments/          BrowserField fleet + physics
+    writing/              WritingEditor
+    home/                 CreativeTextRow + creativeFlow
+  lab/                    unused prototypes (not routed)
   data/
-    writing.ts            writing index columns
-    writing-articles/     article JSON bodies
-    writingArticles.ts    resolves article images
+    writing.ts            re-exports archive list helpers
+    writingArticles.ts    loads writing-articles/*.json
+    writing-articles/     one JSON per post + columns.json
     experiments.json      experiment records
     experiments.ts        resolves video URLs
   assets/
-    home-assets/          shared stills (Home + Writing figures)
-    experiment-thumbnails-video/  mp4 previews
+    stills/               shared stills (Home + Writing)
+    experiments/videos/   mp4 previews
 ```
 
 ## Dev

@@ -1,0 +1,431 @@
+{
+  "id": "unpacking-the-ux-approaches-of-the",
+  "title": "Unpacking the UX approaches of the deep research models",
+  "kind": "essay",
+  "year": 2025,
+  "excerpt": "A designer's interaction analysis of OpenAI & Gemini",
+  "blocks": [
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-01.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "We've all experienced it—drowning in information while researching something important. Tab explosion, browser histories filled with half-read articles, notes scattered everywhere, and that persistent feeling we're missing crucial insights. For professionals, this means hours lost in information silos; for students, surface-level understanding instead of deep comprehension; for curious minds, learning becomes an exhausting obstacle course rather than a journey of discovery. Despite unlimited access to information, our limited tools for processing it meaningfully have created a cognitive bottleneck that fundamentally impacts how we learn, work, and solve problems."
+    },
+    {
+      "type": "p",
+      "text": "Recent months have witnessed remarkable advancements addressing this challenge. AI systems have evolved dramatically from basic text generators into sophisticated reasoning engines. Today's deep research models from OpenAI and Google represent a fundamental shift—they don't merely find and summarize; they analyze, compare, and reason across sources with increasingly human-like thinking patterns. This evolution marks a pivotal moment in how we interact with knowledge and information systems."
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-02.jpeg",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "As designers, this leap in AI capabilities presents perhaps the most significant interface challenge of our generation: how do we design for genuine collaboration with intelligent systems? To explore this question, I've spent some time over the past few weeks analyzing the deep research features within both ChatGPT and Gemini, examining how they work and the new interaction patterns emerging at this frontier. Understanding these patterns is crucial—they directly inform how we'll create more effective, intuitive experiences for the next generation of LLM-focused products."
+    },
+    {
+      "type": "p",
+      "text": "As you read through my observations below, you'll see how fascinating it is that each platform's interface choices reflect fundamentally different mental models about human-AI collaboration. Let's dive into a detailed, screen-by-screen analysis of these contrasting UX philosophies."
+    },
+    {
+      "type": "p",
+      "text": "The interface dance: Design observations"
+    },
+    {
+      "type": "p",
+      "text": "1. Initial setup & model selection"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-03.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "It has a clean model selection interface with a hierarchical dropdown menu showing various model options (GPT-4o, GPT-4.5, o3-mini, etc.) Each model has a concise capability description and a clear visual distinction between beta/experimental features."
+    },
+    {
+      "type": "p",
+      "text": "Interaction Flow: A two-step process for initiating deep research: 1) Select the desired model via a dropdown. 2) Separately, activate the \"Deep Research\" mode/function within the chat input context after typing the prompt."
+    },
+    {
+      "type": "p",
+      "text": "Decoupled Actions: From a UX perspective, selecting a model capable of deep research and activating the deep research mode are decoupled actions. This places a higher burden on the user."
+    },
+    {
+      "type": "p",
+      "text": "Gemini's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-04.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Discoverability Enhancement: The use of distinct \"New\" tags (badges) is a strong visual cue that effectively draws attention to recent additions or experimental features. This significantly improves the discoverability of new capabilities for both novice and returning users, reducing the effort required to stay updated."
+    },
+    {
+      "type": "p",
+      "text": "Coupled Actions & Streamlined Workflow: The key UX improvement noted is the tight coupling for the \"Deep Research with 2.5 Pro\" mode. Selecting this mode automatically enables the \"Deep Research\" function in the chat context."
+    },
+    {
+      "type": "p",
+      "text": "2. Research prompt entry & initial interaction"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-05.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Interaction Model with Progressive Disclosure for Scoping: OpenAI employs a conversational clarification model. After receiving the initial prompt, it doesn't immediately start the deep research but instead engages in a dialogue to refine the scope. It uses follow-up questions as a form of progressive disclosure to elicit necessary details (like geographic focus, time range, etc.,). This allows the AI to dynamically scope the research based on user input."
+    },
+    {
+      "type": "p",
+      "text": "Mental Model Alignment: This approach aligns with a mental model of interacting with a human research assistant who would ask clarifying questions before embarking on a task."
+    },
+    {
+      "type": "p",
+      "text": "Cognitive Load & Engagement: This requires active user engagement and increases the cognitive load during the setup phase. However, it can potentially reduce ambiguity later."
+    },
+    {
+      "type": "p",
+      "text": "User Experience: This can feel highly personalized and adaptive. The potential downside is that it might take longer to get to the actual research execution if multiple clarification rounds are needed. There's less upfront visibility into the entire planned research process."
+    },
+    {
+      "type": "p",
+      "text": "Gemini's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-06.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Interaction Model with Transparency: Gemini utilizes a plan-based proposal model. After processing the prompt, it presents a structured outline of its intended research process for user review. As seen in the image, Gemini provides significant transparency into its intended workflow (e.g., \"Research Websites,\" \"Analyze Results,\" \"Create Report\"). The expanded view (right side of image) details the specific sub-points within stages, offering high visibility into the scope. Crucially, providing an estimated time (\"Ready in a few mins\") effectively manages user expectations."
+    },
+    {
+      "type": "p",
+      "text": "Explicit User Control & Agency: Gemini offers explicit points of control via the \"Edit plan\" and \"Start research\" buttons. This gives the user clear agency to approve, reject, or modify the proposed research plan."
+    },
+    {
+      "type": "p",
+      "text": "Information Architecture: The plan is presented with clear headings, icons (left image), and structured lists (right image), demonstrating good information architecture for scannability and comprehension. The collapsible sections (implied by the \"More\" link and the two views) allow users to choose their desired level of detail. It builds trust through transparency."
+    },
+    {
+      "type": "p",
+      "text": "3. Research process layout"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-07.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-08.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Progressive Disclosure Model: OpenAI's design uses a progressive disclosure approach. The primary interface (Area #1) remains relatively clean during processing, showing only a status card indicator (\"Deep research,\" \"Analyzing sources...\"). Detailed process information is hidden by default."
+    },
+    {
+      "type": "p",
+      "text": "User-Initiated Visibility & Discoverability: Accessing the detailed view requires an explicit user action: clicking the status card to reveal the side panel (Area #2). As you noted, the discoverability of this action can be a friction point; the status card's visual affordance might not clearly signal its clickability to all users."
+    },
+    {
+      "type": "p",
+      "text": "Information Architecture (Tabbed Panel): Once revealed, the side panel employs a tabbed interface (likely \"Activity\" and \"Sources\"). This organizes information neatly into distinct categories – the AI's internal steps vs. the external websites visited."
+    },
+    {
+      "type": "p",
+      "text": "Interaction Cost & Context Switching: This tabbed structure necessitates context switching. Users must actively click between tabs to correlate the AI's thinking/actions (\"Activity\") with the specific sources being consulted, increasing interaction cost for a holistic view."
+    },
+    {
+      "type": "p",
+      "text": "Gemini's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-09.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Proactive Transparency Model: Gemini opts for proactive transparency. Upon starting the research, the detailed side panel (Area #2) opens automatically, signaling that process visibility is considered a core part of the experience."
+    },
+    {
+      "type": "p",
+      "text": "Emphasis via Layout: The spatial layout, dedicating ~75% of the width to the side panel, strongly emphasizes the ongoing research process over the chat history (Area #1). This directs user attention to the AI's real-time actions."
+    },
+    {
+      "type": "p",
+      "text": "Integrated Information Architecture: The side panel presents an integrated view, displaying both the AI's internal reasoning (chunked into semantic categories like \"Initial Understanding,\" \"Upcoming Actions\") and the sources being accessed (\"Researching websites\" grid) within a single, scrollable pane. This eliminates the need for tab switching and reduces interaction cost."
+    },
+    {
+      "type": "p",
+      "text": "User Experience: This design fosters a strong sense of being \"in the loop\" and builds trust through high transparency."
+    },
+    {
+      "type": "p",
+      "text": "4. Research visibility/feedback"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-10.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Granular Task-Level Feedback: OpenAI's status indicators, as shown in the image provide feedback at a highly granular level. They detail specific analytical sub-tasks being performed (e.g., \"Highlighting market factors,\" \"Identifying financial challenges\")."
+    },
+    {
+      "type": "p",
+      "text": "Micro-Progress Visualization: Each granular task seems associated with its own progress bar, offering visual feedback on the completion status of these individual micro-steps. This gives insight into the specific types of analysis being executed. However, relying solely on these granular updates might make it harder for a user to quickly ascertain their overall progress within the larger research journey"
+    },
+    {
+      "type": "p",
+      "text": "Gemini's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-11.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Phase-Based Workflow Orientation: Gemini's status cards, shown clearly stacked in the main chat area on the right side of the image, represent high-level phases of the entire deep research workflow: 1) Researching websites, 2) Analyzing results, 3) Creating report."
+    },
+    {
+      "type": "p",
+      "text": "Macro-Progress & User Orientation: This phase-based approach excels at orienting the user within the end-to-end process. Users can immediately understand which major stage the AI is currently in (e.g., information gathering vs. synthesis vs. final output generation)."
+    },
+    {
+      "type": "p",
+      "text": "User Experience: Offers excellent clarity regarding the user's position in the overall research lifecycle. It simplifies progress tracking down to key milestones, making it easy to understand the flow even at a glance. The trade-off is less visibility into the specific sub-tasks occurring within each phase compared to OpenAI's granular indicators."
+    },
+    {
+      "type": "p",
+      "text": "5. Final Report Presentation"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-12.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Presentation Context: OpenAI delivers the final report as a distinct card or message directly within the main chat interface (Area #1 in its image). The report becomes part of the ongoing conversation history."
+    },
+    {
+      "type": "p",
+      "text": "Rich Content Integration: The report effectively integrates various content types within this chat context, including formatted text (headings, paragraphs), generated images (Area #1 bottom), and interactive elements like scrollable tables (Area #2). This makes the chat output itself quite rich."
+    },
+    {
+      "type": "p",
+      "text": "Metadata Display: Key metadata like the time taken for research and the number of sources consulted are presented clearly alongside the report, offering immediate context on the process efficiency and scope."
+    },
+    {
+      "type": "p",
+      "text": "Source Access: Sources are listed at the end, but accessing the actual links requires an extra interaction – clicking a “Sources” button (Area #3) which then opens the side panel."
+    },
+    {
+      "type": "p",
+      "text": "Actionability & Portability: Relies primarily on standard browser/OS copy-paste functionality for exporting content. Lacks dedicated export features, making it less seamless to transfer the formatted report into other applications or documents. The report feels tightly integrated with the chat experience but less like a standalone, portable artifact."
+    },
+    {
+      "type": "p",
+      "text": "Gemini's Approach:"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-13.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-14.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-15.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "Presentation Context: Gemini presents the final report within the dedicated side panel, replacing the previous \"in-progress\" view. This spatially separates the final output from the primary chat conversation history."
+    },
+    {
+      "type": "p",
+      "text": "Preservation of Process: Thoughtfully preserves the AI's reasoning process by moving the \"thinking\" details under an expandable \"Thoughts\" section at the report's end. This provides layered information access – users can focus on the output but still review the process if needed."
+    },
+    {
+      "type": "p",
+      "text": "Structured Appendix: The end of the report features clearly delineated sections (Area #3) for \"Sources used,\" \"Sources read but not used,\" and \"Thoughts.\" This explicit categorization enhances clarity, transparency, and the perceived rigor of the research process."
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-16.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "High Actionability & Multimodal Output: This is where Gemini strongly differentiates itself. The prominent action buttons offer significant utility:"
+    },
+    {
+      "type": "p",
+      "text": "\"Export to Docs\": A high-value feature leveraging Google Workspace integration. It provides seamless portability, allowing users to instantly transfer the formatted report into an editable document, addressing a key workflow need for researchers."
+    },
+    {
+      "type": "p",
+      "text": "\"Generate audio overview\": An innovative feature offering a multimodal output format. Converting the report into a downloadable audio summary caters to diverse user preferences and contexts (e.g., listening while commuting), significantly increasing accessibility and convenience."
+    },
+    {
+      "type": "p",
+      "text": "\"Copy\": Provides the standard copy functionality."
+    },
+    {
+      "type": "p",
+      "text": "User Experience: Positions the report as a distinct, well-structured artifact rather than just a chat message. The standout features are the export and audio options, which dramatically increase the report's practical utility and portability beyond the Gemini interface, catering effectively to downstream user tasks."
+    },
+    {
+      "type": "p",
+      "text": "Overall Observation:"
+    },
+    {
+      "type": "p",
+      "text": "Both OpenAI and Gemini provide powerful deep research capabilities, but they embody fundamentally different UX philosophies, resulting in distinct interaction patterns, levels of transparency, and user experiences across the entire research journey."
+    },
+    {
+      "type": "p",
+      "text": "OpenAI: The conversational collaborator"
+    },
+    {
+      "type": "p",
+      "text": "Design Philosophy: OpenAI's approach is deeply rooted in a conversational paradigm. It treats the research process primarily as an extension of its core chat interface and interaction model. The emphasis is on dialogue, clarification, and integrating results back into the conversational flow."
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-17.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "UX Characteristics:"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI's approach offers a natural, conversational interaction for flexible research scoping"
+    },
+    {
+      "type": "p",
+      "text": "It presents rich results directly embedded within the chat flow. However, it relies on progressive disclosure, meaning process details are hidden by default requiring user action to view, which can impact transparency and discoverability."
+    },
+    {
+      "type": "p",
+      "text": "Its primary limitations are this lower default visibility and minimal built-in report portability beyond standard copy/paste."
+    },
+    {
+      "type": "p",
+      "text": "Gemini: The transparent & structured workflow engine"
+    },
+    {
+      "type": "p",
+      "text": "Design Philosophy: Gemini leans towards structured transparency and a workflow-oriented approach. It treats deep research as a distinct task with clear stages, providing users with high visibility and control throughout. It utilizes distinct UI panels and emphasizes integrations for output utility."
+    },
+    {
+      "type": "image",
+      "src": "unpacking-the-ux-approaches-of-the-18.png",
+      "alt": "Unpacking the UX approaches of the deep research models"
+    },
+    {
+      "type": "p",
+      "text": "UX Characteristics:"
+    },
+    {
+      "type": "p",
+      "text": "Gemini emphasizes a transparent and structured research process, proactively displaying details like AI thinking and sources together in an integrated view."
+    },
+    {
+      "type": "p",
+      "text": "It offers explicit user control through features like research plans and provides clear phase-based status updates."
+    },
+    {
+      "type": "p",
+      "text": "Its standout strengths are high portability and actionability of the final report, thanks to features like direct export to Google Docs and audio summary generation."
+    },
+    {
+      "type": "p",
+      "text": "The trade-offs include a potentially more complex initial interface and a more formal, less conversational interaction style."
+    },
+    {
+      "type": "p",
+      "text": "Some closing thoughts - Neither approach is inherently superior; they represent distinct and valid design choices catering to potentially different user needs, cognitive styles, and task contexts:"
+    },
+    {
+      "type": "p",
+      "text": "OpenAI might be preferred by users who value a natural, adaptive conversational flow and are comfortable with discovering details progressively. Its strength lies in refining understanding through dialogue."
+    },
+    {
+      "type": "p",
+      "text": "Gemini might be favored by users who prioritize transparency, predictability, explicit control over the process, and require robust options for exporting and reusing the final research output. Its strength lies in structured execution and output utility."
+    },
+    {
+      "type": "p",
+      "text": "Ultimately, the existence of these two distinct models is beneficial for users, offering different toolsets for tackling complex research challenges."
+    },
+    {
+      "type": "p",
+      "text": "Studying these evolving patterns—how AI assistants engage users, manage complex workflows, present information, and enable action—is crucial for designers shaping the future of human-AI collaboration."
+    },
+    {
+      "type": "p",
+      "text": "Where do we go from here? The future of knowledge work"
+    },
+    {
+      "type": "p",
+      "text": "The evolution of these AI research partners is just beginning, pointing towards a future rich with possibilities like multimodal analysis (integrating text, image, audio), personalized knowledge systems, true human-AI teaming on complex problems, and highly domain-specialized companions."
+    },
+    {
+      "type": "p",
+      "text": "Beyond accelerating answers, their ultimate promise lies in fostering deeper questions, more rigorous reasoning, and profound understanding. What's truly exciting is their potential to democratize expert-level knowledge synthesis, making sophisticated analysis accessible to anyone curious—an impact potentially as transformative as the personal computer revolution."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading Frames & Function! Subscribe for free to receive new posts and support my work."
+    },
+    {
+      "type": "p",
+      "text": "I'm curious—have you tried these research companions yet? What has your experience been like? How do you see them changing how you learn and discover? Share your thoughts in the comments, and let's explore this new way of building next gen product interfaces together."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+---
+description: Unused prototypes in src/lab — not production surface
+globs: src/lab/**
+alwaysApply: false
+---
+
+# Lab
+
+`src/lab/` holds parked prototypes (e.g. `FillHeadline`, `NameGlobe`, `FeatureCardRow`). **Not imported by routes.**
+
+- Don’t “fix” lab code into pages unless the user asks to revive something.
+- To ship a lab piece: move it into the right `src/features/` folder and wire a page; update rules/runbooks.
+- Safe to delete if confirmed unused.

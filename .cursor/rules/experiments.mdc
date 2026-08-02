@@ -1,30 +1,31 @@
 ---
-description: How to add experiments, videos, and BrowserField behavior
-globs: src/data/experiments.json,src/data/experiments.ts,src/pages/Experiments.tsx,src/components/Browser*.tsx,src/components/browser*.ts,src/assets/experiment-thumbnails-video/**
+description: Add/edit experiments — JSON records, videos, BrowserField
+globs: src/data/experiments.json,src/data/experiments.ts,src/pages/Experiments.tsx,src/features/experiments/**,src/assets/experiments/**
 alwaysApply: false
 ---
 
 # Experiments content
 
-Full checklist: `src/data/EXPERIMENTS.md`.
+Runbook: `src/data/EXPERIMENTS.md`.
 
 ## Pipeline
 
-1. Drop `*.mp4` in `src/assets/experiment-thumbnails-video/` (filename = what JSON references).
-2. Append an object in `src/data/experiments.json`.
-3. `experiments.ts` sets `videoUrl` via glob — never hand-edit `videoUrl` in JSON.
+1. Place `*.mp4` in `src/assets/experiments/videos/` (filename = JSON `video` value).
+2. Append object to `src/data/experiments.json`.
+3. `experiments.ts` fills `videoUrl` via glob — never put `videoUrl` in JSON.
 
-## Required JSON fields
+## JSON fields
 
 `id`, `title`, `log` (e.g. `"19/52"`), `description`, `url`, `image`, `video`, `kind` (`image` | `music` | `video`), `tags[]`, `date` (`YYYY-MM-DD`), `body`.
 
-- `video`: filename only, or `null`
-- `url` / `image`: usually `null` unless linking out / static thumb
+- `video`: filename or `null`
+- `url` / `image`: usually `null` unless linking out
 
-## UI behavior (don't break casually)
+## UI (preserve unless redesigning)
 
-- Page: `Experiments` → `BrowserField` / `BrowserComponent`
-- Hover: muted looping video; click: focus / Matter.js heap for others
-- Exit: CRT wipe (`browser-crt-wipe` in CSS)
+- Code: `src/features/experiments/` (`BrowserField`, `BrowserComponent`, Matter heap, CRT exit)
+- Page: `Experiments.tsx` → `BrowserField` only
+- Hover → muted looping video; click → focus; others tumble to heap
+- Exit → CRT wipe (`browser-crt-wipe` in CSS)
 
-Prefer editing JSON + assets over rewriting physics/chrome unless asked.
+Prefer JSON + assets over rewriting physics/chrome unless asked.

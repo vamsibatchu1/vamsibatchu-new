@@ -9,7 +9,7 @@ import {
   LINE_HEIGHT,
   type BlockedSpan,
   type ShapeBand,
-} from './svgShapeMask'
+} from '../../components/svgShapeMask'
 
 export { LINE_HEIGHT }
 

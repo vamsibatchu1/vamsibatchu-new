@@ -1,0 +1,172 @@
+{
+  "id": "the-ai-design-compass",
+  "title": "The AI design compass",
+  "kind": "essay",
+  "year": 2024,
+  "excerpt": "A designer's guide to shaping the AI revolution",
+  "blocks": [
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-01.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "Remember that magical moment in the late ‘90s? The screeching of a dial-up modem, followed by the pixelated “Welcome” screen, connecting you to a vast, invisible network spanning the globe. The Internet revolution unfolded at our fingertips, forever changing how we interact with information and each other."
+    },
+    {
+      "type": "p",
+      "text": "Fast forward to 2024. We’re experiencing a similar wave of amazement, but now it’s AI that’s captivating us with its ability to understand, create, and think. Imagine uploading a mountain of data to an AI tool and watching it distill complex information into actionable insights in seconds. What once took a team of analysts weeks now happens faster than brewing coffee. Just like the internet linked people & information, AI is taking connectivity to a deeper level, touching every aspect of our lives — from healthcare to finance, from our workplaces to our homes."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-02.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "In this rapidly evolving landscape, where do we, as designers, fit in? Our role isn’t just to make AI usable, but to make it understandable, trustworthy, and human-centered. It’s an exciting yet daunting responsibility."
+    },
+    {
+      "type": "p",
+      "text": "As Fei-Fei Li, Co-Director of Stanford’s Human-Centered AI Institute, aptly puts it: “If we want machines to think, we need to teach them to see.”"
+    },
+    {
+      "type": "p",
+      "text": "With this in mind, in the following few sections, I’ll share a few themes from my experience & conversations with designers in the AI product design trenches. I hope to inspire the path ahead for designers and product teams, along with some actionable advice."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-03.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "The traditional linear process of problem ideation, design, prototyping, and delivery is as outdated as a flip phone at a tech conference when it comes to AI design. Instead, we’re all on what can be called the “AI design rollercoaster” — a thrilling ride of constant iteration."
+    },
+    {
+      "type": "p",
+      "text": "One day, we’ll be excitedly prototyping a feature that seemed impossible yesterday. Next, we’re pivoting our entire approach because of a breakthrough in LLM capabilities. Many teams have started projects with working prototypes even before knowing their target audience. It’s like trying to paint a landscape from a moving train — compelling, challenging, and occasionally puzzling. But here’s the thing: this kind of chaos is where the magic happens. And you know what? That’s not just okay; it’s necessary in this rapidly evolving field."
+    },
+    {
+      "type": "p",
+      "text": "Strategies for Designers —  Embrace agile methodologies with even shorter sprint cycles to keep pace with AI’s rapid evolution. Implement a continuous feedback loop, integrating user testing at every stage of development. Create a “living” design document that’s updated in real-time as AI capabilities change. Develop a system for quickly prototyping and testing new AI features, allowing for rapid pivots when necessary. Remember, in AI design, flexibility is your greatest asset."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-04.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "As we rush along our collective AI design rollercoaster, it’s vital to understand the track we’re on. Designing for AI is like being an architect who can suddenly defy gravity — the possibilities are mind-boggling, but we need to first understand the new laws of physics we’re working with."
+    },
+    {
+      "type": "p",
+      "text": "Grasping AI’s capabilities and limitations is non-negotiable. No, designers don’t need to become machine learning engineers overnight. But we do need to speak enough of the language to have meaningful conversations with our tech teams. For instance, while neural networks are fantastic at recognizing patterns in unstructured data, they often stumble when it comes to tasks requiring logical reasoning. This type of knowledge can save us from proposing features that sound great in theory but would fall flat in practice."
+    },
+    {
+      "type": "p",
+      "text": "Understanding these nuances not only helps set realistic expectations but also sparks creativity. When we know the rules, we can find innovative ways to bend them."
+    },
+    {
+      "type": "p",
+      "text": "Strategies for Designers — Schedule regular knowledge-sharing sessions with your AI engineering team. Create an “AI Capability Matrix” for your project, outlining what’s currently possible, what’s on the horizon, and what’s still in the realm of science fiction. Develop a habit of reading AI research papers or summaries relevant to your project. Attend AI conferences or workshops to stay updated on the latest developments. Remember, your design solutions will only be as good as your understanding of AI’s potential."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-05.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "If AI capabilities are the engine of our rollercoaster, data is the fuel that keeps it running. But in the world of AI design, this fuel is constantly changing in quality and quantity. As designers, we need to create interfaces that can adapt and scale based on the data available — today, tomorrow, and months down the line."
+    },
+    {
+      "type": "p",
+      "text": "Imagine designing an AI-powered personal finance app. Today, you might only have access to basic transaction data, allowing for simple budgeting features. But in a few months, with enhanced data from multiple financial institutions, your app could offer sophisticated investment advice. Your initial design needs to accommodate this potential growth, with modular components that can flex based on data availability."
+    },
+    {
+      "type": "p",
+      "text": "This need for scalability extends to our interaction patterns too. A chatbot interface, for instance, should be able to handle both simple queries based on limited data and complex, multi-turn conversations as the AI’s knowledge base grows."
+    },
+    {
+      "type": "p",
+      "text": "Strategies for Designers — Design with data scalability in mind from the start. Create modular interfaces that can easily incorporate new features as data availability expands. Implement progressive disclosure techniques to reveal advanced functionalities when data supports them. Regularly review and update your designs based on data insights and AI capability advancements. Remember, in AI design, your interfaces should be as adaptable and learning-oriented as the AI systems they support."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-06.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "Once we understand our AI capabilities and have our data in order, it’s time for the fun part — bringing our ideas to life through prototypes.Forget static wireframes or basic mockups. When it comes to AI, our prototypes need to capture the dynamic, responsive nature of the technology. It’s like trying to describe a symphony to someone who’s never heard music — you can talk about notes and instruments all day, but until they hear the actual music, they won’t truly understand.\n\nInteractive prototypes are our crystal balls in the AI world. They allow us to peer into potential futures and get others excited about the possibilities. More importantly, they help us identify potential pitfalls before we invest too much time and resources.Presenting AI-powered prototypes to stakeholders can be a game-changer. Seeing their eyes light up as they interact with it — that’s when we know we’re onto something big.\n\nStrategies for Designers — Develop a library of AI interaction patterns that can be quickly assembled into prototypes. Collaborate with developers to create a set of API mock-ups that simulate AI responses. Use tools that allow for quick iteration and real-time collaboration on prototypes. Implement a system for capturing and categorizing user reactions to AI prototypes. Remember, your goal is to make the potential of AI tangible and testable as early as possible in the design process."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-07.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "As we continue our collective AI design journey, it’s crucial to develop what can be called an “AI design sixth sense”. It’s an intuitive understanding of what’s possible, what works well, and what doesn’t in AI-driven interfaces.How do we develop this sense? Immersion. Just as a chef needs to constantly taste different cuisines to refine their palate, we need to immerse ourselves in AI products and experiences.\n\nInteracting with new AI tools every single day is key. Downloading apps, creating trial accounts, meticulously interacting with the end-to-end flows, and documenting interesting interactions and design patterns helps build a mental library that we can draw upon in our own work.This practice has been invaluable across the industry. There have been countless times when designers have been stuck on a problem, only to find inspiration from an AI interaction encountered in a completely unrelated app.\n\nStrategies for Designers — Start an “AI Experience Journal” to document and analyze AI interactions you encounter daily. Organize regular “AI Exploration” sessions with your team to dissect new AI products or features. Create a shared repository of innovative AI patterns and discuss their potential applications. Participate in AI design challenges or hackathons to push your boundaries. Remember, developing your AI design intuition is an ongoing process of exposure, analysis, and experimentation."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-08.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "Here’s a liberating truth: there is no rulebook for AI design — at least not yet. While our AI design sixth sense gives us a starting point, the reality is that we’re all explorers in this new territory.This lack of established norms can be daunting, but it’s also incredibly exciting. It gives us the freedom to experiment, to try things that might seem crazy at first glance. After all, who would have thought a few years ago that talking to your phone would become second nature?\n\nEncouraging wild ideas is crucial. Some of the most innovative solutions have come from what initially seemed like off-the-wall suggestions. Remember, in the world of AI design, today’s crazy idea could be tomorrow’s best practice.\n\nStrategies for Designers — Implement “No Limits” brainstorming sessions where all ideas, no matter how outlandish, are welcome. Create an “AI Innovation Fund” for experimenting with wild ideas that might not have immediate practical applications. Develop a process for rapidly prototyping and testing unconventional AI interactions. Encourage cross-pollination of ideas by collaborating with designers from different industries. Remember, in the world of AI design, today’s “crazy” idea could be tomorrow’s breakthrough innovation."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-09.png",
+      "alt": "The AI design compass"
+    },
+    {
+      "type": "p",
+      "text": "As we wrap up our tour of the AI design rollercoaster, let’s introduce you to your new best friends: the engineering team. In the world of AI product design, the line between design and engineering is blurrier than ever. Trying to design complex AI interactions in isolation is like trying to choreograph a dance without knowing the music. We need to work hand-in-hand with engineers to understand what’s feasible, what’s challenging, and what’s on the horizon.\n\nIn fact, some of the best design solutions have emerged from collaborative sessions with engineers. Many teams have moved away from the traditional “design then handoff” approach. Instead, they often find themselves co-creating, making adjustments and refinements directly within the code. This tight-knit collaboration has not only improved designs but has also dramatically sped up development processes. It’s a partnership that continues to evolve and strengthen with each project across the industry.\n\nStrategies for Designers — Implement “pair designing” sessions where designers and engineers work side-by-side. Organize cross-functional workshops to align on AI capabilities, limitations, and goals. Create shared documentation that bridges design thinking and technical specifications. Establish a common language for discussing AI features, perhaps through an “AI Design-Dev Dictionary”. Encourage designers to participate in code reviews and engineers in user testing sessions. Remember, the strength of your AI product lies in the seamless collaboration between design and engineering."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading Frames & Function! Subscribe for free to receive new posts and support my work."
+    },
+    {
+      "type": "p",
+      "text": "The Next Frontier of Design"
+    },
+    {
+      "type": "p",
+      "text": "As I reflect on our AI design journey in 2024, the parallels to the Internet’s early days are striking. The excitement, potential, and magnitude of change feel familiar yet amplified. We’ve progressed from marveling at pixelated “Welcome” web 1.0 screens to creating AI that thinks alongside us."
+    },
+    {
+      "type": "p",
+      "text": "Looking ahead, we must ask ourselves: Will we be designing for AI indistinguishable from human intelligence, or for AI-human hybrids we can’t yet imagine? As designers, our role in shaping this future is more critical than ever. We’re not just witnesses to this revolution; we’re its architects. The experiences we create will define humanity’s interaction with artificial intelligence."
+    },
+    {
+      "type": "image",
+      "src": "the-ai-design-compass-10.png",
+      "alt": "The AI design compass",
+      "caption": "All the illustrations are from Notioly by Mary Amato"
+    },
+    {
+      "type": "p",
+      "text": "All the illustrations are from Notioly by Mary Amato"
+    },
+    {
+      "type": "p",
+      "text": "It’s a responsibility that should excite and challenge us to push boundaries. As we embark on this exhilarating journey, remember: the future of AI design is in our hands. The rollercoaster is just beginning. Are you ready to help steer its course?"
+    },
+    {
+      "type": "p",
+      "text": "Call to Action: Start your AI design journey today. Pick an AI tool you’re curious about and spend an hour exploring its interface and capabilities. Reflect on what works, what doesn’t, and how you might improve it. Share your insights with fellow designers and join the conversation shaping the future of AI design. The next breakthrough could start with your curiosity."
+    },
+    {
+      "type": "p",
+      "text": "Thanks for reading ❤ Connect with me on Linkedin to talk about designing, next gen products and leadership."
+    }
+  ]
+}

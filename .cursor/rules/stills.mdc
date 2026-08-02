@@ -1,0 +1,28 @@
+---
+description: Home creative-text posters and shared stills assets
+globs: src/pages/Home.tsx,src/features/home/**,src/assets/stills/**
+alwaysApply: false
+---
+
+# Home / stills
+
+Runbook: `src/assets/stills/README.md`.
+
+## Home posters (`CreativeTextRow`)
+
+1. Add image under `src/assets/stills/` (jpg/png/webp).
+2. Import + add flow image in `src/features/home/creativeFlow.ts` (id, column, top, widthRatio, float, aspectRatio, src, alt).
+3. Layout helpers: `src/features/home/creativeTextLayout.ts`. Prefer `object-contain` (no crop).
+4. Center silhouette: `src/assets/creative-intelligence.svg` (wired via `creativeFlow.shapeSrc`).
+5. Page shell only: `src/pages/Home.tsx` — don’t dump long flow copy back into the page.
+
+Images are draggable wrap obstacles; dragging rearranges wrap path only.
+
+## Writing figures
+
+Same `stills/` folder. In article JSON use filename-only `"src"`. Resolved by `writingArticles.ts` glob — no Home import required.
+
+## Do / don't
+
+- ✅ Home posters need explicit import in `creativeFlow.ts`
+- ❌ Don’t use old paths `home-assets/` or put posters only in `Home.tsx`

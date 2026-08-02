@@ -4,7 +4,7 @@ import {
   getWritingArticle,
   type WritingArticle,
   type WritingBlock,
-} from '../data/writingArticles'
+} from '../../data/writingArticles'
 
 type WritingEditorProps = {
   articleId: string | null
