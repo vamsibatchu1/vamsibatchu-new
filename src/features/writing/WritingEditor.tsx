@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   getWritingArticle,
-  type WritingArticle,
   type WritingBlock,
 } from '../../data/writingArticles'
 
@@ -47,7 +46,7 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
     <AnimatePresence>
       {article ? (
         <>
-          {/* Hide the rest of the page so the article can hold focus */}
+          {/* Click-catcher over the page — closes editor + clears selection */}
           <motion.div
             key="page-dim"
             aria-hidden
@@ -55,9 +54,7 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
             animate={{ opacity: pageDimmed ? 1 : 0 }}
             exit={reduceMotion ? undefined : { opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className={`fixed inset-0 z-[79] bg-white ${
-              pageDimmed ? 'pointer-events-auto' : 'pointer-events-none'
-            }`}
+            className="pointer-events-auto fixed inset-0 z-[79] bg-white"
             onClick={onClose}
           />
 
@@ -65,7 +62,7 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
             key={article.id}
             ref={panelRef}
             role="dialog"
-            aria-modal={pageDimmed}
+            aria-modal
             aria-label={`article editor — ${article.title}`}
             initial={reduceMotion ? false : { y: 36, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -79,8 +76,9 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
             style={{
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
             }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <EditorChrome article={article} onClose={onClose} />
+            <EditorChrome onClose={onClose} />
             <EditorToolbar
               pageDimmed={pageDimmed}
               onToggleDim={() => setPageDimmed((v) => !v)}
@@ -107,14 +105,7 @@ export default function WritingEditor({ articleId, onClose }: WritingEditorProps
   )
 }
 
-function EditorChrome({
-  article,
-  onClose,
-}: {
-  article: WritingArticle
-  onClose: () => void
-}) {
-  const stamp = `${String(article.year).slice(2)}.${String(article.id.length).padStart(2, '0')}`
+function EditorChrome({ onClose }: { onClose: () => void }) {
   return (
     <div
       className="flex h-9 shrink-0 items-center gap-2 border-b border-black/10 px-2.5 text-[9px] tracking-[0.04em] text-black/45 lowercase"
@@ -130,9 +121,6 @@ function EditorChrome({
         <span className="size-3 rounded-full border border-black/25 bg-[#febc2e]" aria-hidden />
         <span className="size-3 rounded-full border border-black/25 bg-[#28c840]" aria-hidden />
       </div>
-      <p className="min-w-0 flex-1 truncate pl-1">
-        text editor / {article.id} {stamp} …
-      </p>
     </div>
   )
 }
@@ -145,7 +133,7 @@ function EditorToolbar({
   onToggleDim: () => void
 }) {
   return (
-    <div className="flex h-auto shrink-0 items-center gap-1.5 overflow-x-auto border-b border-black/10 bg-white px-2.5 py-2.5 text-[9px] text-black/55">
+    <div className="hidden h-auto shrink-0 items-center gap-1.5 overflow-x-auto border-b border-black/10 bg-white px-2.5 py-2.5 text-[9px] text-black/55 lg:flex">
       <ToolGroup>
         <ToolBtn label="font">jetbrains mono</ToolBtn>
         <ToolBtn label="weight">regular</ToolBtn>

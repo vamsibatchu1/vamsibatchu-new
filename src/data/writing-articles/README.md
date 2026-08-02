@@ -39,7 +39,7 @@ One JSON file per article. List order lives in `columns.json`. Metadata is **not
 
 3. Append the `id` to the right array in `columns.json` (`essays` | `notes` | `talks`).
 4. For new figures: drop images into `src/assets/stills/`, reference **filename only** in `"src"`.
-5. Open `/writing`, click the row — editor should load. Esc closes; brightness dims the page.
+5. Open `/writing`, click the row — editor should load. Close via Esc, red traffic light, or clicking the page backdrop (clears the active row). Desktop toolbar includes optional page-dim; toolbar is hidden on mobile.
 
 ## Blocks
 

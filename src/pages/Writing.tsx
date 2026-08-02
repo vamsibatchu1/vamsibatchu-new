@@ -7,10 +7,12 @@ import { useShellUi } from '../components/ShellUiContext'
 /**
  * Writing archive — Sulki & Min–style index:
  * left meta column + three lined lists (black type / black rules).
+ * Mobile: horizontal tabs for essays / notes / talks.
  * Click a row to open the article editor (no expand).
  */
 export default function Writing() {
   const [openId, setOpenId] = useState<string | null>(null)
+  const [mobileTab, setMobileTab] = useState(writingColumns[0]?.id ?? 'essays')
   const { setOverlayOpen } = useShellUi()
 
   useEffect(() => {
@@ -21,6 +23,9 @@ export default function Writing() {
   const select = (id: string) => {
     setOpenId((cur) => (cur === id ? null : id))
   }
+
+  const activeCol =
+    writingColumns.find((c) => c.id === mobileTab) ?? writingColumns[0]
 
   return (
     <section
@@ -50,7 +55,56 @@ export default function Writing() {
           </div>
         </aside>
 
-        <div className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-8">
+        {/* Mobile: horizontal tabs */}
+        <div className="min-w-0 lg:hidden">
+          <div
+            role="tablist"
+            aria-label="Writing categories"
+            className="grid grid-cols-3 border-b-[1.5px] border-black"
+          >
+            {writingColumns.map((col) => {
+              const selected = col.id === mobileTab
+              return (
+                <button
+                  key={col.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  id={`writing-tab-${col.id}`}
+                  aria-controls={`writing-panel-${col.id}`}
+                  onClick={() => setMobileTab(col.id)}
+                  className={`px-1 pb-2 text-center text-[15px] font-bold tracking-tight transition-opacity ${
+                    selected
+                      ? 'border-b-2 border-black text-black'
+                      : 'border-b-2 border-transparent text-black/45'
+                  }`}
+                >
+                  {col.label}
+                </button>
+              )
+            })}
+          </div>
+
+          {activeCol ? (
+            <div
+              role="tabpanel"
+              id={`writing-panel-${activeCol.id}`}
+              aria-labelledby={`writing-tab-${activeCol.id}`}
+              className="min-w-0"
+            >
+              <WritingList
+                label={activeCol.label}
+                entries={activeCol.entries}
+                openId={openId}
+                onSelect={select}
+                hideHeading
+              />
+            </div>
+          ) : null}
+        </div>
+
+        {/* Desktop: three columns */}
+        <div className="hidden min-w-0 grid-cols-3 gap-8 lg:grid">
           {writingColumns.map((col) => (
             <WritingList
               key={col.id}
@@ -73,20 +127,24 @@ function WritingList({
   entries,
   openId,
   onSelect,
+  hideHeading = false,
 }: {
   label: string
   entries: WritingEntry[]
   openId: string | null
   onSelect: (id: string) => void
+  hideHeading?: boolean
 }) {
   let lastYear: number | null = null
 
   return (
     <div className="min-w-0">
-      <h2 className="pb-2 text-[15px] font-bold tracking-tight">
-        {label}
-      </h2>
-      <div className="border-t-[1.5px] border-black" aria-hidden />
+      {hideHeading ? null : (
+        <>
+          <h2 className="pb-2 text-[15px] font-bold tracking-tight">{label}</h2>
+          <div className="border-t-[1.5px] border-black" aria-hidden />
+        </>
+      )}
 
       <ul className="list-none p-0">
         {entries.map((entry) => {

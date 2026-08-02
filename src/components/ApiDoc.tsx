@@ -106,7 +106,7 @@ export default function ApiDoc({
 
   return (
     <motion.article
-      className="api-doc relative flex w-full flex-col overflow-hidden bg-[#f3eee0] text-[10px] leading-relaxed text-black sm:text-[11px]"
+      className="api-doc relative flex w-full flex-col overflow-hidden bg-[#f3eee0] text-[11px] leading-relaxed text-black sm:text-[11px]"
       style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
       aria-label="API documentation card"
       initial={reduceMotion ? false : { y: '60vh', opacity: 0 }}
@@ -154,11 +154,11 @@ export default function ApiDoc({
           <div className="mt-1 border-t border-black" />
 
           <div className="mt-3 space-y-1.5 normal-case" aria-live="polite">
-            <p className="min-h-[1.25em] text-[12px] leading-snug sm:text-[13px]">
+            <p className="min-h-[1.25em] text-[13px] leading-snug sm:text-[13px]">
               {greetingText}
               {showGreetingCursor ? <BlockCursor /> : null}
             </p>
-            <p className="min-h-[1.25em] text-[12px] leading-snug sm:text-[13px]">
+            <p className="min-h-[1.25em] text-[13px] leading-snug sm:text-[13px]">
               {roleText}
               {showRoleCursor ? (
                 <BlockCursor blinking={phase === 'ready'} />

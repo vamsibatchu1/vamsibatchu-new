@@ -33,12 +33,12 @@ Also: `.cursor/rules/stills.mdc`
 src/
   App.tsx                 routes
   pages/                  Landing, Home, Work, Experiments, Writing, About
-  components/             shared chrome (Layout, Mark, ApiDoc, …)
+  components/             shared chrome (Layout, Mark, ApiDoc, HeatmapOverlay, …)
   features/
     experiments/          BrowserField fleet + physics
     writing/              WritingEditor
-    home/                 CreativeTextRow + creativeFlow
-    practice-map/         3D practice.map (sandbox on Work)
+    home/                 CreativeTextRow, creativeFlow, IndexGallery
+    practice-map/         3D practice map (Home intro teaser)
   lab/                    unused prototypes (not routed)
   data/
     nav.ts                shared primary nav links (top + bottom)
@@ -51,8 +51,16 @@ src/
   assets/
     stills/               shared stills (Home + Writing)
     experiments/videos/   mp4 previews
+    home|work|experiments|writing|about me.webp
+                          mobile bottom-nav icons
 ```
 
+## Responsive UX notes (quick)
+
+- Landing mobile: GIF loop → fade → ApiDoc (`Landing.tsx`); desktop simultaneous.
+- Writing mobile: category tabs; editor closes on backdrop click; no tools row.
+- Creative text: 2 cols `<900px`, 5 cols desktop (`CreativeTextRow.tsx`).
+- Mobile nav: doodle icons in `Layout.tsx` (not text Marks).
 ## Dev
 
 ```bash

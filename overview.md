@@ -42,16 +42,16 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## How the site should work (logic)
 
-1. **Landing gate (`/`)** — GIF sits outside any frame at native aspect ratio; tractor-feed `ApiDoc` beside it as its own card. Doc shell is static; greeting/role type in, then details fade, then press enter → `/home`. Stacks on mobile.
-2. **Shell** — White background site chrome. Top nav only (no footer): name left, section links + social icons right, all in Gloria Hallelujah / lowercase. Pages except Landing render inside this shell.
-3. **Navigation** — JetBrains Mono. Name left; `home` · highlighted `work` (yellow) · `experiments` (purple) · `writing` (blue) · `play` (green) + socials. Active tab shows a black dot. Brand links to `/home`.
-4. **Home hero** — Editorial layout: large left headline, right body + underlined explore link, hairline divider, then two static rows of work cards (3 + 4) with grey thumbnails, vertical labels, and multi-color arrows. JetBrains Mono throughout.
-5. **Work** — Index of projects; each project will deepen into its own detail view when we build that out.
-6. **Experiments** — Self-contained interactive pieces; keep them isolated so they don't bloat the rest of the app.
-7. **Writing** — List of articles/blogs with links (internal or external).
-8. **About** — Experience narrative + current focus (DeepMind, etc.).
-9. **Responsive** — Mobile-first layout; landing and nav must remain usable on small screens.
-10. **Content + craft** — Design direction, motion, and interactions will evolve from reference images and inspiration you provide.
+1. **Landing gate (`/`)** — GIF + tractor-feed `ApiDoc`. Desktop: side by side. Mobile: sequenced entrance (GIF one loop → fade → ApiDoc); 40px GIF inset / 24px ApiDoc inset; no GIF tilt on mobile. Enter/tap → `/home`.
+2. **Shell** — White background. Desktop: sticky top nav (text + Mark + heatmap + socials). Mobile: bottom icon tab bar; hide when writing editor overlay is open.
+3. **Navigation** — Shared `navLinks` (`home` · `work` · `experiments` · `writing` · `about`) with Mark tones. Same routes on all breakpoints.
+4. **Home** — Intro (copy + practice-map teaser) → creative-intelligence multi-column text → index gallery.
+5. **Work** — Stub for now; projects deepen later.
+6. **Experiments** — Self-contained interactive pieces; keep isolated.
+7. **Writing** — Archive by essays / notes / talks (tabs on mobile, columns on desktop). Pocket editor; backdrop click / Esc closes and clears selection.
+8. **About** — Bio / focus.
+9. **Responsive** — Prefer mobile-specific sequencing and chrome over shrinking desktop layouts blindly.
+10. **Content + craft** — Evolve from references; keep JetBrains Mono + lowercase UI.
 
 ## Stack
 
@@ -59,12 +59,23 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 - Vite
 - Tailwind CSS v4
 - React Router
+- framer-motion, Three.js (practice map), Matter.js (experiments)
 
 ## Assets
 
-- `src/assets/landing.gif` — portrait GIF used on the landing gate
+- `src/assets/landing.gif` — portrait GIF on the landing gate
+- `src/assets/{home,work,experiments,writing,about me}.webp` — mobile nav icons
 
 ## Change log
+
+### 2026-08-02 — Mobile polish + landing sequence
+
+- Landing mobile: GIF plays one loop, fades, then ApiDoc mounts; upright GIF; side insets 40px (GIF) / 24px (ApiDoc)
+- Mobile bottom nav: doodle icons instead of text labels
+- Creative text: 2 columns on narrow stages (was 1)
+- Writing mobile: essays/notes/talks as horizontal tabs
+- Writing editor: hide tools row on mobile; chrome title removed; backdrop click always closes + clears selection
+- Practice map labels: left-aligned, wrap to two lines, tighter gap under nodes
 
 ### 2026-08-02 — Practice map on Home intro
 

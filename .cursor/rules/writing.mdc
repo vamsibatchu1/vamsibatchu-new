@@ -15,12 +15,25 @@ Runbook: `src/data/writing-articles/README.md`.
 - `writingArticles.ts` loads `*.json` (skips `columns.json`), resolves stills, builds `writingColumns`
 - `writing.ts` only re-exports list helpers — **do not** put entry metadata there
 
+## Archive UI (`Writing.tsx`)
+
+- **Desktop (`lg+`)**: three columns (essays / notes / talks) side by side.
+- **Mobile**: horizontal tabs for the same three categories; one list visible at a time. Don’t stack all three lists.
+
+## Editor (`WritingEditor.tsx`)
+
+- Click row → open pocket editor; `openId` drives active row highlight.
+- **Close + clear selection**: Esc, red traffic-light, or **click backdrop** (always pointer-events when open) → `onClose` → `setOpenId(null)`.
+- Chrome: traffic lights only (no title string next to them).
+- **Toolbar** (font/align/dim tools): **desktop only** — `hidden lg:flex`. Don’t reintroduce on mobile.
+- Opening sets shell `overlayOpen` so the mobile bottom nav hides.
+
 ## Add a post
 
 1. Create `writing-articles/<id>.json` (kebab-case id; never reuse).
 2. Append `id` to the right array in `columns.json`.
 3. Figures: file in `src/assets/stills/`; block `"src"` = filename only (no `url` field).
-4. Click row on `/writing` opens `src/features/writing/WritingEditor.tsx`.
+4. Click row on `/writing` opens the editor.
 
 ## Blocks
 

@@ -254,8 +254,7 @@ export default function CreativeTextRow({ flow }: CreativeTextRowProps) {
       const totalW = stage.clientWidth
       if (totalW < 2) return
 
-      const colCount =
-        totalW < 640 ? 1 : totalW < 900 ? 2 : COL_COUNT_DESKTOP
+      const colCount = totalW < 900 ? 2 : COL_COUNT_DESKTOP
       const colWidth = (totalW - GAP * (colCount - 1)) / colCount
       // Desktop-only posters — drop wrap images on mobile / tablet
       const showPosters = totalW >= 1024

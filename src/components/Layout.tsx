@@ -1,10 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import aboutIcon from '../assets/about me.webp'
+import experimentsIcon from '../assets/experiments.webp'
+import homeIcon from '../assets/home.webp'
+import workIcon from '../assets/work.webp'
+import writingIcon from '../assets/writing.webp'
 import { navLinks } from '../data/nav'
 import HeatmapOverlay from './HeatmapOverlay'
 import Mark from './Mark'
 import { shellMax, shellMainPad, shellPadX } from './shellLayout'
 import { ShellUiProvider, useShellUi } from './ShellUiContext'
+
+const mobileNavIcons: Record<string, string> = {
+  '/home': homeIcon,
+  '/work': workIcon,
+  '/experiments': experimentsIcon,
+  '/writing': writingIcon,
+  '/about': aboutIcon,
+}
 
 function barWidthFor(label: string) {
   return Math.max(0.85, label.length * 0.22)
@@ -164,23 +177,25 @@ function MobileBottomNav({ hidden }: { hidden: boolean }) {
       }}
     >
       <div className={`${shellMax} grid grid-cols-5`}>
-        {navLinks.map(({ to, label, shortLabel, end, tone }) => (
+        {navLinks.map(({ to, label, end }) => (
           <NavLink
             key={to}
             to={to}
             end={end}
             aria-label={label}
             className={({ isActive }) =>
-              `flex min-h-14 flex-col items-center justify-center gap-1 px-0.5 py-2 text-[10px] leading-none tracking-[0.02em] transition-opacity ${
-                isActive ? 'opacity-100' : 'opacity-70'
+              `flex min-h-14 flex-col items-center justify-center px-0.5 py-2 transition-opacity ${
+                isActive ? 'opacity-100' : 'opacity-50'
               }`
             }
           >
-            {({ isActive }) => (
-              <Mark tone={tone} active={isActive}>
-                {shortLabel ?? label}
-              </Mark>
-            )}
+            <img
+              src={mobileNavIcons[to]}
+              alt=""
+              aria-hidden
+              className="h-10 w-10 object-contain"
+              draggable={false}
+            />
           </NavLink>
         ))}
       </div>
