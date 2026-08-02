@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Receipt, Scan } from 'lucide-react'
 import aboutIcon from '../assets/about me.webp'
 import experimentsIcon from '../assets/experiments.webp'
 import homeIcon from '../assets/home.webp'
@@ -10,6 +11,8 @@ import HeatmapOverlay from './HeatmapOverlay'
 import Mark from './Mark'
 import { shellMax, shellMainPad, shellPadX } from './shellLayout'
 import { ShellUiProvider, useShellUi } from './ShellUiContext'
+import ReceiptDock from '../features/receipt/ReceiptDock'
+import { useVisitReceipt } from '../features/receipt/VisitReceiptContext'
 
 const mobileNavIcons: Record<string, string> = {
   '/home': homeIcon,
@@ -21,16 +24,6 @@ const mobileNavIcons: Record<string, string> = {
 
 function barWidthFor(label: string) {
   return Math.max(0.85, label.length * 0.22)
-}
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
-      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-    </svg>
-  )
 }
 
 function XIcon() {
@@ -75,10 +68,14 @@ function DesktopTopNav({
   collapsed,
   heatmapOn,
   onToggleHeatmap,
+  receiptOpen,
+  onToggleReceipt,
 }: {
   collapsed: boolean
   heatmapOn: boolean
   onToggleHeatmap: () => void
+  receiptOpen: boolean
+  onToggleReceipt: () => void
 }) {
   return (
     <header className="sticky top-0 z-50 hidden bg-white lowercase lg:block">
@@ -121,30 +118,37 @@ function DesktopTopNav({
             aria-pressed={heatmapOn}
             aria-label="toggle heatmap mode"
             onClick={onToggleHeatmap}
-            className={`inline-flex items-center lowercase transition-all duration-300 hover:opacity-100 ${
+            className={`inline-flex items-center transition-all duration-300 hover:opacity-100 ${
               collapsed
                 ? 'max-w-0 scale-75 overflow-hidden opacity-0'
                 : heatmapOn
-                  ? 'max-w-[6rem] opacity-100 line-through decoration-black decoration-1'
-                  : 'max-w-[6rem] opacity-80'
+                  ? 'max-w-[2rem] opacity-100'
+                  : 'max-w-[2rem] opacity-80'
             }`}
           >
-            heatmap
+            <Scan size={16} strokeWidth={heatmapOn ? 2.25 : 1.75} aria-hidden />
           </button>
 
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="instagram"
-            className={`inline-flex transition-all duration-300 hover:opacity-100 ${
+          <button
+            type="button"
+            aria-pressed={receiptOpen}
+            aria-label="toggle portfolio receipt"
+            onClick={onToggleReceipt}
+            className={`inline-flex items-center transition-all duration-300 hover:opacity-100 ${
               collapsed
                 ? 'max-w-0 scale-75 overflow-hidden opacity-0'
-                : 'max-w-[2rem] opacity-80'
+                : receiptOpen
+                  ? 'max-w-[2rem] opacity-100'
+                  : 'max-w-[2rem] opacity-80'
             }`}
           >
-            <InstagramIcon />
-          </a>
+            <Receipt
+              size={16}
+              strokeWidth={receiptOpen ? 2.25 : 1.75}
+              aria-hidden
+            />
+          </button>
+
           <a
             href="https://x.com"
             target="_blank"
@@ -208,6 +212,7 @@ function LayoutShell() {
   const { pathname } = useLocation()
   const [heatmapOn, setHeatmapOn] = useState(false)
   const { overlayOpen } = useShellUi()
+  const { open: receiptOpen, setOpen: setReceiptOpen } = useVisitReceipt()
 
   return (
     <div
@@ -218,6 +223,8 @@ function LayoutShell() {
         collapsed={collapsed}
         heatmapOn={heatmapOn}
         onToggleHeatmap={() => setHeatmapOn((v) => !v)}
+        receiptOpen={receiptOpen}
+        onToggleReceipt={() => setReceiptOpen(!receiptOpen)}
       />
 
       <main className={`${shellMax} flex-1 ${shellMainPad}`}>
@@ -225,6 +232,8 @@ function LayoutShell() {
       </main>
 
       <MobileBottomNav hidden={overlayOpen} />
+
+      <ReceiptDock />
 
       {heatmapOn ? <HeatmapOverlay path={pathname} /> : null}
     </div>

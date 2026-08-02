@@ -1,10 +1,14 @@
+import WorkCard from '../features/work/WorkCard'
+import { shellSectionY } from '../components/shellLayout'
+
 export default function Work() {
   return (
-    <section className="space-y-3 lowercase">
-      <h1 className="text-[22px] leading-tight lg:text-3xl">work</h1>
-      <p className="text-[14px] leading-relaxed text-[var(--muted)] lg:text-base">
-        projects and case studies — coming soon.
-      </p>
+    <section
+      className={`flex flex-col lowercase text-black ${shellSectionY}`}
+      style={{ fontFamily: '"JetBrains Mono", ui-monospace, monospace' }}
+      aria-label="Work"
+    >
+      <WorkCard />
     </section>
   )
 }

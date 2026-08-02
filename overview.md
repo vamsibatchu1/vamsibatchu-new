@@ -68,6 +68,12 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## Change log
 
+### 2026-08-02 — Portfolio receipt
+
+- Local visit tracker (time / clicks / scrolls per page) + thermal “VB STUDIO” receipt
+- Top-nav `receipt` (next to heatmap); ticket slides up bottom-right — no dialog chrome / download UI
+- Stats stay on-device — session time, clicks, scrolls, and token totals per page
+
 ### 2026-08-02 — Mobile polish + landing sequence
 
 - Landing mobile: GIF plays one loop, fades, then ApiDoc mounts; upright GIF; side insets 40px (GIF) / 24px (ApiDoc)

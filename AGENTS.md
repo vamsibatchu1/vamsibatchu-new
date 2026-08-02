@@ -39,6 +39,7 @@ src/
     writing/              WritingEditor
     home/                 CreativeTextRow, creativeFlow, IndexGallery
     practice-map/         3D practice map (Home intro teaser)
+    receipt/              visit tracker + thermal receipt PNG export
   lab/                    unused prototypes (not routed)
   data/
     nav.ts                shared primary nav links (top + bottom)

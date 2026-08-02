@@ -17,7 +17,7 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 | --- | --- |
 | `/` | Landing (outside shell) |
 | `/home` | Home |
-| `/work` | Work (stub) |
+| `/work` | Work (DeepMind desk) |
 | `/experiments` | Experiments |
 | `/writing` | Writing archive + editor |
 | `/about` | About |
@@ -33,6 +33,8 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 | `src/features/writing/` | `WritingEditor` |
 | `src/features/home/` | `CreativeTextRow`, `creativeFlow.ts`, `IndexGallery`, layout helpers |
 | `src/features/practice-map/` | 3D blueprint practice map (Home intro teaser) |
+| `src/features/work/` | `WorkCard` — DeepMind text wrap with model logos |
+| `src/features/receipt/` | Visit tracker + thermal receipt dock / PNG export |
 | `src/lab/` | Unused prototypes — **not routed**; don’t treat as production |
 | `src/data/` | Content JSON + loaders (`nav.ts`, `practiceMap.ts`, …) |
 | `src/assets/stills/` | Shared stills (Home + Writing figures) |
