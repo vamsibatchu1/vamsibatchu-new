@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import landingGif from '../assets/landing.gif'
+import landingGif from '../assets/landing/landing.gif'
 import ApiDoc from '../components/ApiDoc'
 
 /** One full loop of `landing.gif` (11 frames × delays). */

@@ -1,0 +1,25 @@
+---
+description: Visit receipt tracker — dock, ticket PNG, session stats
+globs: src/features/receipt/**,src/components/Layout.tsx
+alwaysApply: false
+---
+
+# Receipt
+
+Local-only visit tracker + thermal “VB STUDIO” receipt.
+
+## Files
+
+| Path | Role |
+| --- | --- |
+| `VisitReceiptContext.tsx` | Session tracking; freezes snapshot on open |
+| `ReceiptDock.tsx` | Bottom-right sheet (ticket only, no dialog chrome) |
+| `ReceiptTicket.tsx` | Thermal ticket UI |
+| `exportReceiptPng.ts` / `downloadReceipt.ts` | PNG export helpers |
+| `visitMath.ts` | Token / time math |
+
+## Shell wiring
+
+- Desktop top nav: Lucide `Receipt` next to heatmap `Scan` (`Layout.tsx`)
+- Dock: flush bottom, `right-8` (32px); hidden when writing `overlayOpen`
+- Stats stay on-device — don’t add analytics backends unless asked

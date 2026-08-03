@@ -17,7 +17,7 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 | --- | --- |
 | `/` | Landing (outside shell) |
 | `/home` | Home |
-| `/work` | Work (DeepMind desk) |
+| `/work` | Work (`WorkCard`) |
 | `/experiments` | Experiments |
 | `/writing` | Writing archive + editor |
 | `/about` | About |
@@ -37,21 +37,26 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 | `src/features/receipt/` | Visit tracker + thermal receipt dock / PNG export |
 | `src/lab/` | Unused prototypes — **not routed**; don’t treat as production |
 | `src/data/` | Content JSON + loaders (`nav.ts`, `practiceMap.ts`, …) |
-| `src/assets/stills/` | Shared stills (Home + Writing figures) |
+| `src/assets/home/` | Creative-intelligence SVG + Home-only posters |
+| `src/assets/writing/figures/` | Writing article figures |
+| `src/assets/shared/stills/` | Cross-page stills (Home + Writing heroes) |
+| `src/assets/shared/nav/` | Mobile bottom-nav doodle icons |
+| `src/assets/landing/` | Landing GIF + ApiDoc symbols |
+| `src/assets/work/` | GDM wordmark + model icons |
 | `src/assets/experiments/videos/` | Experiment preview mp4s |
-| `src/assets/{home,work,experiments,writing,about me}.webp` | Mobile bottom-nav doodle icons |
 
 ## Design defaults
 
 - JetBrains Mono; lowercase UI labels; white shell; pastel `Mark` accents
 - Prefer existing patterns; avoid generic AI looks (purple gradients, cream+serif, dense broadsheet)
-- **Viewport chrome**: desktop (`lg+`) sticky top nav with text + `Mark`; mobile bottom tab bar uses **icons only** (same `navLinks` in `src/data/nav.ts`, icons mapped in `Layout.tsx`). Hide mobile bar when shell overlay is open (writing editor).
+- **Viewport chrome**: desktop (`lg+`) sticky top nav with text + `Mark`; mobile bottom tab bar uses **icons only** (same `navLinks` in `src/data/nav.ts`, icons mapped in `Layout.tsx` from `shared/nav/`). Hide mobile bar when shell overlay is open (writing editor).
 - **Shell gutters**: use `src/components/shellLayout.ts` (`shellPadX` = `px-4 lg:px-10`, `max-w-6xl`). Don’t invent per-page mobile padding; full-bleed via `shellBleedX` only.
-- **Heatmap**: desktop top-nav toggle; `HeatmapOverlay` when on — keep out of mobile chrome unless asked.
+- **Heatmap**: desktop top-nav `Scan` toggle; `HeatmapOverlay` when on — keep out of mobile chrome unless asked.
+- **Receipt**: desktop top-nav `Receipt` toggle → `ReceiptDock` bottom-right (flush bottom, `right-8`). Local visit stats only; hide when writing overlay is open.
 
 ## Landing (`/`) — responsive behavior
 
-- **Desktop**: GIF + `ApiDoc` side by side (GIF may tilt; overlap ok).
+- **Desktop**: GIF + `ApiDoc` side by side (GIF may tilt; overlap ok). Assets: `src/assets/landing/`.
 - **Mobile sequence** (`Landing.tsx`): GIF alone (no rotate) → one full GIF loop (~2.2s) → fade out → mount `ApiDoc` (typewriter starts after its entrance). Skip sequence when `prefers-reduced-motion`.
 - **Mobile insets**: GIF `calc(100vw - 80px)` (40px sides); ApiDoc wrapper `calc(100vw - 48px)` (24px sides). Keep type readable — don’t CSS-scale the card down.
 
@@ -61,11 +66,17 @@ React 19 + TypeScript, Vite, Tailwind v4, React Router, framer-motion. Matter.js
 - `#creative-text`: `CreativeTextRow` — **2 columns** when stage width `< 900`, **5** on desktop. Wrap images/posters desktop-only (`≥1024`).
 - `#gallery`: Phaidon-style `IndexGallery` (no orphan rows on 7-col desktop).
 
+## Work
+
+- `WorkCard` half-width on desktop (`lg:w-1/2`); logos + GDM wordmark from `src/assets/work/`; flow data in `workCardFlow.ts`.
+
 ## Content extension points
 
 - **Writing** → `src/data/writing-articles/<id>.json` + `columns.json` (see writing rule)
-- **Experiments** → `src/data/experiments.json` + videos folder
-- **Home posters / flow** → `stills/` + `src/features/home/creativeFlow.ts`
+- **Experiments** → `src/data/experiments.json` + `src/assets/experiments/videos/`
+- **Home posters / flow** → `src/assets/home/posters/` (+ `shared/stills/` if shared) + `creativeFlow.ts`
+- **Writing figures** → `src/assets/writing/figures/` (+ `shared/stills/` for heroes)
+- **Work logos** → `src/assets/work/` + `workCardFlow.ts`
 - **Practice map nodes** → `src/data/practiceMap.ts`
 
 Do **not** hardcode new posts/experiments into page JSX. Start: `AGENTS.md`. Vision/changelog: `overview.md`.

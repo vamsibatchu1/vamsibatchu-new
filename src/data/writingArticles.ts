@@ -40,17 +40,23 @@ const articleModules = import.meta.glob<WritingArticle>('./writing-articles/*.js
 })
 
 const imageModules = import.meta.glob<string>(
-  '../assets/stills/*.{jpg,jpeg,png,webp,gif}',
+  [
+    '../assets/writing/figures/*.{jpg,jpeg,png,webp,gif}',
+    '../assets/shared/stills/*.{jpg,jpeg,png,webp,gif}',
+  ],
   {
-  eager: true,
-  query: '?url',
-  import: 'default',
-},
+    eager: true,
+    query: '?url',
+    import: 'default',
+  },
+)
+
+const imagesByFilename = Object.fromEntries(
+  Object.entries(imageModules).map(([path, url]) => [path.split('/').pop()!, url]),
 )
 
 function resolveImageSrc(filename: string): string | null {
-  const key = `../assets/stills/${filename}`
-  return imageModules[key] ?? null
+  return imagesByFilename[filename] ?? null
 }
 
 function resolveArticle(article: WritingArticle): WritingArticle {

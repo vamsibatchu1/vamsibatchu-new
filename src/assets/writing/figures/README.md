@@ -1,30 +1,20 @@
-# Shared stills (`stills`)
+# Writing figures
 
-Still images used by:
+Article images for `src/data/writing-articles/*.json`.
 
-1. **Home** creative-text posters (`src/features/home/creativeFlow.ts`)
-2. **Writing** article figures (`src/data/writing-articles/*.json` via `writingArticles.ts`)
+Also resolved: `src/assets/shared/stills/` (heroes shared with Home). Filename-only `"src"` in JSON — loader merges both folders.
 
-## Add a Home poster
+## Add a figure
 
-1. Add the file here (`hero9.jpg`, etc.). Prefer jpg/png/webp/gif.
-2. In `src/features/home/creativeFlow.ts`:
-   - import the asset
-   - add a flow image object (id, column, placement, `src`, aspect)
-3. Center SVG silhouette: `src/assets/creative-intelligence.svg` (referenced from creativeFlow).
-
-Layout helpers: `src/features/home/creativeTextLayout.ts`. Prefer `object-contain` (no crop).
-
-## Use an image in a writing article
-
-No Home import required. Reference the **filename** in article JSON:
+1. Drop the image here (`my-piece-01.png`, etc.). Prefer jpg/png/webp/gif.
+2. In article JSON:
 
 ```json
-{ "type": "image", "src": "hero9.jpg", "alt": "…", "caption": "…" }
+{ "type": "image", "src": "my-piece-01.png", "alt": "…", "caption": "…" }
 ```
 
-## Remove
+Do **not** set `url` — `writingArticles.ts` fills it from the glob.
 
-- From Home: remove import + flow entry in `creativeFlow.ts`.
-- From articles: remove or retarget image blocks.
-- Delete the file only when nothing references it.
+## Shared with Home
+
+If Home also uses the image (e.g. `hero4.jpg`), put it in `src/assets/shared/stills/` instead — still reference by filename only.

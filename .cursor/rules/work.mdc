@@ -1,0 +1,27 @@
+---
+description: Work page — WorkCard text wrap and DeepMind / model assets
+globs: src/pages/Work.tsx,src/features/work/**,src/assets/work/**
+alwaysApply: false
+---
+
+# Work
+
+Page: `src/pages/Work.tsx` → `WorkCard` only.
+
+## Assets
+
+| Path | Use |
+| --- | --- |
+| `src/assets/work/gdm.svg` | DeepMind wordmark |
+| `src/assets/work/icons/*.svg` | Model logos (Gemini, Omni, Audio, Nano Banana, Lyria) |
+
+## Flow data
+
+`src/features/work/workCardFlow.ts` — import assets + define wrap images / body copy.
+
+Layout helpers are shared with Home: `src/features/home/creativeTextLayout.ts`. Prefer keeping marks fully inside the card (`PAD`, `object-contain`).
+
+## Do / don't
+
+- ✅ Add logos via `workCardFlow.ts` imports
+- ❌ Don’t revive old DeepMind desk / lab prototypes unless asked

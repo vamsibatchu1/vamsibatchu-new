@@ -11,7 +11,7 @@ One JSON file per article. List order lives in `columns.json`. Metadata is **not
 | Loader | `src/data/writingArticles.ts` (re-exported via `writing.ts`) |
 | Page UI | `src/pages/Writing.tsx` |
 | Pocket editor | `src/features/writing/WritingEditor.tsx` |
-| Figure images | `src/assets/stills/` |
+| Figure images | `src/assets/writing/figures/` (+ `shared/stills/` for cross-page heroes) |
 
 ## Checklist — new post
 
@@ -38,7 +38,7 @@ One JSON file per article. List order lives in `columns.json`. Metadata is **not
 ```
 
 3. Append the `id` to the right array in `columns.json` (`essays` | `notes` | `talks`).
-4. For new figures: drop images into `src/assets/stills/`, reference **filename only** in `"src"`.
+4. For new figures: drop images into `src/assets/writing/figures/` (or `shared/stills/` if Home also uses them), reference **filename only** in `"src"`.
 5. Open `/writing`, click the row — editor should load. Close via Esc, red traffic light, or clicking the page backdrop (clears the active row). Desktop toolbar includes optional page-dim; toolbar is hidden on mobile.
 
 ## Blocks
@@ -46,7 +46,7 @@ One JSON file per article. List order lives in `columns.json`. Metadata is **not
 - `{ "type": "p", "text": "…" }`
 - `{ "type": "image", "src": "file.jpg", "alt": "…", "caption?": "…" }`
 
-Do **not** set `url` in JSON — the loader fills it from the stills glob.
+Do **not** set `url` in JSON — the loader fills it from the figures / shared-stills glob.
 
 ## Edit / remove
 

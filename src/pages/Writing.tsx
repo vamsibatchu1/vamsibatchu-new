@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { writingColumns, type WritingEntry } from '../data/writing'
 import WritingEditor from '../features/writing/WritingEditor'
-import writingImage from '../assets/writing.webp'
+import writingImage from '../assets/shared/nav/writing.webp'
 import { useShellUi } from '../components/ShellUiContext'
 
 /**

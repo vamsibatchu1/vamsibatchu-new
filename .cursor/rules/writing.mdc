@@ -32,7 +32,7 @@ Runbook: `src/data/writing-articles/README.md`.
 
 1. Create `writing-articles/<id>.json` (kebab-case id; never reuse).
 2. Append `id` to the right array in `columns.json`.
-3. Figures: file in `src/assets/stills/`; block `"src"` = filename only (no `url` field).
+3. Figures: file in `src/assets/writing/figures/` (or `shared/stills/` if also used on Home); block `"src"` = filename only (no `url` field).
 4. Click row on `/writing` opens the editor.
 
 ## Blocks

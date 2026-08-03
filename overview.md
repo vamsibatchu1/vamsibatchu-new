@@ -7,11 +7,13 @@ Living document for vision, site logic, and change log. Update this whenever we 
 | Doc | Role |
 | --- | --- |
 | [`AGENTS.md`](./AGENTS.md) | Start here — task index for humans & Cursor |
-| [`.cursor/rules/`](./.cursor/rules/) | Auto-applied agent rules (portfolio, writing, experiments, stills, lab, docs maintenance) |
+| [`.cursor/rules/`](./.cursor/rules/) | Auto-applied agent rules (portfolio, writing, experiments, stills, work, receipt, lab, docs) |
+| [`.cursor/skills/`](./.cursor/skills/) | Discoverable content skills (add-writing, add-experiment, add-home-poster, portfolio-assets) |
 | [`.cursor/hooks.json`](./.cursor/hooks.json) | Stop hook nudges if pipeline code changes without docs |
 | [`src/data/writing-articles/README.md`](./src/data/writing-articles/README.md) | Add / edit a blog |
 | [`src/data/EXPERIMENTS.md`](./src/data/EXPERIMENTS.md) | Add / edit an experiment |
-| [`src/assets/stills/README.md`](./src/assets/stills/README.md) | Add Home / Writing images |
+| [`src/assets/home/README.md`](./src/assets/home/README.md) | Add Home posters |
+| [`src/assets/writing/figures/README.md`](./src/assets/writing/figures/README.md) | Add Writing figures |
 | This file | Vision, how the site should feel, changelog |
 
 Operational “how do I add X?” belongs in the runbooks/rules. Keep this file for product direction and history.
@@ -63,10 +65,22 @@ Future ideas (not scaffolded yet): now / WIP, contact, lab, play.
 
 ## Assets
 
-- `src/assets/landing.gif` — portrait GIF on the landing gate
-- `src/assets/{home,work,experiments,writing,about me}.webp` — mobile nav icons
+- `src/assets/landing/` — portrait GIF + ApiDoc symbols
+- `src/assets/shared/nav/` — mobile bottom-nav doodle icons (`about.webp`, …)
+- `src/assets/home/` — creative-intelligence SVG + Home-only posters
+- `src/assets/shared/stills/` — cross-page heroes (Home + Writing)
+- `src/assets/writing/figures/` — Writing article figures
+- `src/assets/work/` — GDM wordmark + model icons
+- `src/assets/experiments/videos/` — experiment preview mp4s
 
 ## Change log
+
+### 2026-08-02 — Assets by page
+
+- Split flat `stills/` + root assets into page folders: `landing/`, `home/`, `work/`, `writing/figures/`, `shared/{nav,stills}/`
+- Renamed `about me.webp` → `shared/nav/about.webp`
+- Writing loader globs `writing/figures` + `shared/stills` (filename-only refs unchanged)
+- Agent skills + rules refreshed for new asset map (`work`, `receipt`, `.cursor/skills/*`)
 
 ### 2026-08-02 — Portfolio receipt
 

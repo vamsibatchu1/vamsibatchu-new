@@ -8,12 +8,14 @@ alwaysApply: true
 When a change alters **how** content is added (schema, loader, asset folder, feature path, or editor UX agents must know), update **in the same session**:
 
 1. Matching `.cursor/rules/*.mdc`
-2. Matching runbook:
+2. Matching `.cursor/skills/*/SKILL.md` (if a skill covers that task)
+3. Matching runbook:
    - Writing → `src/data/writing-articles/README.md`
    - Experiments → `src/data/EXPERIMENTS.md`
-   - Stills / Home posters → `src/assets/stills/README.md`
-3. `AGENTS.md` if the task index or repo map changes
-4. `overview.md` changelog for product-visible changes
+   - Home posters → `src/assets/home/README.md`
+   - Writing figures → `src/assets/writing/figures/README.md`
+4. `AGENTS.md` if the task index or repo map changes
+5. `overview.md` changelog for product-visible changes
 
 ## Do not update rules for
 
@@ -24,5 +26,6 @@ When a change alters **how** content is added (schema, loader, asset folder, fea
 
 - `src/data/writingArticles.ts`, `src/data/experiments.ts`
 - `src/data/writing-articles/columns.json` **schema** changes (not routine id appends)
-- Moves under `src/features/`, `src/assets/stills/`, `src/assets/experiments/`
+- Moves under `src/features/`, `src/assets/{home,writing,shared,landing,work,experiments}/`
 - New content source folders under `src/data/` or `src/assets/`
+- New or renamed `.cursor/skills/`

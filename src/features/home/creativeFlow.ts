@@ -1,9 +1,9 @@
-import creativeIntelligence from '../../assets/creative-intelligence.svg'
-import hero4 from '../../assets/stills/hero4.jpg'
-import hero5 from '../../assets/stills/hero5.jpg'
-import hero6 from '../../assets/stills/hero6.jpg'
-import hero7 from '../../assets/stills/hero7.jpg'
-import hero8 from '../../assets/stills/hero8.jpg'
+import creativeIntelligence from '../../assets/home/creative-intelligence.svg'
+import play from '../../assets/home/posters/play.webp'
+import taste from '../../assets/home/posters/taste.webp'
+import hero4 from '../../assets/shared/stills/hero4.jpg'
+import hero5 from '../../assets/shared/stills/hero5.jpg'
+import hero7 from '../../assets/shared/stills/hero7.jpg'
 import { type MarkTone } from '../../components/Mark'
 import { type CreativeTextFlow } from './CreativeTextRow'
 
@@ -164,23 +164,23 @@ export const creativeFlow: CreativeTextFlow = {
       alt: 'Sock scarf instructional poster',
     },
     {
-      id: 'hero6',
+      id: 'taste',
       column: 1,
       top: 0,
       widthRatio: 0.58,
       float: 'left',
-      aspectRatio: 1080 / 1495,
-      src: hero6,
-      alt: 'ISA Gallery yellow grid poster',
+      aspectRatio: 3654 / 4584,
+      src: taste,
+      alt: 'Taste still',
     },
     {
-      id: 'hero8',
+      id: 'play',
       column: 4,
       top: 48,
       widthRatio: 0.56,
       float: 'right',
-      aspectRatio: 1400 / 1750,
-      src: hero8,
+      aspectRatio: 3967 / 4191,
+      src: play,
       alt: 'Photo Book Speed Date poster',
     },
     {

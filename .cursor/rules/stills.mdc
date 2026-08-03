@@ -1,30 +1,30 @@
 ---
 description: Home creative-text posters and shared stills assets
-globs: src/pages/Home.tsx,src/features/home/**,src/assets/stills/**
+globs: src/pages/Home.tsx,src/features/home/**,src/assets/home/**,src/assets/shared/stills/**
 alwaysApply: false
 ---
 
 # Home / stills
 
-Runbook: `src/assets/stills/README.md`.
+Runbook: `src/assets/home/README.md`.
 
 ## Home posters (`CreativeTextRow`)
 
-1. Add image under `src/assets/stills/` (jpg/png/webp).
+1. Home-only images → `src/assets/home/posters/`. Shared with Writing → `src/assets/shared/stills/`.
 2. Import + add flow image in `src/features/home/creativeFlow.ts` (id, column, top, widthRatio, float, aspectRatio, src, alt).
 3. Layout helpers: `src/features/home/creativeTextLayout.ts`. Prefer `object-contain` (no crop).
-4. Center silhouette: `src/assets/creative-intelligence.svg` (wired via `creativeFlow.shapeSrc`).
+4. Center silhouette: `src/assets/home/creative-intelligence.svg` (wired via `creativeFlow.shapeSrc`).
 5. Page shell only: `src/pages/Home.tsx` — don’t dump long flow copy back into the page.
 
 Images are draggable wrap obstacles; dragging rearranges wrap path only.
 
 ## Writing figures
 
-Same `stills/` folder. In article JSON use filename-only `"src"`. Resolved by `writingArticles.ts` glob — no Home import required.
+Article-only → `src/assets/writing/figures/`. Shared heroes → `src/assets/shared/stills/`. In article JSON use filename-only `"src"`. Resolved by `writingArticles.ts` glob — no Home import required.
 
 Home creative-text posters are **desktop-only** (`CreativeTextRow` hides wrap images below 1024px). Still add them in `creativeFlow.ts` for desktop.
 
 ## Do / don't
 
 - ✅ Home posters need explicit import in `creativeFlow.ts`
-- ❌ Don’t use old paths `home-assets/` or put posters only in `Home.tsx`
+- ❌ Don’t use old paths `stills/` or `home-assets/` or put posters only in `Home.tsx`

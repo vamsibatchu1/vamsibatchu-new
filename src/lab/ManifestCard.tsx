@@ -1,4 +1,4 @@
-import landingSym1 from '../assets/landing-sym-1.svg'
+import landingSym1 from '../assets/landing/landing-sym-1.svg'
 
 export default function ManifestCard() {
   return (

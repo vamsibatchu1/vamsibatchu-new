@@ -1,9 +1,9 @@
-import gdmWordmark from '../../assets/gdm.svg'
-import geminiIcon from '../../assets/icons/gemini.svg'
-import geminiOmniIcon from '../../assets/icons/gemini-omni.svg'
-import geminiAudioIcon from '../../assets/icons/gemini-audio.svg'
-import nanoBananaIcon from '../../assets/icons/nano-banana.svg'
-import lyriaIcon from '../../assets/icons/lyria.svg'
+import gdmWordmark from '../../assets/work/gdm.svg'
+import geminiIcon from '../../assets/work/icons/gemini.svg'
+import geminiOmniIcon from '../../assets/work/icons/gemini-omni.svg'
+import geminiAudioIcon from '../../assets/work/icons/gemini-audio.svg'
+import nanoBananaIcon from '../../assets/work/icons/nano-banana.svg'
+import lyriaIcon from '../../assets/work/icons/lyria.svg'
 import { type FlowImage } from '../home/creativeTextLayout'
 
 /**
